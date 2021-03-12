@@ -18,7 +18,7 @@ UnitCon.Cm_con = Const.R;
 % \\Field Strength---------------------------------------------------
 g = para.Model.g;
 h_con = g;
-for i = 1:1:length(g)
+for i = 1:1:3
     h_con(i) = ES * Const.kb * Const.MJ / g(i) / Const.mu_b;
 end
 UnitCon.h_con = h_con;

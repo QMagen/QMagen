@@ -42,7 +42,6 @@ switch loss_type
             loss = loss + (C_int(i) - C(i))^2; 
         end
         loss = loss / max(C_int)^2;
-        keyboard;
     case {'rel-err'}
         for i = 1:length(T)
             loss = loss + ((C_int(i) - C(i))/C_int(i))^2; 

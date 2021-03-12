@@ -1,5 +1,5 @@
 function [ Model ] = GetModel(TStr, g, varagin )
-load([TStr, 'configuration.mat'])
+load(['tmp_', TStr, '/configuration.mat'])
 Model.TStr = TStr;
 Model.g = g;
 Model.ES = abs(varagin(1));

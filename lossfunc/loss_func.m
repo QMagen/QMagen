@@ -1,8 +1,8 @@
 function [ loss ] = loss_func( TStr, g, varagin )
 loss = 0;
 Model = GetModel(TStr, g, varagin);
-load([TStr, 'exp_data.mat']);
-load([TStr, 'configuration.mat'])
+load(['tmp_', TStr, '/exp_data.mat']);
+load(['tmp_', TStr, '/configuration.mat'])
 
 loss_type = lossconfig.loss_type;
 loss_design = lossconfig.loss_design;
@@ -46,7 +46,7 @@ global res_save_name
 global save_count
 if res_save == 1
     if loss < min_loss_val
-        save([res_save_pos, '.mat'], 'RsltCv', 'RsltChi');
+        save(res_save_name, 'best.mat', 'RsltCv', 'RsltChi');
         min_loss_val = loss;
     end
     

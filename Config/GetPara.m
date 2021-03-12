@@ -2,7 +2,7 @@ function [ Para ] = GetPara( Model, Field, K_min )
 % function [Para] = GetPara(Model, Field, K_min)
 % Set the parameter of the problem.
 
-load([Model.TStr, 'configuration.mat'])
+load(['tmp_', Model.TStr, '/configuration.mat'])
 
 Para.many_body_solver = conf.many_body_solver;    
 Para.d = conf.d;
@@ -21,7 +21,7 @@ global res_save
 res_save = setting.res_save;  
 
 global res_save_name
-res_save_name = setting.res_save_name;
+res_save_name = [setting.res_save_name, '_', Model.TStr, '/'];
 
 global save_count
 if isempty(save_count)

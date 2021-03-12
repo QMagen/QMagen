@@ -1,7 +1,8 @@
+clear all
 addpath lossfunc
 addpath ManyBodySolver
 addpath Config
-addpath tmp
+
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
@@ -49,12 +50,17 @@ setting.EVO_check = 0;  % 0 -> off, 1 -> on
 setting.res_save = 2;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % The file name to save intermediate results.
-setting.res_save_name = 'Save_folder/EDtest';
+setting.res_save_name = 'EDtest';
 
 
 % =========================================================================
-save(['tmp/', TStr, 'exp_data.mat'], 'Cmdata', 'Chidata');
-save(['tmp/', TStr, 'configuration.mat'], 'Geo', 'conf', 'ModelConf', 'setting', 'lossconfig')
+
+mkdir(['tmp_', TStr]);
+if setting.res_save ~= 0
+    mkdir([setting.res_save_name, '_', TStr])
+end
+save(['tmp_', TStr, '/exp_data.mat'], 'Cmdata', 'Chidata');
+save(['tmp_', TStr, '/configuration.mat'], 'Geo', 'conf', 'ModelConf', 'setting', 'lossconfig')
 % =========================================================================
 
 

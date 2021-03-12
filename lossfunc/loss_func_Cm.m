@@ -8,13 +8,9 @@ T_max = min(max(T_exp), Trange(2));
 
 ThDQ = 'Cm';
 [~, Rslt] = GetResult(Model, Field, T_min-0.1 * T_min, ThDQ);
-% keyboard;
 T = Rslt.T_l;
 C = Rslt.Cm_l;
-% T(1) = [];
-% T(end) = [];
-% C(1) = [];
-% C(end) = [];
+
 
 for i = 1:length(T)
     if T(end) < T_min

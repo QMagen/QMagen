@@ -36,6 +36,10 @@ Chidata.data{1} = struct2array(load('Chi_expdata.mat', 'Chi_data'));
 Chidata.Trange{1} = [1, 40];
 
 % =========================================================================
+lossconfig.weight_list = [];
+lossconfig.loss_type = 'abs-err'; % 'abs-err', 'rel-err'
+lossconfig.loss_design = 'native'; % 'native', 'log'
+% =========================================================================
 setting.plot_check = 0; % 0 -> off, 1 -> on
 
 % Show information about evolution.
@@ -50,7 +54,7 @@ setting.res_save_name = 'Save_folder/EDtest';
 
 % =========================================================================
 save(['tmp/', TStr, 'exp_data.mat'], 'Cmdata', 'Chidata');
-save(['tmp/', TStr, 'configuration.mat'], 'Geo', 'conf', 'ModelConf', 'setting')
+save(['tmp/', TStr, 'configuration.mat'], 'Geo', 'conf', 'ModelConf', 'setting', 'lossconfig')
 % =========================================================================
 
 

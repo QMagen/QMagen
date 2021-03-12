@@ -1,4 +1,4 @@
-function [ loss, Rslt ] = loss_func_Cm( Model, Field, Trange, C_data )
+function [ loss, Rslt ] = loss_func_Cm( Model, Field, Trange, C_data, loss_type )
 loss = 0;
 T_exp = C_data(:,1);
 C_exp = C_data(:,2);
@@ -33,10 +33,20 @@ while 1
         break;
     end
 end
-% keyboard;
+
 C_int = interp1(T_exp, C_exp, T);
-for i = 1:length(T)
-    loss = loss + ((C_int(i) - C(i))/C_int(i))^2; 
+
+switch loss_type
+    case {'abs-err'}
+        for i = 1:length(T)
+            loss = loss + (C_int(i) - C(i))^2; 
+        end
+        loss = loss / max(C_int)^2;
+        keyboard;
+    case {'rel-err'}
+        for i = 1:length(T)
+            loss = loss + ((C_int(i) - C(i))/C_int(i))^2; 
+        end
 end
 loss = loss/length(T);
 global plot_check

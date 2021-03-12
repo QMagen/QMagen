@@ -1,4 +1,4 @@
-function [ loss, Rslt ] = loss_func_chi( Model, Field, Trange,  Chi_data )
+function [ loss, Rslt ] = loss_func_chi( Model, Field, Trange,  Chi_data, loss_type )
 loss = 0;
 
 T_exp = Chi_data(:,1);
@@ -30,8 +30,17 @@ while 1
 end
 
 chi_int = interp1(T_exp, chi_exp, T);
-for i = 1:length(T)
-    loss = loss + ((chi_int(i) - chi(i))/chi_int(i))^2; 
+
+switch loss_type
+    case 'abs-err'
+        for i = 1:length(T)
+            loss = loss + (chi_int(i) - chi(i))^2; 
+        end
+        loss = loss / max(chi_int)^2;
+    case 'rel-err'
+        for i = 1:length(T)
+            loss = loss + ((chi_int(i) - chi(i))/chi_int(i))^2; 
+        end
 end
 loss = loss/length(T);
 global plot_check

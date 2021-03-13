@@ -5,6 +5,7 @@ load(['tmp_', TStr, '/configuration.mat'])
 
 fprintf('Many-body solver: %s\n', Conf.many_body_solver)
 fprintf('Model Name: %s\n', Conf.ModelName_all)
+display(GeomConf)
 fprintf('Parameter:\n')
 
 Para_input = ['['];

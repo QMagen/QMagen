@@ -1,6 +1,21 @@
 function [ GeomConf, ModelConf ] = SpinModel( Conf )
 switch Conf.ModelName
     case 'TLTI'
+        % -----------------------------------------------------------------
+        % Transverse field Ising model on triangular lattice
+        % Parameter: 
+        %           J1     Nearest neighbor term
+        %           J2     Next-nearest neighbor term
+        %           Delta  Transverse field term
+        %           gz     Lande factor of Sz direction
+        % 
+        % Hamiltonian:
+        %   H = J1 \sum_<i,j> Sz_i Sz_j 
+        %       + J2 \sum_<<i,j>> Sz_i Sz_j 
+        %       - Delta\sum_i Sx_i 
+        %       - hz\sum_i Sz_i
+        % -----------------------------------------------------------------
+        
         % =================================================================
         % DEFAULT SETTINGS
         % =================================================================

@@ -7,13 +7,7 @@ TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
 Conf.many_body_solver = 'XTRG'; % 'ED', 'LTRG', 'XTRG'         % conf, BC, Mar13
-
-%if strcmp(Conf.many_body_solver, 'ED') || strcmp(Conf.many_body_solver, 'XTRG')
-if ismember(Conf.many_body_solver, {'ED', 'XTRG'})
-    Conf.IntrcMap_Name = 'IntrcMap_TLTI';
-elseif ismember(Conf.many_body_solver, {'iLTRG'})
-    Conf.Trotter_Name = 'Tortter_AAFHC';
-end
+Conf.ModelName = 'TLTI';
 
 Conf.d = 2;
 Conf.L = 9;
@@ -21,26 +15,7 @@ Conf.L = 9;
 % =========================================================================
 % MODEL SPECIFICATION
 % =========================================================================
-GeomConf.Lx = 3;                                   % Geo, BC, Mar13
-GeomConf.Ly = 3;
-GeomConf.BCX = 'OBC';
-GeomConf.BCY = 'PBC';
-
-ModelConf.Para_List = {'J1', 'J2', 'Delta'};        % Para, BC, Mar13
-ModelConf.Para_Range = {[5, 20], [0, 5], [0, 12]};  % Para_opt_range, BC, Mar13
-
-ModelConf.Num_gFactor = 1;                           % g_len, BC, Mar13
-ModelConf.Type_gFactor = 'xyz'; % 'xyz', 'dir'       % g_def, BC, Mar13
-
-ModelConf.gFactor = cell(ModelConf.Num_gFactor, 1);       % g, BC, Mar13
-ModelConf.gFactor_Vec = cell(ModelConf.Num_gFactor, 1);   % g_vec, BC, Mar13
-ModelConf.gFacotr_Range = cell(ModelConf.Num_gFactor, 1); % g_opt_range, BC, Mar13
-
-ModelConf.gFactor{1} = 'gz';
-ModelConf.gFactor_Vec{1} = [0,0,1];
-ModelConf.gFacotr_Range{1} = [5, 20]; 
-
-
+[ GeomConf, ModelConf ] = SpinModel( Conf );
 % =========================================================================
 % DATA INPUT
 % =========================================================================

@@ -6,7 +6,7 @@ addpath Config
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
-Conf.many_body_solver = 'XTRG'; % 'ED', 'LTRG', 'XTRG'         % conf, BC, Mar13
+Conf.many_body_solver = 'ED'; % 'ED', 'LTRG', 'XTRG'         % conf, BC, Mar13
 Conf.ModelName = 'TLTI';
 
 Conf.d = 2;
@@ -15,7 +15,7 @@ Conf.L = 9;
 % =========================================================================
 % MODEL SPECIFICATION
 % =========================================================================
-[ GeomConf, ModelConf ] = SpinModel( Conf );
+[ GeomConf, ModelConf, Conf ] = SpinModel( Conf );
 % =========================================================================
 % DATA INPUT
 % =========================================================================

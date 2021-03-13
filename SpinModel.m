@@ -1,4 +1,4 @@
-function [ GeomConf, ModelConf ] = SpinModel( Conf )
+function [ GeomConf, ModelConf, Conf ] = SpinModel( Conf )
 switch Conf.ModelName
     case 'TLTI'
         % -----------------------------------------------------------------

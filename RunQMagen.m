@@ -27,7 +27,7 @@ ModelConf.Para = {'J1', 'J2', 'Delta'};
 ModelConf.Para_opt_range = {[5, 20], [0, 5], [0, 12]};
 
 ModelConf.g_len = 1;
-ModelConf.g_def = 'xyz'; % 'xyz', 'dir'
+ModelConf.g_def = 'xyz'; % 'xyz', 'dir' 
 
 ModelConf.g = cell(ModelConf.g_len, 1);
 ModelConf.g_vec = cell(ModelConf.g_len, 1);

@@ -30,7 +30,7 @@ Conf.ModelName = 'TLTI';
 CmData = ThermoData('Cm', [0,0,0], [1,40], 'C_expdata.mat'); % BC
 
 if strcmp(ModelConf.Type_gFactor, 'dir')
-    CmData.g_info = {};
+    CmData.Info.g_info = {};
 end
 
 Chidata.len = 1;

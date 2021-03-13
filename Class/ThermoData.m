@@ -46,7 +46,7 @@ classdef ThermoData < matlab.mixin.CustomDisplay
         else
           error('storage#4 not char?!');
         end
-        
+                
         obj = obj.loadStorage_();
       end
     end

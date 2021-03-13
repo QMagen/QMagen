@@ -4,18 +4,16 @@ function [ Para ] = GetPara( Model, Field, K_min )
 
 load(['tmp_', Model.TStr, '/configuration.mat'])
 
-Para.many_body_solver = conf.many_body_solver;   
+Para.many_body_solver = Conf.many_body_solver;   
 
-if strcmp(conf.many_body_solver, 'ED') || strcmp(conf.many_body_solver, 'XTRG')
-    Para.IntrcMap_name = conf.IntrcMap_name;
+if ismember(Conf.many_body_solver, {'ED', 'XTRG'})
+    Para.IntrcMap_Name = Conf.IntrcMap_Name;
+elseif ismember(Conf.many_body_solver, {'iLTRG'})
+    Para.Trotter_Name = Conf.Trotter_Name;
 end
-
-if strcmp(conf.many_body_solver, 'iLTRG')
-    Para.trotter_name = conf.trotter_name;
-end
-Para.d = conf.d;
-Para.L = conf.L;
-Para.Geo = Geo;
+Para.d = Conf.d;
+Para.L = Conf.L;
+Para.Geo = GeomConf;
 
 % ====================================================
 

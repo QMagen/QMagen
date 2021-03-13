@@ -1,4 +1,4 @@
-function [ t_ab, t_ba ] = trotter_AAFHC( Para )
+function [ t_ab, t_ba ] = Trotter_AAFHC( Para )
 
 t_ab = cell(3,3);
 

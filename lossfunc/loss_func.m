@@ -18,11 +18,11 @@ RsltCv = cell(Cmdata.len, 1);
 for i = 1:1:Cmdata.len
     clear Field
     Field.B = Cmdata.Field{i};
-    switch ModelConf.g_def
+    switch ModelConf.Type_gFactor
         case 'xyz'
             g_fec = [0, 0, 0];
-            for j = 1:1:ModelConf.g_len
-                g_fec = g_fec + g(j) * ModelConf.g_vec{j};
+            for j = 1:1:ModelConf.Num_gFactor
+                g_fec = g_fec + g(j) * ModelConf.gFactor_Vec{j};
             end
             for j = 1:1:3
                 if g_fec(j) == 0
@@ -30,7 +30,7 @@ for i = 1:1:Cmdata.len
                 end
             end
         case 'dir'
-            g_fec = g(Cmdata.g_info{i}) * ModelConf.g_vec{Cmdata.g_info{i}};
+            g_fec = g(Cmdata.g_info{i}) * ModelConf.gFactor_Vec{Cmdata.g_info{i}};
             for j = 1:1:3
                 if g_fec(j) == 0
                     g_fec(j) = 2;
@@ -47,11 +47,11 @@ end
 RsltChi = cell(Chidata.len, 1);
 for i = 1:1:Chidata.len
     Field.B = Chidata.Field{i};
-    switch ModelConf.g_def
+    switch ModelConf.Type_gFactor
         case 'xyz'
             g_fec = [0, 0, 0];
-            for j = 1:1:ModelConf.g_len
-                g_fec = g_fec + g(j) * ModelConf.g_vec{j};
+            for j = 1:1:ModelConf.Num_gFactor
+                g_fec = g_fec + g(j) * ModelConf.gFactor_Vec{j};
             end
             for j = 1:1:3
                 if g_fec(j) == 0
@@ -59,7 +59,7 @@ for i = 1:1:Chidata.len
                 end
             end
         case 'dir'
-            g_fec = g(Cmdata.g_info{i}) * ModelConf.g_vec{Chidata.g_info{i}};
+            g_fec = g(Cmdata.g_info{i}) * ModelConf.gFactor_Vec{Chidata.g_info{i}};
             for j = 1:1:3
                 if g_fec(j) == 0
                     g_fec(j) = 2;

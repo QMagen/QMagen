@@ -3,45 +3,45 @@ function [ res ] = opt_func( TStr )
 load(['tmp_', TStr, '/exp_data.mat']);
 load(['tmp_', TStr, '/configuration.mat'])
 
-g_input = ['['];
+gFac_input = ['['];
 vg = [];
-for i = 1:1:ModelConf.g_len
-    if length(ModelConf.g_opt_range{i}) == 1
-        g_input = [g_input, num2str(ModelConf.g_opt_range{i})];
+for i = 1:1:ModelConf.Num_gFactor
+    if length(ModelConf.gFacotr_Range{i}) == 1
+        gFac_input = [gFac_input, num2str(ModelConf.gFacotr_Range{i})];
         if i ~= ModelConf.g_len
-            g_input = [g_input, ','];
+            gFac_input = [gFac_input, ','];
         end
     else
-        g_input = [g_input, ['x.', ModelConf.g{i}]];
-        if i ~= ModelConf.g_len
-            g_input = [g_input, ','];
+        gFac_input = [gFac_input, ['x.', ModelConf.gFactor{i}]];
+        if i ~= ModelConf.Num_gFactor
+            gFac_input = [gFac_input, ','];
         end
-        vg = [vg, optimizableVariable(ModelConf.g{i}, ModelConf.g_opt_range{i})];
+        vg = [vg, optimizableVariable(ModelConf.gFactor{i}, ModelConf.gFacotr_Range{i})];
     end
 end
-g_input = [g_input, ']'];
+gFac_input = [gFac_input, ']'];
 
 Para_input = ['['];
 vp = [];
-for i = 1:1:length(ModelConf.Para)
-    if length(ModelConf.Para_opt_range{i}) == 1
-        Para_input = [Para_input, num2str(ModelConf.Para_opt_range{i})];
+for i = 1:1:length(ModelConf.Para_List)
+    if length(ModelConf.Para_Range{i}) == 1
+        Para_input = [Para_input, num2str(ModelConf.Para_Range{i})];
         if i ~= length(ModelConf.Para)
             Para_input = [Para_input, ','];
         end
     else  
-        Para_input = [Para_input, ['x.', ModelConf.Para{i}]];
-        if i ~= length(ModelConf.Para)
+        Para_input = [Para_input, ['x.', ModelConf.Para_List{i}]];
+        if i ~= length(ModelConf.Para_List)
             Para_input = [Para_input, ','];
         end
-        vp = [vp, optimizableVariable(ModelConf.Para{i}, ModelConf.Para_opt_range{i})];
+        vp = [vp, optimizableVariable(ModelConf.Para_List{i}, ModelConf.Para_Range{i})];
     end
 end
 Para_input = [Para_input, ']'];
 
 for i = 1:1:10
     if i == 1
-        lf = @(x) loss_func( TStr, eval(g_input), eval(Para_input) );
+        lf = @(x) loss_func( TStr, eval(gFac_input), eval(Para_input) );
         
         res = bayesopt(lf, [vp, vg], ...
                         'AcquisitionFunctionName', 'expected-improvement-plus', ...

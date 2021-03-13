@@ -8,7 +8,7 @@ function [ H, Id, Ope ] = InitHam(Para)
 % Yuan Gao@buaa 2020.12.07
 % mail: 17231064@buaa.edu.cn
 
-IntrMap = eval([Para.IntrcMap_name, '(Para)']);
+IntrMap = eval([Para.IntrcMap_Name, '(Para)']);
 Op = GetLocalSpace(Para.d);
 H.lgnorm = 0;
 H.A = cell(Para.L, 1);

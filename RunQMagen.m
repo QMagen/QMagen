@@ -6,36 +6,43 @@ addpath Config
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
-conf.many_body_solver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
-conf.d = 2;
+Conf.many_body_solver = 'XTRG'; % 'ED', 'LTRG', 'XTRG'         % conf, BC, Mar13
 
-if strcmp(conf.many_body_solver, 'ED') || strcmp(conf.many_body_solver, 'XTRG')
-    conf.IntrcMap_name = 'IntrcMap_TLTI';
-    conf.L = 9;
+%if strcmp(Conf.many_body_solver, 'ED') || strcmp(Conf.many_body_solver, 'XTRG')
+if ismember(Conf.many_body_solver, {'ED', 'XTRG'})
+    Conf.IntrcMap_Name = 'IntrcMap_TLTI';
+elseif ismember(Conf.many_body_solver, {'iLTRG'})
+    Conf.Trotter_Name = 'Tortter_AAFHC';
 end
 
-if strcmp(conf.many_body_solver, 'iLTRG')
-    conf.trotter_name = 'tortter_AAFHC';
-end
+Conf.d = 2;
+Conf.L = 9;
 
 % =========================================================================
-Geo.Lx = 3;
-Geo.Ly = 3;
-Geo.BCX = 'OBC';
-Geo.BCY = 'PBC';
-ModelConf.Para = {'J1', 'J2', 'Delta'};
-ModelConf.Para_opt_range = {[5, 20], [0, 5], [0, 12]};
+% MODEL SPECIFICATION
+% =========================================================================
+GeomConf.Lx = 3;                                   % Geo, BC, Mar13
+GeomConf.Ly = 3;
+GeomConf.BCX = 'OBC';
+GeomConf.BCY = 'PBC';
 
-ModelConf.g_len = 1;
-ModelConf.g_def = 'xyz'; % 'xyz', 'dir' 
+ModelConf.Para_List = {'J1', 'J2', 'Delta'};        % Para, BC, Mar13
+ModelConf.Para_Range = {[5, 20], [0, 5], [0, 12]};  % Para_opt_range, BC, Mar13
 
-ModelConf.g = cell(ModelConf.g_len, 1);
-ModelConf.g_vec = cell(ModelConf.g_len, 1);
-ModelConf.g_opt_range = cell(ModelConf.g_len, 1);
+ModelConf.Num_gFactor = 1;                           % g_len, BC, Mar13
+ModelConf.Type_gFactor = 'xyz'; % 'xyz', 'dir'       % g_def, BC, Mar13
 
-ModelConf.g{1} = 'gz';
-ModelConf.g_vec{1} = [0,0,1];
-ModelConf.g_opt_range{1} = [5, 20]; 
+ModelConf.gFactor = cell(ModelConf.Num_gFactor, 1);       % g, BC, Mar13
+ModelConf.gFactor_Vec = cell(ModelConf.Num_gFactor, 1);   % g_vec, BC, Mar13
+ModelConf.gFacotr_Range = cell(ModelConf.Num_gFactor, 1); % g_opt_range, BC, Mar13
+
+ModelConf.gFactor{1} = 'gz';
+ModelConf.gFactor_Vec{1} = [0,0,1];
+ModelConf.gFacotr_Range{1} = [5, 20]; 
+
+
+% =========================================================================
+% DATA INPUT
 % =========================================================================
 Cmdata.len = 1;
 Cmdata.Field = cell(Cmdata.len, 1);
@@ -46,8 +53,8 @@ Cmdata.Field{1} = [0,0,0];
 Cmdata.data{1} = struct2array(load('C_expdata.mat', 'C_data'));
 Cmdata.Trange{1} = [1, 40];
 
-if strcmp(ModelConf.g_def, 'dir')
-    Cmdata.g_info = {};
+if strcmp(ModelConf.Type_gFactor, 'dir')
+    CmData.g_info = {};
 end
 
 Chidata.len = 1;
@@ -58,7 +65,7 @@ Chidata.Field{1} = [0,0,0.1];
 Chidata.data{1} = struct2array(load('Chi_expdata.mat', 'Chi_data'));
 Chidata.Trange{1} = [1, 40];
 
-if strcmp(ModelConf.g_def, 'dir')
+if strcmp(ModelConf.gFactor_Vec, 'dir')
     Chidata.g_info = {};
 end
 
@@ -74,7 +81,7 @@ setting.plot_check = 0; % 0 -> off, 1 -> on
 setting.EVO_check = 0;  % 0 -> off, 1 -> on
 
 % Save intermediate results.
-setting.res_save = 2;   % 0 -> off, 1 -> save the best, 2 -> save all
+setting.res_save = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % The file name to save intermediate results.
 setting.res_save_name = 'EDtest';
@@ -87,6 +94,6 @@ if setting.res_save ~= 0
     mkdir([setting.res_save_name, '_', TStr])
 end
 save(['tmp_', TStr, '/exp_data.mat'], 'Cmdata', 'Chidata');
-save(['tmp_', TStr, '/configuration.mat'], 'Geo', 'conf', 'ModelConf', 'setting', 'lossconfig')
+save(['tmp_', TStr, '/configuration.mat'], 'GeomConf', 'Conf', 'ModelConf', 'setting', 'lossconfig')
 % =========================================================================
 opt_func(TStr)

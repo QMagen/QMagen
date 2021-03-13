@@ -1,5 +1,5 @@
 function [ ED_Rslt ] = GetEDRslt( Para, ThDQ )
-InMap = eval([Para.IntrcMap_name, '(Para)']);
+InMap = eval([Para.IntrcMap_Name, '(Para)']);
 [H, M] = ED_Hamiltonian(Para, InMap);
 betaCHA = 0.0025.*2.^(0:1:15).*2^0.1;
 for int = 0.3:0.2:0.9

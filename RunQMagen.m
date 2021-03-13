@@ -6,15 +6,17 @@ addpath Config
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
-conf.many_body_solver = 'ED'; % 'ED', 'LTRG', 'XTRG'
+conf.many_body_solver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
+conf.d = 2;
 
 if strcmp(conf.many_body_solver, 'ED') || strcmp(conf.many_body_solver, 'XTRG')
     conf.IntrcMap_name = 'IntrcMap_TLTI';
+    conf.L = 9;
 end
 
-conf.d = 2;
-conf.L = 9;
-
+if strcmp(conf.many_body_solver, 'iLTRG')
+    conf.trotter_name = 'tortter_AAFHC';
+end
 
 % =========================================================================
 Geo.Lx = 3;
@@ -33,7 +35,7 @@ ModelConf.g_opt_range = cell(ModelConf.g_len, 1);
 
 ModelConf.g{1} = 'gz';
 ModelConf.g_vec{1} = [0,0,1];
-ModelConf.g_opt_range{1} = [5, 20s]; 
+ModelConf.g_opt_range{1} = [5, 20]; 
 % =========================================================================
 Cmdata.len = 1;
 Cmdata.Field = cell(Cmdata.len, 1);

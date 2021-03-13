@@ -5,7 +5,8 @@ LnZ = zeros(Para.N_max, 1);
 lgnorm = 0;
 
 [Ta, Tb, La, Lb] = InitId(Para);
-[Hab, Hba] = InitHam_trotter(Para);
+[ t_ab, t_ba ] = eval([Para.trotter_name, '(Para)']);
+[Hab, Hba] = InitHam_trotter(t_ab, t_ba);
 [Uab, Uba] = EvoGate(Hab, Hba, Para);
 
 for It = 1:1:Para.N_max

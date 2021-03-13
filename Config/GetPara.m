@@ -10,6 +10,9 @@ if strcmp(conf.many_body_solver, 'ED') || strcmp(conf.many_body_solver, 'XTRG')
     Para.IntrcMap_name = conf.IntrcMap_name;
 end
 
+if strcmp(conf.many_body_solver, 'iLTRG')
+    Para.trotter_name = conf.trotter_name;
+end
 Para.d = conf.d;
 Para.L = conf.L;
 Para.Geo = Geo;

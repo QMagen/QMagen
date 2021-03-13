@@ -6,22 +6,36 @@ load(['tmp_', TStr, '/configuration.mat'])
 g_input = ['['];
 vg = [];
 for i = 1:1:ModelConf.g_len
-    g_input = [g_input, ['x.', ModelConf.g{i}]];
-    if i ~= ModelConf.g_len
-        g_input = [g_input, ','];
+    if length(ModelConf.g_opt_range{i}) == 1
+        g_input = [g_input, num2str(ModelConf.g_opt_range{i})];
+        if i ~= ModelConf.g_len
+            g_input = [g_input, ','];
+        end
+    else
+        g_input = [g_input, ['x.', ModelConf.g{i}]];
+        if i ~= ModelConf.g_len
+            g_input = [g_input, ','];
+        end
+        vg = [vg, optimizableVariable(ModelConf.g{i}, ModelConf.g_opt_range{i})];
     end
-    vg = [vg, optimizableVariable(ModelConf.g{i}, ModelConf.g_opt_range{i})];
 end
 g_input = [g_input, ']'];
 
 Para_input = ['['];
 vp = [];
 for i = 1:1:length(ModelConf.Para)
-    Para_input = [Para_input, ['x.', ModelConf.Para{i}]];
-    if i ~= length(ModelConf.Para)
-        Para_input = [Para_input, ','];
+    if length(ModelConf.Para_opt_range{i}) == 1
+        Para_input = [Para_input, num2str(ModelConf.Para_opt_range{i})];
+        if i ~= length(ModelConf.Para)
+            Para_input = [Para_input, ','];
+        end
+    else  
+        Para_input = [Para_input, ['x.', ModelConf.Para{i}]];
+        if i ~= length(ModelConf.Para)
+            Para_input = [Para_input, ','];
+        end
+        vp = [vp, optimizableVariable(ModelConf.Para{i}, ModelConf.Para_opt_range{i})];
     end
-    vp = [vp, optimizableVariable(ModelConf.Para{i}, ModelConf.Para_opt_range{i})];
 end
 Para_input = [Para_input, ']'];
 

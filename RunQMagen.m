@@ -33,7 +33,7 @@ ModelConf.g_opt_range = cell(ModelConf.g_len, 1);
 
 ModelConf.g{1} = 'gz';
 ModelConf.g_vec{1} = [0,0,1];
-ModelConf.g_opt_range{1} = [5, 20]; 
+ModelConf.g_opt_range{1} = [5, 20s]; 
 % =========================================================================
 Cmdata.len = 1;
 Cmdata.Field = cell(Cmdata.len, 1);

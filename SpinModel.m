@@ -1,8 +1,9 @@
-function [ GeomConf, ModelConf ] = SpinModel( Conf )
+function [ GeomConf, ModelConf, Conf ] = SpinModel( Conf )
 switch Conf.ModelName
     case 'TLTI'
         % -----------------------------------------------------------------
-        % Transverse field Ising model on triangular lattice
+        % Triangular lattice 
+        % Transverse field Ising model
         % Parameter: 
         %           J1     Nearest neighbor term
         %           J2     Next-nearest neighbor term
@@ -20,6 +21,8 @@ switch Conf.ModelName
         % DEFAULT SETTINGS
         % =================================================================
         Conf.IntrcMap_Name = 'IntrcMap_TLTI';
+        Conf.ModelName_all = 'Triangular lattice-Transverse field Ising model';
+        Conf.d = 2;
         ModelConf.Para_List = {'J1', 'J2', 'Delta'};
         ModelConf.Para_Range = cell(length(ModelConf.Para_List), 1);
         ModelConf.Num_gFactor = 1;                           
@@ -38,7 +41,7 @@ switch Conf.ModelName
         GeomConf.Ly = 3;
         GeomConf.BCX = 'OBC';
         GeomConf.BCY = 'PBC';
-        
+        Conf.L = GeomConf.Lx * GeomConf.Ly;
         
         % =================================================================
         % PARAMETER SETTINGS
@@ -50,7 +53,7 @@ switch Conf.ModelName
         % Delta range
         ModelConf.Para_Range{3} = [0, 12];  
         % gz range
-        ModelConf.gFacotr_Range{1} = [5, 20]; 
+        ModelConf.gFacotr_Range{1} = 13; 
         
     otherwise
         fprintf('1!\n')

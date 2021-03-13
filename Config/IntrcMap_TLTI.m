@@ -1,4 +1,4 @@
-function [ Intr ] = IntrcMap( Para )
+function [ Intr ] = IntrcMap_TLTI( Para )
 % TMGO
 Lx = Para.Geo.Lx;
 Ly = Para.Geo.Ly;

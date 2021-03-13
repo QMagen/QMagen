@@ -18,7 +18,7 @@ ST_l = [0,1,2,3];
 % parpool(4);
 Rslt = cell(4,1);
 parfor (i = 1:1:length(ST_l), 4)
-    maxNumCompThreads(4);
+    maxNumCompThreads(1);
     ST = ST_l(i);
     Rslt{i} = XTRG_Main( Para, H, Id, Op, ST );
 end

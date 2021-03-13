@@ -25,7 +25,6 @@ for i = 1:1:length(ModelConf.Para)
 end
 Para_input = [Para_input, ']'];
 
-keyboard;
 for i = 1:1:10
     if i == 1
         lf = @(x) loss_func( TStr, eval(g_input), eval(Para_input) );

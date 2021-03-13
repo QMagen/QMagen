@@ -4,7 +4,12 @@ function [ Para ] = GetPara( Model, Field, K_min )
 
 load(['tmp_', Model.TStr, '/configuration.mat'])
 
-Para.many_body_solver = conf.many_body_solver;    
+Para.many_body_solver = conf.many_body_solver;   
+
+if strcmp(conf.many_body_solver, 'ED') || strcmp(conf.many_body_solver, 'XTRG')
+    Para.IntrcMap_name = conf.IntrcMap_name;
+end
+
 Para.d = conf.d;
 Para.L = conf.L;
 Para.Geo = Geo;
@@ -36,7 +41,7 @@ end
 Para.Model = Model;
 Para.Field = Field;
 Para.UnitCon = GetUnitCon(Para);
-Para.tau = 0.025;   % default
+Para.tau = 0.0025;   % default
 Para.beta_max = 1 / (K_min / Para.UnitCon.T_con);
 
 try

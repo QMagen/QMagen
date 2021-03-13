@@ -7,6 +7,11 @@ TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
 conf.many_body_solver = 'ED'; % 'ED', 'LTRG', 'XTRG'
+
+if strcmp(conf.many_body_solver, 'ED') || strcmp(conf.many_body_solver, 'XTRG')
+    conf.IntrcMap_name = 'IntrcMap_TLTI';
+end
+
 conf.d = 2;
 conf.L = 9;
 

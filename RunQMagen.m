@@ -29,20 +29,22 @@ Conf.ModelName = 'TLTI';
 
 CmData = ThermoData('Cm', [0,0,0], [1,40], 'C_expdata.mat'); % BC
 
-% if strcmp(ModelConf.Type_gFactor, 'dir')
-%     CmData.Info.g_info = {};
-% end
+if strcmp(ModelConf.Type_gFactor, 'dir')
+    CmData.Info.g_info = {};
+end
 
-Chidata.len = 1;
-Chidata.Field = cell(Chidata.len, 1);
-Chidata.data = cell(Chidata.len, 1);
+% Chidata.len = 1;
+% Chidata.Field = cell(Chidata.len, 1);
+% Chidata.data = cell(Chidata.len, 1);
+% 
+% Chidata.Field{1} = [0,0,0.1];
+% Chidata.data{1} = struct2array(load('Chi_expdata.mat', 'Chi_data'));
+% Chidata.Trange{1} = [1, 40];
 
-Chidata.Field{1} = [0,0,0.1];
-Chidata.data{1} = struct2array(load('Chi_expdata.mat', 'Chi_data'));
-Chidata.Trange{1} = [1, 40];
+ChiData = ThermoData('Chi', [0,0,0.1], [1,40], 'Chi_expdata.mat');
 
 if strcmp(ModelConf.gFactor_Vec, 'dir')
-    Chidata.g_info = {};
+    ChiaData.Info.g_info = {};
 end
 
 
@@ -69,7 +71,7 @@ mkdir(['tmp_', TStr]);
 if setting.res_save ~= 0
     mkdir([setting.res_save_name, '_', TStr])
 end
-save(['tmp_', TStr, '/exp_data.mat'], 'CmData', 'Chidata');
+save(['tmp_', TStr, '/exp_data.mat'], 'CmData', 'ChiData');
 save(['tmp_', TStr, '/configuration.mat'], 'GeomConf', 'Conf', 'ModelConf', 'setting', 'lossconfig')
 % =========================================================================
 opt_func(TStr)

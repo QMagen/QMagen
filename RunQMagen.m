@@ -72,7 +72,7 @@ setting.plot_check = 0; % 0 -> off, 1 -> on
 setting.EVO_check = 0;  % 0 -> off, 1 -> on
 
 % Save intermediate results.
-setting.res_save = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
+setting.res_save = 2;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % The file name to save intermediate results.
 setting.res_save_name = 'EDtest';

@@ -29,9 +29,9 @@ Conf.ModelName = 'TLTI';
 
 CmData = ThermoData('Cm', [0,0,0], [1,40], 'C_expdata.mat'); % BC
 
-if strcmp(ModelConf.Type_gFactor, 'dir')
-    CmData.Info.g_info = {};
-end
+% if strcmp(ModelConf.Type_gFactor, 'dir')
+%     CmData.Info.g_info = {};
+% end
 
 Chidata.len = 1;
 Chidata.Field = cell(Chidata.len, 1);

@@ -8,16 +8,16 @@ loss_design = lossconfig.loss_design;
 wl = lossconfig.weight_list;
 
 if isempty(wl)
-    wl = zeros(Cmdata.len + Chidata.len, 1);
+    wl = zeros(length(CmData) + length(ChiData), 1);
     wl(:) = 1;
 end
 
 % // Cm =======================================
 
-RsltCv = cell(Cmdata.len, 1);
-for i = 1:1:Cmdata.len
+RsltCv = cell(length(CmData), 1);
+for i = 1:1:length(CmData)
     clear Field
-    Field.B = Cmdata.Field{i};
+    Field.B = CmData(i).Info.Field;
     switch ModelConf.Type_gFactor
         case 'xyz'
             g_fec = [0, 0, 0];
@@ -30,7 +30,7 @@ for i = 1:1:Cmdata.len
                 end
             end
         case 'dir'
-            g_fec = g(Cmdata.g_info{i}) * ModelConf.gFactor_Vec{Cmdata.g_info{i}};
+            g_fec = g(CmData.Info.g_info{i}) * ModelConf.gFactor_Vec{CmData.Info.g_info{i}};
             for j = 1:1:3
                 if g_fec(j) == 0
                     g_fec(j) = 2;
@@ -38,15 +38,15 @@ for i = 1:1:Cmdata.len
             end
     end
     Model = GetModel(TStr, g_fec, varagin);
-    [lossp, RsltCv{i}] = loss_func_Cm(Model, Field, Cmdata.Trange{i}, Cmdata.data{i}, loss_type);
+    [lossp, RsltCv{i}] = loss_func_Cm(Model, Field, CmData(i).Info.TRange, CmData(i).Data, loss_type);
     loss = loss + lossp * wl(i);
 end
 
 % // chi ======================================
 
-RsltChi = cell(Chidata.len, 1);
-for i = 1:1:Chidata.len
-    Field.B = Chidata.Field{i};
+RsltChi = cell(length(ChiData), 1);
+for i = 1:1:length(ChiData)
+    Field.B = ChiData(i).Info.Field;
     switch ModelConf.Type_gFactor
         case 'xyz'
             g_fec = [0, 0, 0];
@@ -59,7 +59,7 @@ for i = 1:1:Chidata.len
                 end
             end
         case 'dir'
-            g_fec = g(Cmdata.g_info{i}) * ModelConf.gFactor_Vec{Chidata.g_info{i}};
+            g_fec = g(ChiData.Info.g_info{i}) * ModelConf.gFactor_Vec{Chidata.Info.g_info{i}};
             for j = 1:1:3
                 if g_fec(j) == 0
                     g_fec(j) = 2;
@@ -67,8 +67,8 @@ for i = 1:1:Chidata.len
             end
     end
     Model = GetModel(TStr, g_fec, varagin);
-    [lossp, RsltChi{i}] = loss_func_chi(Model, Field, Chidata.Trange{i}, Chidata.data{i}, loss_type);
-    loss = loss + lossp * wl(i + Cmdata.len);
+    [lossp, RsltChi{i}] = loss_func_chi(Model, Field, ChiData(i).Info.TRange, ChiData(i).Data, loss_type);
+    loss = loss + lossp * wl(i + length(CmData));
 end
 
 switch loss_design

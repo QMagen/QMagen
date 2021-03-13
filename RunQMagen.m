@@ -18,14 +18,6 @@ Conf.ModelName = 'TLTI';
 % =========================================================================
 % DATA INPUT
 % =========================================================================
-% Cmdata.len = 1;
-% Cmdata.Field = cell(Cmdata.len, 1);
-% Cmdata.Trange = cell(Cmdata.len, 1);
-% Cmdata.data = cell(Cmdata.len, 1);
-% 
-% Cmdata.Field{1} = [0,0,0];
-% Cmdata.data{1} = struct2array(load('C_expdata.mat', 'C_data'));
-% Cmdata.Trange{1} = [1, 40];
 
 CmData = ThermoData('Cm', [0,0,0], [1,40], 'C_expdata.mat'); % BC
 
@@ -33,13 +25,6 @@ if strcmp(ModelConf.Type_gFactor, 'dir')
     CmData.Info.g_info = {};
 end
 
-% Chidata.len = 1;
-% Chidata.Field = cell(Chidata.len, 1);
-% Chidata.data = cell(Chidata.len, 1);
-% 
-% Chidata.Field{1} = [0,0,0.1];
-% Chidata.data{1} = struct2array(load('Chi_expdata.mat', 'Chi_data'));
-% Chidata.Trange{1} = [1, 40];
 
 ChiData = ThermoData('Chi', [0,0,0.1], [1,40], 'Chi_expdata.mat');
 

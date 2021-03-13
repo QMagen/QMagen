@@ -53,7 +53,7 @@ switch Conf.ModelName
         % Delta range
         ModelConf.Para_Range{3} = [0, 12];  
         % gz range
-        ModelConf.gFacotr_Range{1} = 13; 
+        ModelConf.gFacotr_Range{1} = [5, 20]; 
         
     otherwise
         fprintf('1!\n')

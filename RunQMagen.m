@@ -2,7 +2,7 @@ clear all
 addpath lossfunc
 addpath ManyBodySolver
 addpath Config
-addpath('Class')
+addpath Class
 
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
@@ -69,7 +69,7 @@ mkdir(['tmp_', TStr]);
 if setting.res_save ~= 0
     mkdir([setting.res_save_name, '_', TStr])
 end
-save(['tmp_', TStr, '/exp_data.mat'], 'Cmdata', 'Chidata');
+save(['tmp_', TStr, '/exp_data.mat'], 'CmData', 'Chidata');
 save(['tmp_', TStr, '/configuration.mat'], 'GeomConf', 'Conf', 'ModelConf', 'setting', 'lossconfig')
 % =========================================================================
 opt_func(TStr)

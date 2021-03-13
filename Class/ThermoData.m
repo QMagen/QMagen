@@ -2,12 +2,13 @@ classdef ThermoData < matlab.mixin.CustomDisplay
   % A data type for QMagen Optimaization
   % with properties
   % .Data: a two-column data
-  %        .Data(1) for Temperature
-  %        .Data(2) for the values
-  % .Info.Name:    Name of the data
-  % .Info.Field:   field
-  % .Info.TRange:  temperature range for fitting
-  % .Info.Storage: where data is storage in hard drive
+  %        .Data(:,1) for Temperature
+  %        .Data(:,2) for the values
+  % .Info.Name:     Name of the data
+  % .Info.Field:    field
+  % .Info.g_info:   gFactor
+  % .Info.TRange:   temperature range for fitting
+  % .Info.Storage:  where data is storage in hard drive
   % -------------------------------------------------
   % Usage: Thermodata(Name, Field, TRange, Storage)
   % -------------------------------------------------
@@ -40,6 +41,7 @@ classdef ThermoData < matlab.mixin.CustomDisplay
           error('TRange#3 not numerics or not 2-d array?!');
         end
         
+        obj.Info.g_info = [];
         
         if ischar(storage)
           obj.Info.Storage = storage;

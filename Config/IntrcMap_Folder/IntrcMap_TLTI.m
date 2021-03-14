@@ -1,5 +1,16 @@
 function [ Intr ] = IntrcMap_TLTI( Para )
-% TMGO
+% Triangular lattice 
+% Transverse field Ising model
+% Parameter: 
+%           J1     Nearest neighbor term
+%           J2     Next-nearest neighbor term
+%           Delta  Transverse field term
+% 
+% Hamiltonian:
+%   H = J1 \sum_<i,j> Sz_i Sz_j 
+%       + J2 \sum_<<i,j>> Sz_i Sz_j 
+%       - Delta\sum_i Sx_i 
+%       - hz\sum_i Sz_i
 Lx = Para.Geo.Lx;
 Ly = Para.Geo.Ly;
 L = Lx * Ly;

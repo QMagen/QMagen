@@ -55,6 +55,39 @@ switch Conf.ModelName
         % gz range
         ModelConf.gFactor_Range{1} = [5, 20]; 
         
+    case 'TLXXZ'
+        % -----------------------------------------------------------------
+        % Triangular lattice 
+        % XXZ model
+        % Parameter: 
+        %           J1xy        Nearest neighbor SxSx+SySy term
+        %           Delta1      Nearest neighbor SzSz term
+        %           J2xy        Next-nearest neighbor SxSx+SySy term
+        %           Delta2      Next-nearest neighbor SzSz term
+        %           gx          Lande factor of Sx direction
+        %           gz          Lande factor of Sz direction
+        % 
+        % Hamiltonian:
+        %   H = \sum_<i,j> J1xy (Sx_i Sx_j + Sy_i Sy_j) + Delta1 Sz_i Sz_j
+        %       + \sum_<<i,j>> J1xy (Sx_i Sx_j + Sy_i Sy_j) + Delta1 Sz_i Sz_j
+        %       - h\sum_i Sh_i
+        % -----------------------------------------------------------------
+        
+        % =================================================================
+        % DEFAULT SETTINGS
+        % =================================================================
+        Conf.IntrcMap_Name = 'IntrcMap_TLXXZ';
+        Conf.ModelName_all = 'Triangular lattice-XXZ model';
+        Conf.d = 2;
+        ModelConf.Para_List = {'J1', 'J2', 'Delta'};
+        ModelConf.Para_Range = cell(length(ModelConf.Para_List), 1);
+        ModelConf.Num_gFactor = 1;                           
+        ModelConf.Type_gFactor = 'xyz';      
+        ModelConf.gFactor = cell(ModelConf.Num_gFactor, 1);       
+        ModelConf.gFactor_Vec = cell(ModelConf.Num_gFactor, 1);   
+        ModelConf.gFactor_Range = cell(ModelConf.Num_gFactor, 1); 
+        ModelConf.gFactor{1} = 'gz';
+        ModelConf.gFactor_Vec{1} = [0,0,1];
     otherwise
         fprintf('1!\n')
         keyboard;

@@ -67,21 +67,21 @@ for i = 1:1:10
         
         res = bayesopt(lf, [vp, vg], ...
                         'AcquisitionFunctionName', 'expected-improvement-plus', ...
-                        'MaxObjectiveEvaluations', 50, 'IsObjectiveDeterministic', true, ...
+                        'MaxObjectiveEvaluations', 10, 'IsObjectiveDeterministic', true, ...
                         'ExplorationRatio',0.5);
-        save(['Opt_res/', TStr, 'res', num2str(i), '.mat'],'res');
+        save(['tmp_', TStr, '/res', num2str(i), '.mat'],'res');
     elseif i > 1 && i < 6
-        load(['Opt_res/', TStr, 'res' num2str(i-1), '.mat']);
+        load(['tmp_', TStr, '/res' num2str(i-1), '.mat']);
         res = resume(res,'AcquisitionFunctionName', 'expected-improvement-plus', ...
                          'MaxObjectiveEvaluations', 100, 'IsObjectiveDeterministic', true, ...
                          'ExplorationRatio', 0.5);
-        save(['Opt_res/', TStr, 'res' num2str(i),'.mat'],'res');
+        save(['tmp_', TStr, '/res' num2str(i),'.mat'],'res');
     else
-        load(['Opt_res/', TStr, 'res' num2str(i-1), '.mat']);
+        load(['tmp_', TStr, 'res' num2str(i-1), '.mat']);
         res = resume(res,'AcquisitionFunctionName', 'expected-improvement-plus', ...
                          'MaxObjectiveEvaluations', 100, 'IsObjectiveDeterministic', true, ...
                          'ExplorationRatio', 0.05);
-        save(['Opt_res/', TStr, 'res' num2str(i),'.mat'],'res');
+        save(['tmp_', TStr, '/res' num2str(i),'.mat'],'res');
     end
 
 end

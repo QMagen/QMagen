@@ -29,7 +29,7 @@ switch Conf.ModelName
         ModelConf.Type_gFactor = 'xyz';      
         ModelConf.gFactor = cell(ModelConf.Num_gFactor, 1);       
         ModelConf.gFactor_Vec = cell(ModelConf.Num_gFactor, 1);   
-        ModelConf.gFacotr_Range = cell(ModelConf.Num_gFactor, 1); 
+        ModelConf.gFactor_Range = cell(ModelConf.Num_gFactor, 1); 
         ModelConf.gFactor{1} = 'gz';
         ModelConf.gFactor_Vec{1} = [0,0,1];
         
@@ -53,7 +53,7 @@ switch Conf.ModelName
         % Delta range
         ModelConf.Para_Range{3} = [0, 12];  
         % gz range
-        ModelConf.gFacotr_Range{1} = [5, 20]; 
+        ModelConf.gFactor_Range{1} = [5, 20]; 
         
     otherwise
         fprintf('1!\n')

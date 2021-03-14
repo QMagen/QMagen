@@ -11,7 +11,13 @@ fprintf('Parameter:\n')
 Para_input = ['['];
 vp = [];
 for i = 1:1:length(ModelConf.Para_List)
-    if length(ModelConf.Para_Range{i}) == 1
+    if isstr(ModelConf.Para_Range{i})
+        Para_input = [Para_input, ['x.', ModelConf.Para_Range{i}]];
+        fprintf('%10s: %s\n', ModelConf.Para_List{i}, ModelConf.Para_Range{i})
+        if i ~= length(ModelConf.Para_List)
+            Para_input = [Para_input, ','];
+        end
+    elseif length(ModelConf.Para_Range{i}) == 1
         Para_input = [Para_input, num2str(ModelConf.Para_Range{i})];
         fprintf('%10s: %d\n', ModelConf.Para_List{i}, ModelConf.Para_Range{i})
         if i ~= length(ModelConf.Para_List)
@@ -31,19 +37,25 @@ Para_input = [Para_input, ']'];
 gFac_input = ['['];
 vg = [];
 for i = 1:1:ModelConf.Num_gFactor
-    if length(ModelConf.gFacotr_Range{i}) == 1
-        gFac_input = [gFac_input, num2str(ModelConf.gFacotr_Range{i})];
-        fprintf('%10s: %d\n', ModelConf.gFactor{i}, ModelConf.gFacotr_Range{i})
+    if isstr(ModelConf.gFactor)
+        gFac_input = [Para_input, ['x.', ModelConf.gFactor_Range{i}]];
+        fprintf('%10s: %s\n', ModelConf.gFactor{i}, ModelConf.gFactor_Range{i})
+        if i ~= length(ModelConf.Para_List)
+            Para_input = [Para_input, ','];
+        end
+    elseif length(ModelConf.gFactor_Range{i}) == 1
+        gFac_input = [gFac_input, num2str(ModelConf.gFactor_Range{i})];
+        fprintf('%10s: %d\n', ModelConf.gFactor{i}, ModelConf.gFactor_Range{i})
         if i ~= ModelConf.Num_gFactor
             gFac_input = [gFac_input, ','];
         end
     else
         gFac_input = [gFac_input, ['x.', ModelConf.gFactor{i}]];
-        fprintf('%10s: [%d, %d]\n', ModelConf.gFactor{i}, ModelConf.gFacotr_Range{i})
+        fprintf('%10s: [%d, %d]\n', ModelConf.gFactor{i}, ModelConf.gFactor_Range{i})
         if i ~= ModelConf.Num_gFactor
             gFac_input = [gFac_input, ','];
         end
-        vg = [vg, optimizableVariable(ModelConf.gFactor{i}, ModelConf.gFacotr_Range{i})];
+        vg = [vg, optimizableVariable(ModelConf.gFactor{i}, ModelConf.gFactor_Range{i})];
     end
 end
 gFac_input = [gFac_input, ']'];

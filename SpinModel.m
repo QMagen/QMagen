@@ -79,7 +79,7 @@ switch Conf.ModelName
         Conf.IntrcMap_Name = 'IntrcMap_TLXXZ';
         Conf.ModelName_all = 'Triangular lattice-XXZ model';
         Conf.d = 2;
-        ModelConf.Para_List = {'J1xy', 'Delta1', 'J2xy', 'Delta2'};
+        ModelConf.Para_List = {'J1xy', 'J1z', 'J2xy', 'J2z'};
         ModelConf.Para_Range = cell(length(ModelConf.Para_List), 1);
         ModelConf.Num_gFactor = 2;                           
         ModelConf.Type_gFactor = 'xyz';      
@@ -105,11 +105,11 @@ switch Conf.ModelName
         % =================================================================
         % J1xy range
         ModelConf.Para_Range{1} = [5, 20];  
-        % Delta1 range
+        % J1z range
         ModelConf.Para_Range{2} = 'J1xy';  
         % J2xy range
         ModelConf.Para_Range{3} = [0, 20];  
-        % Delta2 range
+        % J2z range
         ModelConf.Para_Range{4} = 'J2xy';  
         % gx range
         ModelConf.gFactor_Range{1} = 'gz'; 

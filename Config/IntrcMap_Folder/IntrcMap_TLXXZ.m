@@ -3,13 +3,13 @@ function [ Intr ] = IntrcMap_TLXXZ( Para )
 % XXZ model
 % Parameter: 
 %           J1xy        Nearest neighbor SxSx+SySy term
-%           Delta1      Nearest neighbor SzSz term
+%           J1z         Nearest neighbor SzSz term
 %           J2xy        Next-nearest neighbor SxSx+SySy term
-%           Delta2      Next-nearest neighbor SzSz term
+%           J2z         Next-nearest neighbor SzSz term
 % 
 % Hamiltonian:
-%   H = \sum_<i,j> J1xy (Sx_i Sx_j + Sy_i Sy_j) + Delta1 Sz_i Sz_j
-%       + \sum_<<i,j>> J1xy (Sx_i Sx_j + Sy_i Sy_j) + Delta1 Sz_i Sz_j
+%   H = \sum_<i,j> J1xy (Sx_i Sx_j + Sy_i Sy_j) + J1z Sz_i Sz_j
+%       + \sum_<<i,j>> J1xy (Sx_i Sx_j + Sy_i Sy_j) + J1z Sz_i Sz_j
 %       - h\sum_i Sh_i
 Lx = Para.Geo.Lx;
 Ly = Para.Geo.Ly;
@@ -53,7 +53,7 @@ for x = 1:1:Lx
         int_cell{count+2, 2} = bnum + y + 1;
         int_cell{count+2, 3} = 'Sz';
         int_cell{count+2, 4} = 'Sz';
-        int_cell{count+2, 5} = Para.Model.Delta1;
+        int_cell{count+2, 5} = Para.Model.J1z;
         
         count = count + 3;
     end
@@ -78,7 +78,7 @@ for x = 1:1:Lx
             int_cell{count+2, 2} = bnum + Ly + y;
             int_cell{count+2, 3} = 'Sz';
             int_cell{count+2, 4} = 'Sz';
-            int_cell{count+2, 5} = Para.Model.Delta1;
+            int_cell{count+2, 5} = Para.Model.J1z;
             
             count = count + 3;
         end
@@ -102,7 +102,7 @@ for x = 1:1:Lx
             int_cell{count+2, 2} = bnum + Ly + y + 1;
             int_cell{count+2, 3} = 'Sz';
             int_cell{count+2, 4} = 'Sz';
-            int_cell{count+2, 5} = Para.Model.Delta1;
+            int_cell{count+2, 5} = Para.Model.J1z;
             
             count = count + 3;
         end
@@ -126,7 +126,7 @@ for x = 1:1:Lx
             int_cell{count+2, 2} = bnum + Ly + y - 1;
             int_cell{count+2, 3} = 'Sz';
             int_cell{count+2, 4} = 'Sz';
-            int_cell{count+2, 5} = Para.Model.Delta2;
+            int_cell{count+2, 5} = Para.Model.J2z;
         
             count = count + 3;
         end
@@ -150,7 +150,7 @@ for x = 1:1:Lx
             int_cell{count+2, 2} = bnum + Ly + y + 2;
             int_cell{count+2, 3} = 'Sz';
             int_cell{count+2, 4} = 'Sz';
-            int_cell{count+2, 5} = Para.Model.Delta2;
+            int_cell{count+2, 5} = Para.Model.J2z;
             
             count = count + 3;
         end
@@ -175,7 +175,7 @@ for x = 1:1:Lx
                 int_cell{count+2, 2} = bnum + 2 * Ly + y + 1;
                 int_cell{count+2, 3} = 'Sz';
                 int_cell{count+2, 4} = 'Sz';
-                int_cell{count+2, 5} = Para.Model.Delta2;
+                int_cell{count+2, 5} = Para.Model.J2z;
                 
                 count = count + 3;
             end
@@ -206,7 +206,7 @@ if strcmp(BCX, 'PBC')
         int_cell{count+2, 2} = bnum + y;
         int_cell{count+2, 3} = 'Sz';
         int_cell{count+2, 4} = 'Sz';
-        int_cell{count+2, 5} = Para.Model.Delta1;
+        int_cell{count+2, 5} = Para.Model.J1z;
         
         count = count + 3;
     end
@@ -230,7 +230,7 @@ if strcmp(BCX, 'PBC')
         int_cell{count+2, 2} = bnum + y - 1;
         int_cell{count+2, 3} = 'Sz';
         int_cell{count+2, 4} = 'Sz';
-        int_cell{count+2, 5} = Para.Model.Delta1;
+        int_cell{count+2, 5} = Para.Model.J1z;
         
         count = count + 3;
     end
@@ -254,7 +254,7 @@ if strcmp(BCX, 'PBC')
         int_cell{count+2, 2} = bnum + y + 1;
         int_cell{count+2, 3} = 'Sz';
         int_cell{count+2, 4} = 'Sz';
-        int_cell{count+2, 5} = Para.Model.Delta2;
+        int_cell{count+2, 5} = Para.Model.J2z;
         
         count = count + 3;
     end
@@ -278,7 +278,7 @@ if strcmp(BCX, 'PBC')
         int_cell{count+2, 2} = bnum + y - 2;
         int_cell{count+2, 3} = 'Sz';
         int_cell{count+2, 4} = 'Sz';
-        int_cell{count+2, 5} = Para.Model.Delta2;
+        int_cell{count+2, 5} = Para.Model.J2z;
         
         count = count + 3;
     end
@@ -302,7 +302,7 @@ if strcmp(BCX, 'PBC')
         int_cell{count+2, 2} = bnum + y - 1;
         int_cell{count+2, 3} = 'Sz';
         int_cell{count+2, 4} = 'Sz';
-        int_cell{count+2, 5} = Para.Model.Delta2;
+        int_cell{count+2, 5} = Para.Model.J2z;
         
         count = count + 3;
     end
@@ -328,7 +328,7 @@ if strcmp(BCY, 'PBC')
         int_cell{count+2, 2} = x*Ly;
         int_cell{count+2, 3} = 'Sz';
         int_cell{count+2, 4} = 'Sz';
-        int_cell{count+2, 5} = Para.Model.Delta1;
+        int_cell{count+2, 5} = Para.Model.J1z;
         
         count = count + 3;
     end
@@ -351,7 +351,7 @@ if strcmp(BCY, 'PBC')
         int_cell{count+2, 2} = (x-1)*Ly;
         int_cell{count+2, 3} = 'Sz';
         int_cell{count+2, 4} = 'Sz';
-        int_cell{count+2, 5} = Para.Model.Delta1;
+        int_cell{count+2, 5} = Para.Model.J1z;
         
         count = count + 3;
     end
@@ -374,7 +374,7 @@ if strcmp(BCY, 'PBC')
         int_cell{count+2, 2} = (x+1)*Ly;
         int_cell{count+2, 3} = 'Sz';
         int_cell{count+2, 4} = 'Sz';
-        int_cell{count+2, 5} = Para.Model.Delta2;
+        int_cell{count+2, 5} = Para.Model.J2z;
         
         count = count + 3;
     end
@@ -397,7 +397,7 @@ if strcmp(BCY, 'PBC')
         int_cell{count+2, 2} = (x-1)*Ly;
         int_cell{count+2, 3} = 'Sz';
         int_cell{count+2, 4} = 'Sz';
-        int_cell{count+2, 5} = Para.Model.Delta2;
+        int_cell{count+2, 5} = Para.Model.J2z;
         
         count = count + 3;
     end
@@ -420,7 +420,7 @@ if strcmp(BCY, 'PBC')
         int_cell{count+2, 2} = (x-2)*Ly;
         int_cell{count+2, 3} = 'Sz';
         int_cell{count+2, 4} = 'Sz';
-        int_cell{count+2, 5} = Para.Model.Delta2;
+        int_cell{count+2, 5} = Para.Model.J2z;
         
         count = count + 3;
     end

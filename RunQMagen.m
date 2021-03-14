@@ -8,7 +8,7 @@ TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
 Conf.many_body_solver = 'ED'; % 'ED', 'LTRG', 'XTRG'         % conf, BC, Mar13
-Conf.ModelName = 'TLTI';
+Conf.ModelName = 'TLARK';
 
 % =========================================================================
 % MODEL SPECIFICATION

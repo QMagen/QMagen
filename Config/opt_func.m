@@ -37,11 +37,11 @@ Para_input = [Para_input, ']'];
 gFac_input = ['['];
 vg = [];
 for i = 1:1:ModelConf.Num_gFactor
-    if isstr(ModelConf.gFactor)
-        gFac_input = [Para_input, ['x.', ModelConf.gFactor_Range{i}]];
+    if isstr(ModelConf.gFactor_Range{i})
+        gFac_input = [gFac_input, ['x.', ModelConf.gFactor_Range{i}]];
         fprintf('%10s: %s\n', ModelConf.gFactor{i}, ModelConf.gFactor_Range{i})
-        if i ~= length(ModelConf.Para_List)
-            Para_input = [Para_input, ','];
+        if i ~= ModelConf.Num_gFactor
+            gFac_input = [gFac_input, ','];
         end
     elseif length(ModelConf.gFactor_Range{i}) == 1
         gFac_input = [gFac_input, num2str(ModelConf.gFactor_Range{i})];

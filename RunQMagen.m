@@ -29,7 +29,7 @@ end
 ChiData = ThermoData('Chi', [0,0,0.1], [1,40], 'Chi_expdata.mat');
 
 if strcmp(ModelConf.gFactor_Vec, 'dir')
-    ChiaData.Info.g_info = {};
+    ChiData.Info.g_info = {};
 end
 
 

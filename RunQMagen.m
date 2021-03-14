@@ -1,8 +1,8 @@
 clear all
-addpath lossfunc
-addpath ManyBodySolver
-addpath Config
-addpath Class
+addpath('lossfunc')
+addpath('ManyBodySolver')
+addpath (genpath('Config'))
+addpath ('Class')
 
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
 

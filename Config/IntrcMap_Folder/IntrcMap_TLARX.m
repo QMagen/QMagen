@@ -1,6 +1,6 @@
-function [ Intr ] = IntrcMap_TLARK( Para )
+function [ Intr ] = IntrcMap_TLARX( Para )
 % Triangular lattice 
-% XXZ model
+% ARX model
 % Parameter: 
 %           J1xy        Nearest neighbor SxSx+SySy term
 %           J1z         Nearest neighbor SzSz term
@@ -32,7 +32,7 @@ end
 int_num = int_num + L;
 int_cell = cell(int_num, 5);
 count = 1;
-[ Bond_Info ] = Bond_Info_TLARK( Para );
+[ Bond_Info ] = Bond_Info_TLARX( Para );
 
 gamma = [1, exp(1i * 2 * pi / 3), exp(-1i * 2 * pi / 3)];
 for i = 1:1:length(Bond_Info(:, 1))

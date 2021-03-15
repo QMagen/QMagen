@@ -116,10 +116,10 @@ switch Conf.ModelName
         % gz range
         ModelConf.gFactor_Range{2} = [1.5, 3];
            
-    case 'TLARK'
+    case 'TLARX'
         % -----------------------------------------------------------------
         % Triangular lattice 
-        % ARK model
+        % ARX model
         % Parameter: 
         %           J1xy        Nearest neighbor SxSx+SySy term
         %           J1z         Nearest neighbor SzSz term
@@ -139,8 +139,8 @@ switch Conf.ModelName
         % =================================================================
         % DEFAULT SETTINGS
         % =================================================================
-        Conf.IntrcMap_Name = 'IntrcMap_TLARK';
-        Conf.ModelName_all = 'Triangular lattice-ARK model';
+        Conf.IntrcMap_Name = 'IntrcMap_TLARX';
+        Conf.ModelName_all = 'Triangular lattice-ARX model';
         Conf.d = 2;
         ModelConf.Para_List = {'J1xy', 'J1z', 'Jpm', 'Jpmz', 'J2xy', 'J2z', 'Delta'};
         ModelConf.Para_Range = cell(length(ModelConf.Para_List), 1);

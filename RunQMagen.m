@@ -7,7 +7,7 @@ addpath ('Class')
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
-Conf.many_body_solver = 'ED'; % 'ED', 'LTRG', 'XTRG'         % conf, BC, Mar13
+Conf.many_body_solver = 'ED'; % 'ED', 'iLTRG', 'XTRG'         % conf, BC, Mar13
 Conf.ModelName = 'TLARX';
 
 % =========================================================================
@@ -17,19 +17,27 @@ Conf.ModelName = 'TLARX';
 
 % =========================================================================
 % DATA INPUT
+%
+%       CmData:     Heat capacity experimental data 
+%                   data(:,1) temperature   (K)
+%                   data(:,2) heat capacity (J * mol^-1 * K^-1)
+%
+%       ChiData:    Susceptibility experimental data 
+%                   data(:,1) temperature   (K)
+%                   data(:,2) susceptibility(cm^3 * mol^-1 in SI unit)
 % =========================================================================
 
-CmData = ThermoData('Cm', [0,0,0], [1,40], 'C_expdata.mat'); % BC
+CmData(1) = ThermoData('Cm', [0,0,0], [4,40], 'C_expdata.mat'); 
 
 if strcmp(ModelConf.Type_gFactor, 'dir')
-    CmData.Info.g_info = {};
+    CmData(1).Info.g_info = {};
 end
 
 
-ChiData = ThermoData('Chi', [0,0,0.1], [1,40], 'Chi_expdata.mat');
+ChiData(1) = ThermoData('Chi', [0,0,0.1], [4,40], 'Chi_expdata.mat');
 
 if strcmp(ModelConf.gFactor_Vec, 'dir')
-    ChiData.Info.g_info = {};
+    ChiData(1).Info.g_info = {};
 end
 
 

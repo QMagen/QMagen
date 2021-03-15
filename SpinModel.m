@@ -171,23 +171,23 @@ switch Conf.ModelName
         % PARAMETER SETTINGS
         % =================================================================
         % J1xy range
-        ModelConf.Para_Range{1} = 0;  
+        ModelConf.Para_Range{1} = [-10, 10];  
         % J1z range
         ModelConf.Para_Range{2} = [5 10];  
         % Jpm range
-        ModelConf.Para_Range{3} = 1;  
+        ModelConf.Para_Range{3} = [-10, 10];  
         % Jpmz range
-        ModelConf.Para_Range{4} = 1;  
+        ModelConf.Para_Range{4} = [-10, 10];  
         % J2xy range
-        ModelConf.Para_Range{5} = [0, 20];  
+        ModelConf.Para_Range{5} = [-10, 10];  
         % J2z range
-        ModelConf.Para_Range{6} = 'J2xy'; 
+        ModelConf.Para_Range{6} = [0, 5]; 
         % Delta range
-        ModelConf.Para_Range{7} = 1;  
+        ModelConf.Para_Range{7} = [0, 10];  
         % gx range
         ModelConf.gFactor_Range{1} = 'gz'; 
         % gz range
-        ModelConf.gFactor_Range{2} = [1.5, 3];
+        ModelConf.gFactor_Range{2} = [4, 20];
         
     otherwise
         error('Undefined model name!\n')

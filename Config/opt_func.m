@@ -77,7 +77,7 @@ for i = 1:1:10
                          'ExplorationRatio', 0.5);
         save(['tmp_', TStr, '/res' num2str(i),'.mat'],'res');
     else
-        load(['tmp_', TStr, 'res' num2str(i-1), '.mat']);
+        load(['tmp_', TStr, '/res' num2str(i-1), '.mat']);
         res = resume(res,'AcquisitionFunctionName', 'expected-improvement-plus', ...
                          'MaxObjectiveEvaluations', 100, 'IsObjectiveDeterministic', true, ...
                          'ExplorationRatio', 0.05);

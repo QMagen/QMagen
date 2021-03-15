@@ -1,4 +1,4 @@
-function [ Bond_cell ] = Bond_Info_TLARK( Para )
+function [ Bond_cell ] = Bond_Info_TLARX( Para )
 % Triangular lattice 
 % XXZ model
 % Parameter: 

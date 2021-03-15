@@ -24,6 +24,7 @@ switch Conf.ModelName
         Conf.ModelName_all = 'Triangular lattice-Transverse field Ising model';
         Conf.d = 2;
         ModelConf.Para_List = {'J1', 'J2', 'Delta'};
+        ModelConf.Para_ES = 1;
         ModelConf.Para_Range = cell(length(ModelConf.Para_List), 1);
         ModelConf.Num_gFactor = 1;                           
         ModelConf.Type_gFactor = 'xyz';      
@@ -61,15 +62,15 @@ switch Conf.ModelName
         % XXZ model
         % Parameter: 
         %           J1xy        Nearest neighbor SxSx+SySy term
-        %           Delta1      Nearest neighbor SzSz term
+        %           J1z         Nearest neighbor SzSz term
         %           J2xy        Next-nearest neighbor SxSx+SySy term
-        %           Delta2      Next-nearest neighbor SzSz term
+        %           J2z         Next-nearest neighbor SzSz term
         %           gx          Lande factor of Sx direction
         %           gz          Lande factor of Sz direction
         % 
         % Hamiltonian:
-        %   H = \sum_<i,j> J1xy (Sx_i Sx_j + Sy_i Sy_j) + Delta1 Sz_i Sz_j
-        %       + \sum_<<i,j>> J1xy (Sx_i Sx_j + Sy_i Sy_j) + Delta1 Sz_i Sz_j
+        %   H = \sum_<i,j> J1xy (Sx_i Sx_j + Sy_i Sy_j) + J1z Sz_i Sz_j
+        %       + \sum_<<i,j>> J1xy (Sx_i Sx_j + Sy_i Sy_j) + J2z Sz_i Sz_j
         %       - h\sum_i Sh_i
         % -----------------------------------------------------------------
         
@@ -80,6 +81,7 @@ switch Conf.ModelName
         Conf.ModelName_all = 'Triangular lattice-XXZ model';
         Conf.d = 2;
         ModelConf.Para_List = {'J1xy', 'J1z', 'J2xy', 'J2z'};
+        ModelConf.Para_ES = 1;
         ModelConf.Para_Range = cell(length(ModelConf.Para_List), 1);
         ModelConf.Num_gFactor = 2;                           
         ModelConf.Type_gFactor = 'xyz';      
@@ -133,6 +135,7 @@ switch Conf.ModelName
         %                  +Jpm (gamma_ij S+_i S+_j + h.c.)
         %                  -Jpmz 1i/2 (gamma_ij* S+_i Sz_j - gamma_ij S-_i Sz_j + <i<->j>)
         %       + \sum_<<i,j>> J1xy (Sx_i Sx_j + Sy_i Sy_j) + J1z Sz_i Sz_j
+        %       - Delta\sum_i Sx_i 
         %       - h\sum_i Sh_i
         % -----------------------------------------------------------------
         
@@ -143,6 +146,7 @@ switch Conf.ModelName
         Conf.ModelName_all = 'Triangular lattice-ARX model';
         Conf.d = 2;
         ModelConf.Para_List = {'J1xy', 'J1z', 'Jpm', 'Jpmz', 'J2xy', 'J2z', 'Delta'};
+        ModelConf.Para_ES = 2;
         ModelConf.Para_Range = cell(length(ModelConf.Para_List), 1);
         ModelConf.Num_gFactor = 2;                           
         ModelConf.Type_gFactor = 'xyz';      
@@ -167,9 +171,9 @@ switch Conf.ModelName
         % PARAMETER SETTINGS
         % =================================================================
         % J1xy range
-        ModelConf.Para_Range{1} = [5, 20];  
+        ModelConf.Para_Range{1} = 0;  
         % J1z range
-        ModelConf.Para_Range{2} = 'J1xy';  
+        ModelConf.Para_Range{2} = [5 10];  
         % Jpm range
         ModelConf.Para_Range{3} = 1;  
         % Jpmz range

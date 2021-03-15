@@ -14,6 +14,7 @@ function [ Intr ] = IntrcMap_TLARX( Para )
 %                  +Jpm (gamma_ij S+_i S+_j + h.c.)
 %                  -Jpmz 1i/2 (gamma_ij* S+_i Sz_j - gamma_ij S-_i Sz_j + <i<->j>)
 %       + \sum_<<i,j>> J1xy (Sx_i Sx_j + Sy_i Sy_j) + J1z Sz_i Sz_j
+%       - Delta\sum_i Sx_i 
 %       - h\sum_i Sh_i
 Lx = Para.Geo.Lx;
 Ly = Para.Geo.Ly;

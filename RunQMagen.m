@@ -1,19 +1,20 @@
 clear all
 addpath('lossfunc')
 addpath('ManyBodySolver')
-addpath (genpath('Config'))
+addpath('UtilityFunc')
+addpath (genpath('SpinModel'))
 addpath ('Class')
 
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
-Conf.many_body_solver = 'ED'; % 'ED', 'iLTRG', 'XTRG'         % conf, BC, Mar13
+Conf.many_body_solver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
 Conf.ModelName = 'TLARX';
 
 % =========================================================================
 % MODEL SPECIFICATION
 % =========================================================================
-[ GeomConf, ModelConf, Conf ] = SpinModel( Conf );
+[ GeomConf, ModelConf, Conf ] = GetSpinModel( Conf );
 
 % =========================================================================
 % DATA INPUT
@@ -27,14 +28,14 @@ Conf.ModelName = 'TLARX';
 %                   data(:,2) susceptibility(cm^3 * mol^-1 in SI unit)
 % =========================================================================
 
-CmData(1) = ThermoData('Cm', [0,0,0], [4,40], 'C_expdata.mat'); 
+CmData(1) = ThermoData('Cm', [0,0,0], [4,40], 'ExpData/TMGO_C_expdata_0T.mat'); 
 
 if strcmp(ModelConf.Type_gFactor, 'dir')
     CmData(1).Info.g_info = {};
 end
 
 
-ChiData(1) = ThermoData('Chi', [0,0,0.1], [4,40], 'Chi_expdata.mat');
+ChiData(1) = ThermoData('Chi', [0,0,0.1], [4,40], 'ExpData/TMGO_Chi_expdata_Sz.mat');
 
 if strcmp(ModelConf.gFactor_Vec, 'dir')
     ChiData(1).Info.g_info = {};

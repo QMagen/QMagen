@@ -12,7 +12,7 @@ classdef ThermoData < matlab.mixin.CustomDisplay
   % -------------------------------------------------
   % Usage: Thermodata(Name, Field, TRange, Storage)
   % -------------------------------------------------
-  % BC@BUAA, Mar21
+  % BC@BUAA, Mar12
   
   properties
     Data

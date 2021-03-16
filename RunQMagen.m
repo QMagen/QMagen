@@ -8,13 +8,14 @@ addpath ('Class')
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
-Conf.many_body_solver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
-Conf.ModelName = 'TLARX';
+Config.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
+Config.ModelName = 'TLTI';
+Config.WorkingMode = 'OPT';
 
 % =========================================================================
 % MODEL SPECIFICATION
 % =========================================================================
-[ GeomConf, ModelConf, Conf ] = GetSpinModel( Conf );
+[ Lattice, Model, Config ] = GetSpinModel( Config );
 
 % =========================================================================
 % DATA INPUT
@@ -30,42 +31,42 @@ Conf.ModelName = 'TLARX';
 
 CmData(1) = ThermoData('Cm', [0,0,0], [4,40], 'ExpData/TMGO_C_expdata_0T.mat'); 
 
-if strcmp(ModelConf.Type_gFactor, 'dir')
+if strcmp(Model.gFactor_Type, 'dir')
     CmData(1).Info.g_info = {};
 end
 
 
 ChiData(1) = ThermoData('Chi', [0,0,0.1], [4,40], 'ExpData/TMGO_Chi_expdata_Sz.mat');
 
-if strcmp(ModelConf.gFactor_Vec, 'dir')
+if strcmp(Model.gFactor_Type, 'dir')
     ChiData(1).Info.g_info = {};
 end
 
+% =========================================================================
+LossConf.WeightList = [];
+LossConf.Type = 'abs-err'; % 'abs-err', 'rel-err'
+LossConf.Design = 'native'; % 'native', 'log'
 
 % =========================================================================
-lossconfig.weight_list = [];
-lossconfig.loss_type = 'abs-err'; % 'abs-err', 'rel-err'
-lossconfig.loss_design = 'native'; % 'native', 'log'
-% =========================================================================
-setting.plot_check = 0; % 0 -> off, 1 -> on
+Setting.PLOTFLAG = 0; % 0 -> off, 1 -> on
 
 % Show information about evolution.
-setting.EVO_check = 0;  % 0 -> off, 1 -> on
+Setting.EVOFLAG = 0;  % 0 -> off, 1 -> on
 
 % Save intermediate results.
-setting.res_save = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
+Setting.SAVEFLAG = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % The file name to save intermediate results.
-setting.res_save_name = 'EDtest';
+Setting.SAVENAME = 'EDtest';
 
+QMagenConf = QMagen(Config, Model, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
 
 % =========================================================================
 
 mkdir(['tmp_', TStr]);
-if setting.res_save ~= 0
-    mkdir([setting.res_save_name, '_', TStr])
+if Setting.SAVEFLAG ~= 0
+    mkdir([Setting.SAVENAME, '_', TStr])
 end
-save(['tmp_', TStr, '/exp_data.mat'], 'CmData', 'ChiData');
-save(['tmp_', TStr, '/configuration.mat'], 'GeomConf', 'Conf', 'ModelConf', 'setting', 'lossconfig')
+save(['tmp_', TStr, '/configuration.mat'], 'QMagenConf');
 % =========================================================================
 opt_func(TStr)

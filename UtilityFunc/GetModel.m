@@ -1,11 +1,18 @@
-function [ Model ] = GetModel(TStr, g, varagin )
+function [ Model ] = GetModel(TStr, g, Para_List )
 load(['tmp_', TStr, '/configuration.mat'])
 Model.TStr = TStr;
 Model.g = g;
-Model.ES = abs(varagin(ModelConf.Para_ES));
-Model.Name = 'TMGO';
-for i = 1:1:length(varagin)
-    Model = setfield(Model, ModelConf.Para_List{i}, varagin(i)/Model.ES);
+
+ES_pos = find(strcmp(QMagenConf.Model.Para_Name, QMagenConf.Model.Para_EnScale), 1);
+Model.ES = abs(Para_List(ES_pos));
+
+if Model.ES == 0
+    error('Energy should not be zero! \n')
 end
+
+for i = 1:1:length(Para_List)
+    Model = setfield(Model, QMagenConf.Model.Para_Name{i}, Para_List(i)/Model.ES);
+end
+
 end
 

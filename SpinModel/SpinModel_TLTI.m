@@ -1,4 +1,4 @@
-function [ GeomConf, ModelConf, Conf ] = SpinModel_TLTI( Conf )
+function [ Lattice, Model, Conf ] = SpinModel_TLTI( Conf )
 % -------------------------------------------------------------
 % Triangular lattice
 % Transverse field Ising model
@@ -18,41 +18,42 @@ function [ GeomConf, ModelConf, Conf ] = SpinModel_TLTI( Conf )
 % =============================================================
 % DEFAULT SETTINGS
 % =============================================================
-Conf.IntrcMap_Name = 'IntrcMap_TLTI';
-Conf.ModelName_all = 'Triangular lattice-Transverse field Ising model';
-Conf.d = 2;
-ModelConf.Para_List = {'J1', 'J2', 'Delta'};
-ModelConf.Para_ES = 1;
-ModelConf.Para_Range = cell(length(ModelConf.Para_List), 1);
-ModelConf.Num_gFactor = 1;
-ModelConf.Type_gFactor = 'xyz';
-ModelConf.gFactor = cell(ModelConf.Num_gFactor, 1);
-ModelConf.gFactor_Vec = cell(ModelConf.Num_gFactor, 1);
-ModelConf.gFactor_Range = cell(ModelConf.Num_gFactor, 1);
-ModelConf.gFactor{1} = 'gz';
-ModelConf.gFactor_Vec{1} = [0,0,1];
+Model.ModelName = 'TLTI';
+Model.ModelName_Full = 'Triangular lattice-Transverse field Ising model';
+Model.IntrcMap = 'IntrcMap_TLTI';
+Model.LocalSpin = '1/2';
+Model.Para_Name = {'J1'; 'J2'; 'Delta'};
+Model.Para_EnScale = 'J1';
+Model.Para_Range = cell(length(Model.Para_Name), 1);
+Model.gFactor_Num = 1;
+Model.gFactor_Type = 'xyz';
+Model.gFactor_Name = cell(Model.gFactor_Num, 1);
+Model.gFactor_Vec = cell(Model.gFactor_Num, 1);
+Model.gFactor_Range = cell(Model.gFactor_Num, 1);
+Model.gFactor_Name{1} = 'gz';
+Model.gFactor_Vec{1} = [0,0,1];
 
 
 % =============================================================
 % GEOMETRY SETTINGS
 % =============================================================
-GeomConf.Lx = 3;
-GeomConf.Ly = 3;
-GeomConf.BCX = 'OBC';
-GeomConf.BCY = 'PBC';
-Conf.L = GeomConf.Lx * GeomConf.Ly;
+Lattice.Lx = 3;
+Lattice.Ly = 3;
+Lattice.BCX = 'OBC';
+Lattice.BCY = 'PBC';
+Lattice.L = Lattice.Lx * Lattice.Ly;
 
 % =============================================================
 % PARAMETER SETTINGS
 % =============================================================
 % J1 range
-ModelConf.Para_Range{1} = [5, 20];
+Model.Para_Range{1} = [5, 20];
 % J2 range
-ModelConf.Para_Range{2} = [0, 5];
+Model.Para_Range{2} = [0, 5];
 % Delta range
-ModelConf.Para_Range{3} = [0, 12];
+Model.Para_Range{3} = [0, 12];
 % gz range
-ModelConf.gFactor_Range{1} = [5, 20];
+Model.gFactor_Range{1} = [5, 20];
 
 
 end

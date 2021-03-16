@@ -11,5 +11,6 @@ Conf.ModelName = 'TLARX';
 % =========================================================================
 % MODEL SPECIFICATION
 % =========================================================================
-[ GeomConf, ModelConf, Conf ] = SpinModel( Conf );
+[ GeomConf, ModelConf, Conf ] = GetSpinModel( Conf );
 save('ModelConfig/TLARX_TMGO_XTRG_YC6x9.mat', 'Conf', 'GeomConf', 'ModelConf');
+[ ModelConf ] = SetParaVal(ModelConf, 'J1xy', 1);

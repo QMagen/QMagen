@@ -2,7 +2,7 @@ function [Rslt, Rslt_exp_unit] = GetResult(Model, Field, K_min, ThDQ)
 addpath('svd_lapack_interface');
 Para = GetPara(Model, Field, K_min);
 
-switch Para.many_body_solver
+switch Para.ManyBodySolver
     case {'ED'}
         addpath(genpath('./ManyBodySolver/ED'));
         
@@ -24,7 +24,7 @@ switch Para.many_body_solver
         fprintf('Illegal mant-body solver! \n');
         keyboard;
 end
-if strcmp(ThDQ, 'Cm') && strcmp(Para.many_body_solver, 'XTRG')
+if strcmp(ThDQ, 'Cm') && strcmp(Para.ManyBodySolver, 'XTRG')
     Rslt.beta = Rslt.betaCHA;
     Rslt.Cm = Rslt.CCHA;
 end

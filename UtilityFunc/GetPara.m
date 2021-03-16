@@ -4,39 +4,39 @@ function [ Para ] = GetPara( Model, Field, K_min )
 
 load(['tmp_', Model.TStr, '/configuration.mat'])
 
-Para.many_body_solver = Conf.many_body_solver;   
+Para.ManyBodySolver = QMagenConf.Config.ManyBodySolver;   
 
-if ismember(Conf.many_body_solver, {'ED', 'XTRG'})
-    Para.IntrcMap_Name = Conf.IntrcMap_Name;
-elseif ismember(Conf.many_body_solver, {'iLTRG'})
-    Para.Trotter_Name = Conf.Trotter_Name;
+if ismember(Para.ManyBodySolver, {'ED', 'XTRG'})
+    Para.IntrcMap_Name = QMagenConf.Model.IntrcMap;
+elseif ismember(Para.ManyBodySolver, {'iLTRG'})
+    Para.Trotter_Name = QMagenConf.Model.Trotter;
 end
-Para.d = Conf.d;
-Para.L = Conf.L;
-Para.Geo = GeomConf;
+Para.d = eval(QMagenConf.Model.LocalSpin) * 2 + 1;
+Para.L = QMagenConf.Lattice.L;
+Para.Geo = QMagenConf.Lattice;
 
 % ====================================================
 
-global plot_check
-plot_check = setting.plot_check; 
+global PLOTFLAG
+PLOTFLAG = QMagenConf.Setting.PLOTFLAG; 
 
-global EVO_check
-EVO_check = setting.EVO_check;  
+global EVOFLAG
+EVOFLAG = QMagenConf.Setting.EVOFLAG;  
 
-global res_save
-res_save = setting.res_save;  
+global SAVEFLAG
+SAVEFLAG = QMagenConf.Setting.SAVEFLAG;  
 
-global res_save_name
-res_save_name = [setting.res_save_name, '_', Model.TStr, '/'];
+global SAVENAME
+SAVENAME = [QMagenConf.Setting.SAVENAME, '_', Model.TStr, '/'];
 
-global save_count
-if isempty(save_count)
-    save_count = 1;
+global SAVE_COUNT
+if isempty(SAVE_COUNT)
+    SAVE_COUNT = 1;
 end
 
-global min_loss_val
-if isempty(min_loss_val)
-    min_loss_val = Inf;
+global MIN_LOSS_VAL
+if isempty(MIN_LOSS_VAL)
+    MIN_LOSS_VAL = Inf;
 end
 
 Para.Model = Model;

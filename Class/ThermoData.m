@@ -10,7 +10,7 @@ classdef ThermoData < matlab.mixin.CustomDisplay
   % .Info.TRange:   temperature range for fitting
   % .Info.Storage:  where data is storage in hard drive
   % -------------------------------------------------
-  % Usage: Thermodata(Name, Field, TRange, Storage)
+  % Usage: ThermoData(Name, Field, TRange, Storage)
   % -------------------------------------------------
   % BC@BUAA, Mar12
   

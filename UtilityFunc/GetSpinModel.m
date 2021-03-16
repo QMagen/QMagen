@@ -1,21 +1,17 @@
-function [ GeomConf, ModelConf, Conf ] = GetSpinModel( ip )
-if ischar(ip)
-    load(['ModelConfig/', ip, '.mat']);
-else
-    Conf = ip;
-    switch Conf.ModelName
-        case 'TLTI'
-            [ GeomConf, ModelConf, Conf ] = SpinModel_TLTI( Conf );
-            
-        case 'TLXXZ'
-            [ GeomConf, ModelConf, Conf ] = SpinModel_TLXXZ( Conf );
-            
-        case 'TLARX'
-            [ GeomConf, ModelConf, Conf ] = SpinModel_TLARX( Conf );
-            
-        otherwise
-            error('Undefined model name!\n')
+function [ Lattice, ModelConf, Config ] = GetSpinModel( Config )
+
+switch Config.ModelName
+    case 'TLTI'
+        [ Lattice, ModelConf, Config ] = SpinModel_TLTI( Config );
         
-    end
+    case 'TLXXZ'
+        [ Lattice, ModelConf, Config ] = SpinModel_TLXXZ( Config );
+        
+    case 'TLARX'
+        [ Lattice, ModelConf, Config ] = SpinModel_TLARX( Config );
+        
+    otherwise
+        error('Undefined model name!\n')
+        
 end
 end

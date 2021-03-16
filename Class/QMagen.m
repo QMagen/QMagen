@@ -5,9 +5,9 @@ classdef QMagen < matlab.mixin.CustomDisplay
 % .Config
 %       .ManyBodySolver     
 %       .ModelName          
-%       .WorkingMode   
+%       .Mode   
 % 
-% .Model
+% .ModelConf
 %       .[ModelName]
 %       .[ModelName_Full]
 %       .[IntrcMap]
@@ -47,7 +47,7 @@ classdef QMagen < matlab.mixin.CustomDisplay
   
 properties
     Config
-    Model
+    ModelConf
     Lattice
     LossConf
     Setting
@@ -56,11 +56,11 @@ properties
 end
   
 methods
-    function obj = QMagen(Config, Model, Lattice, LossConf, Setting, varargin)
+    function obj = QMagen(Config, ModelConf, Lattice, LossConf, Setting, varargin)
         % Constructor
         if nargin > 0
             obj.Config = Config;
-            obj.Model = Model;
+            obj.ModelConf = ModelConf;
             obj.Lattice = Lattice;
             obj.LossConf = LossConf;
             obj.Setting = Setting;

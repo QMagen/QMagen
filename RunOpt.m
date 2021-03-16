@@ -5,17 +5,17 @@ addpath('UtilityFunc')
 addpath (genpath('SpinModel'))
 addpath ('Class')
 
-TStr = datestr(now,'YYYYmmDD_HHMMSS');
+% TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
 Config.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
 Config.ModelName = 'TLTI';
-Config.WorkingMode = 'OPT';
+Config.Mode = 'OPT';
 
 % =========================================================================
 % MODEL SPECIFICATION
 % =========================================================================
-[ Lattice, Model, Config ] = GetSpinModel( Config );
+[ Lattice, ModelConf, Config ] = GetSpinModel( Config );
 
 % =========================================================================
 % DATA INPUT
@@ -31,14 +31,14 @@ Config.WorkingMode = 'OPT';
 
 CmData(1) = ThermoData('Cm', [0,0,0], [4,40], 'ExpData/TMGO_C_expdata_0T.mat'); 
 
-if strcmp(Model.gFactor_Type, 'dir')
+if strcmp(ModelConf.gFactor_Type, 'dir')
     CmData(1).Info.g_info = {};
 end
 
 
 ChiData(1) = ThermoData('Chi', [0,0,0.1], [4,40], 'ExpData/TMGO_Chi_expdata_Sz.mat');
 
-if strcmp(Model.gFactor_Type, 'dir')
+if strcmp(ModelConf.gFactor_Type, 'dir')
     ChiData(1).Info.g_info = {};
 end
 
@@ -59,14 +59,6 @@ Setting.SAVEFLAG = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
 % The file name to save intermediate results.
 Setting.SAVENAME = 'EDtest';
 
-QMagenConf = QMagen(Config, Model, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
+QMagenConf = QMagen(Config, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
 
-% =========================================================================
-
-mkdir(['tmp_', TStr]);
-if Setting.SAVEFLAG ~= 0
-    mkdir([Setting.SAVENAME, '_', TStr])
-end
-save(['tmp_', TStr, '/configuration.mat'], 'QMagenConf');
-% =========================================================================
-opt_func(TStr)
+RunQMagen(QMagenConf)

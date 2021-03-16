@@ -2,7 +2,7 @@ function [ loss ] = loss_func( TStr, g, ParaVal )
 loss = 0;
 load(['tmp_', TStr, '/configuration.mat'])
 
-ModelConf = QMagenConf.Model;
+ModelConf = QMagenConf.ModelConf;
 CmData = QMagenConf.CmData;
 ChiData = QMagenConf.ChiData;
 LossConf = QMagenConf.LossConf;

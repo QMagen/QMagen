@@ -7,11 +7,11 @@ load(['tmp_', Model.TStr, '/configuration.mat'])
 Para.ManyBodySolver = QMagenConf.Config.ManyBodySolver;   
 
 if ismember(Para.ManyBodySolver, {'ED', 'XTRG'})
-    Para.IntrcMap_Name = QMagenConf.Model.IntrcMap;
+    Para.IntrcMap_Name = QMagenConf.ModelConf.IntrcMap;
 elseif ismember(Para.ManyBodySolver, {'iLTRG'})
-    Para.Trotter_Name = QMagenConf.Model.Trotter;
+    Para.Trotter_Name = QMagenConf.ModelConf.Trotter;
 end
-Para.d = eval(QMagenConf.Model.LocalSpin) * 2 + 1;
+Para.d = eval(QMagenConf.ModelConf.LocalSpin) * 2 + 1;
 Para.L = QMagenConf.Lattice.L;
 Para.Geo = QMagenConf.Lattice;
 

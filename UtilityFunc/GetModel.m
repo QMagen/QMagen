@@ -3,7 +3,7 @@ load(['tmp_', TStr, '/configuration.mat'])
 Model.TStr = TStr;
 Model.g = g;
 
-ES_pos = find(strcmp(QMagenConf.Model.Para_Name, QMagenConf.Model.Para_EnScale), 1);
+ES_pos = find(strcmp(QMagenConf.ModelConf.Para_Name, QMagenConf.ModelConf.Para_EnScale), 1);
 Model.ES = abs(Para_List(ES_pos));
 
 if Model.ES == 0
@@ -11,7 +11,7 @@ if Model.ES == 0
 end
 
 for i = 1:1:length(Para_List)
-    Model = setfield(Model, QMagenConf.Model.Para_Name{i}, Para_List(i)/Model.ES);
+    Model = setfield(Model, QMagenConf.ModelConf.Para_Name{i}, Para_List(i)/Model.ES);
 end
 
 end

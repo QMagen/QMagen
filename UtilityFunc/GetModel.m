@@ -32,7 +32,7 @@ else
         QMagenConf.ModelParaValue.ES = abs(varargin{ES_pos + 1});
         QMagenConf.ModelConf.Para_Value = cell(length(QMagenConf.ModelConf.Para_Name), 1);
         for i = 1:1:len/2
-            if ~strcmp(varargin{2 * i - 1}, 'g')
+            if ~strcmp(varargin{2 * i - 1}(1), 'g')
                 QMagenConf.ModelParaValue = setfield(QMagenConf.ModelParaValue, varargin{2 * i - 1}, varargin{2 * i}/QMagenConf.ModelParaValue.ES);
                 pos = find(strcmp(QMagenConf.ModelConf.Para_Name, varargin{2 * i - 1}), 1);
                 QMagenConf.ModelConf.Para_Value{pos} = varargin{2 * i};

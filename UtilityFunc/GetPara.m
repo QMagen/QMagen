@@ -14,30 +14,33 @@ Para.d = eval(QMagenConf.ModelConf.LocalSpin) * 2 + 1;
 Para.L = QMagenConf.Lattice.L;
 Para.Geo = QMagenConf.Lattice;
 
+
 % ====================================================
-
-global PLOTFLAG
-PLOTFLAG = QMagenConf.Setting.PLOTFLAG; 
-
-global EVOFLAG
-EVOFLAG = QMagenConf.Setting.EVOFLAG;  
-
-global SAVEFLAG
-SAVEFLAG = QMagenConf.Setting.SAVEFLAG;  
-
-global SAVENAME
-SAVENAME = [QMagenConf.Setting.SAVENAME, '_', QMagenConf.Config.TStr, '/'];
-
-global SAVE_COUNT
-if isempty(SAVE_COUNT)
-    SAVE_COUNT = 1;
+switch QMagenConf.Config.Mode
+    case {'OPT', 'LOSS'}
+        global PLOTFLAG
+        PLOTFLAG = QMagenConf.Setting.PLOTFLAG;
+        
+        global EVOFLAG
+        EVOFLAG = QMagenConf.Setting.EVOFLAG;
+        
+        global SAVEFLAG
+        SAVEFLAG = QMagenConf.Setting.SAVEFLAG;
+        
+        global SAVENAME
+        SAVENAME = [QMagenConf.Setting.SAVENAME, '_', QMagenConf.Config.TStr, '/'];
+        
+        global SAVE_COUNT
+        if isempty(SAVE_COUNT)
+            SAVE_COUNT = 1;
+        end
+        
+        global MIN_LOSS_VAL
+        if isempty(MIN_LOSS_VAL)
+            MIN_LOSS_VAL = Inf;
+        end
+    case {'CALC-Cm', 'CALC-Chi'}
 end
-
-global MIN_LOSS_VAL
-if isempty(MIN_LOSS_VAL)
-    MIN_LOSS_VAL = Inf;
-end
-
 Para.Model = QMagenConf.ModelParaValue;
 Para.Field = QMagenConf.Field;
 Para.UnitCon = GetUnitCon(Para);

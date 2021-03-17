@@ -9,8 +9,8 @@ addpath ('Class')
 
 % =========================================================================
 Config.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
-Config.ModelName = 'TLARX';
-Config.Mode = 'OPT';
+Config.ModelName = 'TLTI';
+Config.Mode = 'LOSS';
 
 % =========================================================================
 % MODEL SPECIFICATION
@@ -61,4 +61,7 @@ Setting.SAVENAME = 'EDtest';
 
 QMagenConf = QMagen(Config, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
 
-QMagenMain(QMagenConf)
+loss = QMagenMain(QMagenConf, 'J1', 10, ...
+                              'J2', 0.5, ...
+                              'Delta', 6, ...
+                              'gz', 13);

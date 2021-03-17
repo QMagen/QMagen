@@ -49,7 +49,7 @@ classdef QMagen < matlab.mixin.CustomDisplay
 % -------------------------------------------------
 % YG@BUAA, Mar16
   
-properties
+properties (Access = private)
     Config
     ModelConf
     ModelParaValue

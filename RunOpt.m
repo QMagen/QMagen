@@ -9,7 +9,7 @@ addpath ('Class')
 
 % =========================================================================
 Config.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
-Config.ModelName = 'TLARX';
+Config.ModelName = 'TLTI';
 Config.Mode = 'OPT';
 
 % =========================================================================
@@ -45,7 +45,7 @@ end
 % =========================================================================
 LossConf.WeightList = [];
 LossConf.Type = 'abs-err'; % 'abs-err', 'rel-err'
-LossConf.Design = 'native'; % 'native', 'log'
+LossConf.Design = 'log'; % 'native', 'log'
 
 % =========================================================================
 Setting.PLOTFLAG = 0; % 0 -> off, 1 -> on
@@ -54,10 +54,10 @@ Setting.PLOTFLAG = 0; % 0 -> off, 1 -> on
 Setting.EVOFLAG = 0;  % 0 -> off, 1 -> on
 
 % Save intermediate results.
-Setting.SAVEFLAG = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
+Setting.SAVEFLAG = 1;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % The file name to save intermediate results.
-Setting.SAVENAME = 'EDtest';
+Setting.SAVENAME = 'TMGO';
 
 QMagenConf = QMagen(Config, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
 

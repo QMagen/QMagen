@@ -13,6 +13,8 @@ addpath ('Class')
 
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
+display(QMagenConf)
+
 switch QMagenConf.Config.Mode
     case 'OPT' 
         mkdir(['tmp_', TStr]);

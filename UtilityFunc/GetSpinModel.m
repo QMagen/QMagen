@@ -2,13 +2,13 @@ function [ Lattice, ModelConf, Config ] = GetSpinModel( Config )
 
 switch Config.ModelName
     case 'TLTI'
-        [ Lattice, ModelConf, Config ] = SpinModel_TLTI( Config );
+        [ Lattice, ModelConf ] = SpinModel_TLTI( );
         
     case 'TLXXZ'
-        [ Lattice, ModelConf, Config ] = SpinModel_TLXXZ( Config );
+        [ Lattice, ModelConf ] = SpinModel_TLXXZ( );
         
     case 'TLARX'
-        [ Lattice, ModelConf, Config ] = SpinModel_TLARX( Config );
+        [ Lattice, ModelConf ] = SpinModel_TLARX( );
         
     otherwise
         error('Undefined model name!\n')

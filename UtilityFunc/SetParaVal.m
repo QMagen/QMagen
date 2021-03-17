@@ -6,7 +6,7 @@ if mod(len, 2) == 1
 end
 
 for i = 1:1:length(varargin)/2
-    logical_array = strcmp(ModelConf.Para_List, varargin{2 * i - 1});
+    logical_array = strcmp(ModelConf.Para_Name, varargin{2 * i - 1});
     loc = find(logical_array, 1);
     if isempty(loc)
         error('Undefined parameter name!\n')

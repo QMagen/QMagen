@@ -1,4 +1,4 @@
-function [ GeomConf, ModelConf, Conf ] = SpinModel_TLARX( Conf )
+function [ Lattice, ModelConf, Conf ] = SpinModel_TLARX( Conf )
 % -------------------------------------------------------------
 % Triangular lattice
 % ARX model
@@ -22,30 +22,31 @@ function [ GeomConf, ModelConf, Conf ] = SpinModel_TLARX( Conf )
 % =============================================================
 % DEFAULT SETTINGS
 % =============================================================
-Conf.IntrcMap_Name = 'IntrcMap_TLARX';
-Conf.ModelName_all = 'Triangular lattice-ARX model';
-Conf.d = 2;
-ModelConf.Para_List = {'J1xy'; 'J1z'; 'Jpm'; 'Jpmz'; 'J2xy'; 'J2z'; 'Delta'};
-ModelConf.Para_ES = 2;
-ModelConf.Para_Range = cell(length(ModelConf.Para_List), 1);
-ModelConf.Num_gFactor = 2;
-ModelConf.Type_gFactor = 'xyz';
-ModelConf.gFactor = cell(ModelConf.Num_gFactor, 1);
+ModelConf.ModelName = 'TLARX';
+ModelConf.ModelName_Full = 'Triangular lattice-ARX model';
+ModelConf.IntrcMap = 'IntrcMap_TLARX';
+ModelConf.LocalSpin = '1/2';
+ModelConf.Para_Name = {'J1xy'; 'J1z'; 'Jpm'; 'Jpmz'; 'J2xy'; 'J2z'; 'Delta'};
+ModelConf.Para_EnScale = 'J1z';
+ModelConf.Para_Range = cell(length(ModelConf.Para_Name), 1);
+ModelConf.gFactor_Num = 2;
+ModelConf.gFactor_Type = 'xyz';
+ModelConf.gFactor_Name = cell(ModelConf.Num_gFactor, 1);
 ModelConf.gFactor_Vec = cell(ModelConf.Num_gFactor, 1);
 ModelConf.gFactor_Range = cell(ModelConf.Num_gFactor, 1);
-ModelConf.gFactor{1} = 'gx';
+ModelConf.gFactor_Name{1} = 'gx';
 ModelConf.gFactor_Vec{1} = [1,0,0];
-ModelConf.gFactor{2} = 'gz';
+ModelConf.gFactor_Name{2} = 'gz';
 ModelConf.gFactor_Vec{2} = [0,0,1];
 
 % =============================================================
 % GEOMETRY SETTINGS
 % =============================================================
-GeomConf.Lx = 3;
-GeomConf.Ly = 3;
-GeomConf.BCX = 'OBC';
-GeomConf.BCY = 'PBC';
-Conf.L = GeomConf.Lx * GeomConf.Ly;
+Lattice.Lx = 3;
+Lattice.Ly = 3;
+Lattice.BCX = 'OBC';
+Lattice.BCY = 'PBC';
+Lattice.L = Lattice.Lx * Lattice.Ly;
 
 % =============================================================
 % PARAMETER SETTINGS

@@ -1,4 +1,4 @@
-function [ GeomConf, ModelConf, Conf ] = SpinModel_TLXXZ( Conf )
+function [ Lattice, ModelConf ] = SpinModel_TLXXZ( )
 % -------------------------------------------------------------
 % Triangular lattice
 % XXZ model
@@ -19,30 +19,31 @@ function [ GeomConf, ModelConf, Conf ] = SpinModel_TLXXZ( Conf )
 % =============================================================
 % DEFAULT SETTINGS
 % =============================================================
-Conf.IntrcMap_Name = 'IntrcMap_TLXXZ';
-Conf.ModelName_all = 'Triangular lattice-XXZ model';
-Conf.d = 2;
-ModelConf.Para_List = {'J1xy'; 'J1z'; 'J2xy'; 'J2z'};
-ModelConf.Para_ES = 1;
-ModelConf.Para_Range = cell(length(ModelConf.Para_List), 1);
-ModelConf.Num_gFactor = 2;
-ModelConf.Type_gFactor = 'xyz';
-ModelConf.gFactor = cell(ModelConf.Num_gFactor, 1);
-ModelConf.gFactor_Vec = cell(ModelConf.Num_gFactor, 1);
-ModelConf.gFactor_Range = cell(ModelConf.Num_gFactor, 1);
-ModelConf.gFactor{1} = 'gx';
+ModelConf.ModelName = 'TLXXZ';
+ModelConf.ModelName_Full = 'Triangular lattice-XXZ model';
+ModelConf.IntrcMap = 'IntrcMap_TLXXZ';
+ModelConf.LocalSpin = '1/2';
+ModelConf.Para_Name = {'J1xy'; 'J1z'; 'J2xy'; 'J2z'};
+ModelConf.Para_EnScale = 'J1xy';
+ModelConf.Para_Range = cell(length(ModelConf.Para_Name), 1);
+ModelConf.gFactor_Num = 2;
+ModelConf.gFactor_Type = 'xyz';
+ModelConf.gFactor_Name = cell(ModelConf.gFactor_Num, 1);
+ModelConf.gFactor_Vec = cell(ModelConf.gFactor_Num, 1);
+ModelConf.gFactor_Range = cell(ModelConf.gFactor_Num, 1);
+ModelConf.gFactor_Name{1} = 'gx';
 ModelConf.gFactor_Vec{1} = [1,0,0];
-ModelConf.gFactor{2} = 'gz';
+ModelConf.gFactor_Name{2} = 'gz';
 ModelConf.gFactor_Vec{2} = [0,0,1];
 
 % =============================================================
 % GEOMETRY SETTINGS
 % =============================================================
-GeomConf.Lx = 3;
-GeomConf.Ly = 3;
-GeomConf.BCX = 'OBC';
-GeomConf.BCY = 'PBC';
-Conf.L = GeomConf.Lx * GeomConf.Ly;
+Lattice.Lx = 3;
+Lattice.Ly = 3;
+Lattice.BCX = 'OBC';
+Lattice.BCY = 'PBC';
+Lattice.L = Lattice.Lx * Lattice.Ly;
 
 % =============================================================
 % PARAMETER SETTINGS

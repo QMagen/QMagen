@@ -18,8 +18,6 @@ switch QMagenConf.Config.Mode
         QMagenConf.Config.TStr = TStr;
         save(['tmp_', TStr, '/configuration.mat'], 'QMagenConf');
         opt_func(TStr)
-    case 'LOSS'
-    case 'CALC-Cm'
-    case 'CALC-Chi'
+    case {'LOSS', 'CACL-Cm', 'CALC-Chi'}
 end
 end

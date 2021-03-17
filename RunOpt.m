@@ -9,7 +9,7 @@ addpath ('Class')
 
 % =========================================================================
 Config.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
-Config.ModelName = 'TLTI';
+Config.ModelName = 'TLARX';
 Config.Mode = 'OPT';
 
 % =========================================================================

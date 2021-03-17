@@ -82,6 +82,13 @@ methods
                    end
                end
             end
+        elseif nargin == 4
+            obj.Config = Config;
+            obj.ModelConf = ModelConf;
+            obj.Lattice = Lattice;
+            obj.Field = varargin{1};
+        else
+            error('Illegal import format!\n')
         end
     end
     
@@ -94,32 +101,32 @@ methods (Access=protected)
         else
             fprintf('\nQMagen Configuration:\n');
             fprintf('-------------------------------------------------------------------------------------------\n')
-            fprintf('\tModel Name         |  %s\n', obj.ModelConf.ModelName_Full);
-            fprintf('\tMany-Body Solver   |  %s\n', obj.Config.ManyBodySolver);
+            fprintf('\tModel Name           |  %s\n', obj.ModelConf.ModelName_Full);
+            fprintf('\tMany-Body Solver     |  %s\n', obj.Config.ManyBodySolver);
             if strcmp(obj.Config.Mode, 'OPT')
-                fprintf('\tOptimizer          |  %s\n', 'Bayesian Optimizer');
+                fprintf('\tOptimizer            |  %s\n', 'Bayesian Optimizer');
             end
             fprintf('-------------------------------------------------------------------------------------------\n')
             fprintf('Lattice Geometry:\n');
             if isfield(obj.Lattice, 'Lx')
-                fprintf('\tLx                 |  %d\n', obj.Lattice.Lx);
+                fprintf('\tLx                   |  %d\n', obj.Lattice.Lx);
             end
             if isfield(obj.Lattice, 'Ly')
-                fprintf('\tLy                 |  %d\n', obj.Lattice.Ly);
+                fprintf('\tLy                   |  %d\n', obj.Lattice.Ly);
             end
             if isfield(obj.Lattice, 'Lx')
-                fprintf('\tBCX                |  %s\n', obj.Lattice.BCX);
+                fprintf('\tBCX                  |  %s\n', obj.Lattice.BCX);
             end
             if isfield(obj.Lattice, 'Lx')
-                fprintf('\tBCY                |  %s\n', obj.Lattice.BCY);
+                fprintf('\tBCY                  |  %s\n', obj.Lattice.BCY);
             end
-            fprintf('\tL                  |  %d\n', obj.Lattice.L);
+            fprintf('\tL                    |  %d\n', obj.Lattice.L);
             fprintf('-------------------------------------------------------------------------------------------\n')
             switch obj.Config.Mode
                 case 'OPT'
                     fprintf('Parameters Optimization Range:\n');
                     for i = 1:1:length(obj.ModelConf.Para_Name)
-                        fprintf('\t%-18s |  ', obj.ModelConf.Para_Name{i})
+                        fprintf('\t%-18s   |  ', obj.ModelConf.Para_Name{i})
                         if ischar(obj.ModelConf.Para_Range{i})
                             fprintf('%s\n', obj.ModelConf.Para_Range{i})
                         elseif length(obj.ModelConf.Para_Range{i}) == 2
@@ -130,24 +137,22 @@ methods (Access=protected)
                             error('??????????\n')
                         end
                     end
+                    fprintf('-------------------------------------------------------------------------------------------\n')
                 case {'LOSS', 'CALC-Cm', 'CALC-Chi'}
                     fprintf('Parameters Value:\n');
                     for i = 1:1:length(obj.ModelConf.Para_Name)
-                        fprintf('\t%-18s |  %.3f', obj.ModelConf.Para_Name{i}, obj.ModelConf.Para_Value{i})
+                        fprintf('\t%-18s   |  %.3f\n', obj.ModelConf.Para_Name{i}, obj.ModelConf.Para_Value{i})
                     end
+                    fprintf('-------------------------------------------------------------------------------------------\n')
+                    fprintf('Parameters Value:\n');
+                    try
+                        fprintf('\t%-18s   |  [%.3f, .%.3f, %.3f] \n', 'Field (Tesla)', obj.Field.B)
+                    catch
+                        fprintf('\t%s |  [%.3f, .%.3f, %.3f] \n', 'Field (Natural Unit)', obj.Field.h)
+                    end
+                    fprintf('\t%-18s   |  [%.3f, .%.3f, %.3f] \n', 'g', obj.ModelParaValue.g)
+                    fprintf('-------------------------------------------------------------------------------------------\n')
             end
-            fprintf('-------------------------------------------------------------------------------------------\n')
-%             fprintf('\tData    | %7s|  %8s\n','T',obj.Info.Name);
-%             fprintf('\t%s\n',repmat('-',1,26));
-%             n_ = size(obj.Data,1);
-%             for i_=1:3
-%                 fprintf('\t\t|%8g|  %8g\n',obj.Data(i_,:));
-%             end
-%             fprintf('\t\t|%8s|  %8s\n','...','...');
-%             for i_=n_-2:n_
-%                 fprintf('\t\t|%8g|  %8g\n',obj.Data(i_,:));
-%             end
-%             fprintf('\n')
         end
     end
     

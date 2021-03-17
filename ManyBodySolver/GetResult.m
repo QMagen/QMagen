@@ -1,6 +1,6 @@
-function [Rslt, Rslt_exp_unit] = GetResult(Model, Field, K_min, ThDQ)
+function [Rslt, Rslt_exp_unit] = GetResult(QMagenConf, K_min, ThDQ)
 addpath('svd_lapack_interface');
-Para = GetPara(Model, Field, K_min);
+Para = GetPara(QMagenConf, K_min);
 
 switch Para.ManyBodySolver
     case {'ED'}

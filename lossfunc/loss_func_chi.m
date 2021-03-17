@@ -1,4 +1,4 @@
-function [ loss, Rslt ] = loss_func_chi( Model, Field, Trange,  Chi_data, loss_type )
+function [ loss, Rslt ] = loss_func_chi( QMagenConf, Trange,  Chi_data, loss_type )
 loss = 0;
 
 T_exp = Chi_data(:,1);
@@ -7,7 +7,7 @@ T_min = max(min(T_exp), Trange(1));
 T_max = min(max(T_exp), Trange(2));
 
 ThDQ = 'Chi';
-[~, Rslt] = GetResult(Model, Field, 0.9 * T_min, ThDQ);
+[~, Rslt] = GetResult(QMagenConf, 0.9 * T_min, ThDQ);
 T = Rslt.T_l;
 chi = Rslt.Chi_l;
 

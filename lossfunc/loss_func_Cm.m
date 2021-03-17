@@ -1,4 +1,4 @@
-function [ loss, Rslt ] = loss_func_Cm( Model, Field, Trange, C_data, loss_type )
+function [ loss, Rslt ] = loss_func_Cm( QMagenConf, Trange, C_data, loss_type )
 loss = 0;
 T_exp = C_data(:,1);
 C_exp = C_data(:,2);
@@ -7,7 +7,7 @@ T_min = max(min(T_exp), Trange(1));
 T_max = min(max(T_exp), Trange(2));
 
 ThDQ = 'Cm';
-[~, Rslt] = GetResult(Model, Field, T_min-0.1 * T_min, ThDQ);
+[~, Rslt] = GetResult(QMagenConf, T_min-0.1 * T_min, ThDQ);
 T = Rslt.T_l;
 C = Rslt.Cm_l;
 

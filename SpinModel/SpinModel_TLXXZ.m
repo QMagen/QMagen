@@ -37,7 +37,7 @@ ModelConf.gFactor_Name{2} = 'gz';
 ModelConf.gFactor_Vec{2} = [0,0,1];
 
 % =============================================================
-% GEOMETRY SETTINGS
+% LATTICE GEOMETRY SETTINGS
 % =============================================================
 Lattice.Lx = 3;
 Lattice.Ly = 3;
@@ -46,7 +46,7 @@ Lattice.BCY = 'PBC';
 Lattice.L = Lattice.Lx * Lattice.Ly;
 
 % =============================================================
-% PARAMETER SETTINGS
+% PARAMETERS OPTIMIZATION RANGE SETTINGS
 % =============================================================
 % J1xy range
 ModelConf.Para_Range{1} = [5, 20];

@@ -1,17 +1,19 @@
-function [ Model ] = GetModel(TStr, g, Para_List )
-load(['tmp_', TStr, '/configuration.mat'])
-Model.TStr = TStr;
-Model.g = g;
+function [ QMagenConf ] = GetModel(QMagenConf, varargin )
+
+if nargin == 3
+    QMagenConf.ModelParaValue.g = varargin{1};
+    Para_List = varargin{2};
+end
 
 ES_pos = find(strcmp(QMagenConf.ModelConf.Para_Name, QMagenConf.ModelConf.Para_EnScale), 1);
-Model.ES = abs(Para_List(ES_pos));
+QMagenConf.ModelParaValue.ES = abs(Para_List(ES_pos));
 
-if Model.ES == 0
+if QMagenConf.ModelParaValue.ES == 0
     error('Energy should not be zero! \n')
 end
 
 for i = 1:1:length(Para_List)
-    Model = setfield(Model, QMagenConf.ModelConf.Para_Name{i}, Para_List(i)/Model.ES);
+    QMagenConf.ModelParaValue = setfield(QMagenConf.ModelParaValue, QMagenConf.ModelConf.Para_Name{i}, Para_List(i)/QMagenConf.ModelParaValue.ES);
 end
 
 end

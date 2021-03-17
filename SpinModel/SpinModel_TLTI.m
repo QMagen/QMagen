@@ -19,7 +19,7 @@ function [ Lattice, ModelConf ] = SpinModel_TLTI( )
 % DEFAULT SETTINGS
 % =============================================================
 ModelConf.ModelName = 'TLTI';
-ModelConf.ModelName_Full = 'Triangular lattice-Transverse field Ising ModelConf';
+ModelConf.ModelName_Full = 'Triangular lattice-Transverse field Ising Model';
 ModelConf.IntrcMap = 'IntrcMap_TLTI';
 ModelConf.LocalSpin = '1/2';
 ModelConf.Para_Name = {'J1'; 'J2'; 'Delta'};
@@ -35,7 +35,7 @@ ModelConf.gFactor_Vec{1} = [0,0,1];
 
 
 % =============================================================
-% GEOMETRY SETTINGS
+% LATTICE GEOMETRY SETTINGS
 % =============================================================
 Lattice.Lx = 3;
 Lattice.Ly = 3;
@@ -44,7 +44,7 @@ Lattice.BCY = 'PBC';
 Lattice.L = Lattice.Lx * Lattice.Ly;
 
 % =============================================================
-% PARAMETER SETTINGS
+% PARAMETERS OPTIMIZATION RANGE SETTINGS
 % =============================================================
 % J1 range
 ModelConf.Para_Range{1} = [5, 20];

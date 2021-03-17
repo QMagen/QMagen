@@ -21,7 +21,7 @@ end
 RsltCv = cell(length(CmData), 1);
 for i = 1:1:length(CmData)
     clear Field
-    Field.B = CmData(i).Info.Field;
+    QMagenConf.Field.B = CmData(i).Info.Field;
     switch ModelConf.gFactor_Type
         case 'xyz'
             g_fec = [0, 0, 0];
@@ -41,8 +41,8 @@ for i = 1:1:length(CmData)
                 end
             end
     end
-    Model = GetModel(TStr, g_fec, ParaVal);
-    [lossp, RsltCv{i}] = loss_func_Cm(Model, Field, CmData(i).Info.TRange, CmData(i).Data, loss_type);
+    QMagenConf = GetModel(QMagenConf, g_fec, ParaVal);
+    [lossp, RsltCv{i}] = loss_func_Cm(QMagenConf, CmData(i).Info.TRange, CmData(i).Data, loss_type);
     loss = loss + lossp * wl(i);
 end
 
@@ -50,7 +50,7 @@ end
 
 RsltChi = cell(length(ChiData), 1);
 for i = 1:1:length(ChiData)
-    Field.B = ChiData(i).Info.Field;
+    QMagenConf.Field.B = ChiData(i).Info.Field;
     switch ModelConf.gFactor_Type
         case 'xyz'
             g_fec = [0, 0, 0];
@@ -70,8 +70,8 @@ for i = 1:1:length(ChiData)
                 end
             end
     end
-    Model = GetModel(TStr, g_fec, ParaVal);
-    [lossp, RsltChi{i}] = loss_func_chi(Model, Field, ChiData(i).Info.TRange, ChiData(i).Data, loss_type);
+    QMagenConf = GetModel(QMagenConf, g_fec, ParaVal);
+    [lossp, RsltChi{i}] = loss_func_chi(QMagenConf, ChiData(i).Info.TRange, ChiData(i).Data, loss_type);
     loss = loss + lossp * wl(i + length(CmData));
 end
 

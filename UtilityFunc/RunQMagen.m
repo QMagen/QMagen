@@ -1,4 +1,4 @@
-function RunQMagen(QMagenConf)
+function RunQMagen(QMagenConf, varargin)
 
 addpath('lossfunc')
 addpath('ManyBodySolver')
@@ -15,7 +15,7 @@ switch QMagenConf.Config.Mode
         if QMagenConf.Setting.SAVEFLAG ~= 0
             mkdir([Setting.SAVENAME, '_', TStr])
         end
-        
+        QMagenConf.Config.TStr = TStr;
         save(['tmp_', TStr, '/configuration.mat'], 'QMagenConf');
         opt_func(TStr)
     case 'LOSS'

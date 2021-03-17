@@ -1,8 +1,7 @@
-function [ Para ] = GetPara( Model, Field, K_min )
+function [ Para ] = GetPara( QMagenConf, K_min )
 % function [Para] = GetPara(Model, Field, K_min)
 % Set the parameter of the problem.
 
-load(['tmp_', Model.TStr, '/configuration.mat'])
 
 Para.ManyBodySolver = QMagenConf.Config.ManyBodySolver;   
 
@@ -27,7 +26,7 @@ global SAVEFLAG
 SAVEFLAG = QMagenConf.Setting.SAVEFLAG;  
 
 global SAVENAME
-SAVENAME = [QMagenConf.Setting.SAVENAME, '_', Model.TStr, '/'];
+SAVENAME = [QMagenConf.Setting.SAVENAME, '_', QMagenConf.Config.TStr, '/'];
 
 global SAVE_COUNT
 if isempty(SAVE_COUNT)
@@ -39,8 +38,8 @@ if isempty(MIN_LOSS_VAL)
     MIN_LOSS_VAL = Inf;
 end
 
-Para.Model = Model;
-Para.Field = Field;
+Para.Model = QMagenConf.ModelParaValue;
+Para.Field = QMagenConf.Field;
 Para.UnitCon = GetUnitCon(Para);
 Para.tau = 0.0025;   % default
 Para.beta_max = 1 / (K_min / Para.UnitCon.T_con);

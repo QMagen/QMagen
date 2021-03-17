@@ -10,7 +10,7 @@ addpath ('Class')
 % =========================================================================
 Config.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
 Config.ModelName = 'TLTI';
-Config.Mode = 'OPT';
+Config.Mode = 'LOSS';
 
 % =========================================================================
 % MODEL SPECIFICATION

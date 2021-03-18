@@ -55,9 +55,13 @@ switch QMagenConf.Config.Mode
 %         QMagenConf.Config.TStr = TStr;
 %         save(['tmp_', TStr, '/configuration.mat'], 'QMagenConf');
         
-        [Rslt, Rslt_exp] = GetResult(QMagenConf, varargin{2}, 'Cm');
-        varargout{1} = Rslt;
-        varargout{2} = Rslt_exp;
+        [Rslt, ~] = GetResult(QMagenConf, varargin{2}, 'Cm');
+        pos = find(Rslt.T < varargin{2});
+        pos = pos(1) + 1;
+        Rslt1.T = Rslt.T(1:1:pos);
+        Rslt1.Cm = Rslt.Cm(1:1:pos);
+        varargout{1} = Rslt1;
+%         varargout{2} = Rslt_exp;
 %         save(['tmp_', TStr, '/Rslt.mat'], 'Rslt', 'Rslt_exp');
     case 'CALC-Chi'
 %         mkdir(['tmp_', TStr]);
@@ -65,9 +69,13 @@ switch QMagenConf.Config.Mode
 %         QMagenConf.Config.TStr = TStr;
 %         save(['tmp_', TStr, '/configuration.mat'], 'QMagenConf');
         
-        [Rslt, Rslt_exp] = GetResult(QMagenConf, varargin{2}, 'Chi');
-        varargout{1} = Rslt;
-        varargout{2} = Rslt_exp;
+        [Rslt, ~] = GetResult(QMagenConf, varargin{2}, 'Chi');
+        pos = find(Rslt.T < varargin{2});
+        pos = pos(1) + 1;
+        Rslt1.T = Rslt.T(1:1:pos);
+        Rslt1.Chi = Rslt.M(1:1:pos) ./ norm(QMagenConf.Field.h);
+        varargout{1} = Rslt1;
+%         varargout{2} = Rslt_exp;
 %         save(['tmp_', TStr, '/Rslt.mat'], 'Rslt', 'Rslt_exp');
 end
 end

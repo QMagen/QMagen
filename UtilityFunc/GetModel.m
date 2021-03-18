@@ -17,7 +17,7 @@ if nargin == 3
 else
     len = length(varargin);
     if mod(len , 2) == 1
-        error('Illegal import format!\n')
+        error('Illegal import format!')
     end
     lenp = 2 * length(QMagenConf.ModelConf.Para_Name);
     
@@ -26,10 +26,13 @@ else
     end
     
     if len ~= 2 * length(QMagenConf.ModelConf.Para_Name)
-        error('Not enough input arguement!\n')
+        error('Not enough input arguement!')
     else
         ES_pos = find(strcmp(varargin, QMagenConf.ModelConf.Para_EnScale), 1);
         QMagenConf.ModelParaValue.ES = abs(varargin{ES_pos + 1});
+        if QMagenConf.ModelParaValue.ES ~= 1
+            error('The energy scaling should be 1!')
+        end
         QMagenConf.ModelConf.Para_Value = cell(length(QMagenConf.ModelConf.Para_Name), 1);
         for i = 1:1:len/2
             if ~strcmp(varargin{2 * i - 1}(1), 'g')

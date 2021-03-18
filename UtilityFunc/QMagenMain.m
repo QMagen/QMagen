@@ -20,7 +20,7 @@ switch QMagenConf.Config.Mode
         mkdir(['tmp_', TStr]);
         
         if QMagenConf.Setting.SAVEFLAG ~= 0
-            mkdir([Setting.SAVENAME, '_', TStr])
+            mkdir([QMagenConf.Setting.SAVENAME, '_', TStr])
         end
         QMagenConf.Config.TStr = TStr;
         save(['tmp_', TStr, '/configuration.mat'], 'QMagenConf');
@@ -29,7 +29,7 @@ switch QMagenConf.Config.Mode
         mkdir(['tmp_', TStr]);
         
         if QMagenConf.Setting.SAVEFLAG ~= 0
-            mkdir([Setting.SAVENAME, '_', TStr])
+            mkdir([QMagenConf.Setting.SAVENAME, '_', TStr])
         end
         QMagenConf.Config.TStr = TStr;
         save(['tmp_', TStr, '/configuration.mat'], 'QMagenConf');

@@ -25,7 +25,7 @@ else
         lenp = lenp + 2;
     end
     
-    if len ~= 2 * length(QMagenConf.ModelConf.Para_Name) + 2
+    if len ~= 2 * length(QMagenConf.ModelConf.Para_Name)
         error('Not enough input arguement!\n')
     else
         ES_pos = find(strcmp(varargin, QMagenConf.ModelConf.Para_EnScale), 1);

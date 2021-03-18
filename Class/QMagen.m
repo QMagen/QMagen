@@ -49,7 +49,7 @@ classdef QMagen < matlab.mixin.CustomDisplay
 % -------------------------------------------------
 % YG@BUAA, Mar16
   
-properties (Access = private)
+properties % (Access = private)
     Config
     ModelConf
     ModelParaValue
@@ -146,11 +146,14 @@ methods (Access=protected)
                     fprintf('-------------------------------------------------------------------------------------------\n')
                     fprintf('Parameters Value:\n');
                     try
-                        fprintf('\t%-18s   |  [%.3f, .%.3f, %.3f] \n', 'Field (Tesla)', obj.Field.B)
+                        fprintf('\t%-18s   |  [%.3f, %.3f, %.3f] \n', 'Field (Tesla)', obj.Field.B)
                     catch
-                        fprintf('\t%s |  [%.3f, .%.3f, %.3f] \n', 'Field (Natural Unit)', obj.Field.h)
+                        fprintf('\t%s |  [%.3f, %.3f, %.3f] \n', 'Field (Natural Unit)', obj.Field.h)
                     end
+                    try
                     fprintf('\t%-18s   |  [%.3f, .%.3f, %.3f] \n', 'g', obj.ModelParaValue.g)
+                    catch
+                    end
                     fprintf('-------------------------------------------------------------------------------------------\n')
             end
         end

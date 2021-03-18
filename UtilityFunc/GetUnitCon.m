@@ -16,7 +16,11 @@ ES = para.Model.ES;
 UnitCon.Cm_con = Const.R;
 
 % \\Field Strength---------------------------------------------------
-g = para.Model.g;
+try
+    g = para.Model.g;
+catch
+    g = [2,2,2];
+end
 h_con = g;
 for i = 1:1:3
     h_con(i) = ES * Const.kb * Const.MJ / g(i) / Const.mu_b;

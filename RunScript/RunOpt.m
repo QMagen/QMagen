@@ -1,9 +1,10 @@
 clear all
 addpath('../lossfunc')
-addpath('../ManyBodySolver')
+addpath(genpath('../ManyBodySolver'))
 addpath('../UtilityFunc')
-addpath (genpath('../SpinModel'))
-addpath ('../Class')
+addpath(genpath('../SpinModel'))
+addpath('../Class')
+addpath('../svd_lapack_interface')
 
 % TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
@@ -49,7 +50,7 @@ LossConf.Design = 'log'; % 'native', 'log'
 
 % =========================================================================
 Setting.PLOTFLAG = 0; % 0 -> off, 1 -> on
-
+Setting.EVOFLAG = 0;
 % Save intermediate results.
 Setting.SAVEFLAG = 1;   % 0 -> off, 1 -> save the best, 2 -> save all
 

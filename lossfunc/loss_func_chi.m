@@ -43,12 +43,12 @@ switch loss_type
         end
 end
 loss = loss/length(T);
-global plot_check
-if plot_check == 1
+global PLOTFLAG
+if PLOTFLAG == 1
     semilogx(T_exp, chi_exp, 'LineWidth', 2); hold on
     semilogx(T, chi, '-*', 'LineWidth', 2);
     set(gca, 'FontSize', 15)
-    legend({'exp', 'YC6*9_Li_200'}, 'FontSize', 20);
+    legend({'exp', 'sim'}, 'FontSize', 20);
     xlabel('T (K)', 'FontSize' ,20);
     ylabel('cm^3/mol', 'FontSize', 20);
     axis([0.1 T_max+1 0 14]);

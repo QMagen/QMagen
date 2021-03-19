@@ -48,10 +48,7 @@ LossConf.Type = 'abs-err'; % 'abs-err', 'rel-err'
 LossConf.Design = 'native'; % 'native', 'log'
 
 % =========================================================================
-Setting.PLOTFLAG = 0; % 0 -> off, 1 -> on
-
-% Show information about evolution.
-Setting.EVOFLAG = 0;  % 0 -> off, 1 -> on
+Setting.PLOTFLAG = 1; % 0 -> off, 1 -> on
 
 % Save intermediate results.
 Setting.SAVEFLAG = 0;   % 0 -> off, 1 -> save the best, 2 -> save all

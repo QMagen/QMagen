@@ -50,9 +50,6 @@ LossConf.Design = 'log'; % 'native', 'log'
 % =========================================================================
 Setting.PLOTFLAG = 0; % 0 -> off, 1 -> on
 
-% Show information about evolution.
-Setting.EVOFLAG = 0;  % 0 -> off, 1 -> on
-
 % Save intermediate results.
 Setting.SAVEFLAG = 1;   % 0 -> off, 1 -> save the best, 2 -> save all
 

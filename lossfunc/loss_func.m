@@ -90,7 +90,7 @@ global SAVE_COUNT
 
 if SAVEFLAG == 1
     if loss < MIN_LOSS_VAL
-        save(SAVENAME, 'best.mat', 'RsltCv', 'RsltChi');
+        save([SAVENAME, 'best.mat'], 'RsltCv', 'RsltChi');
         MIN_LOSS_VAL = loss;
     end
     

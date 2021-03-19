@@ -13,10 +13,10 @@ addpath ('Class')
 
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
-display(QMagenConf)
 
 switch QMagenConf.Config.Mode
     case 'OPT' 
+        display(QMagenConf)
         mkdir(['tmp_', TStr]);
         
         if QMagenConf.Setting.SAVEFLAG ~= 0
@@ -54,7 +54,7 @@ switch QMagenConf.Config.Mode
 %         
 %         QMagenConf.Config.TStr = TStr;
 %         save(['tmp_', TStr, '/configuration.mat'], 'QMagenConf');
-        
+        display(QMagenConf)
         [Rslt, ~] = GetResult(QMagenConf, varargin{2}, 'Cm');
         pos = find(Rslt.T < varargin{2});
         pos = pos(1) + 1;
@@ -68,7 +68,7 @@ switch QMagenConf.Config.Mode
 %         
 %         QMagenConf.Config.TStr = TStr;
 %         save(['tmp_', TStr, '/configuration.mat'], 'QMagenConf');
-        
+        display(QMagenConf)
         [Rslt, ~] = GetResult(QMagenConf, varargin{2}, 'Chi');
         pos = find(Rslt.T < varargin{2});
         pos = pos(1) + 1;

@@ -1,11 +1,10 @@
-function [ res ] = opt_func( TStr )
+function [ res ] = opt_func( TStr, QMagenConf )
 
-load(['tmp_', TStr, '/configuration.mat'])
 
-fprintf('Many-body solver: %s\n', QMagenConf.Config.ManyBodySolver)
-fprintf('Model Name: %s\n', QMagenConf.ModelConf.ModelName_Full)
-display(QMagenConf.Lattice)
-fprintf('Parameter:\n')
+% fprintf('Many-body solver: %s\n', QMagenConf.Config.ManyBodySolver)
+% fprintf('Model Name: %s\n', QMagenConf.ModelConf.ModelName_Full)
+% display(QMagenConf.Lattice)
+% fprintf('Parameter:\n')
 
 Para_input = ['['];
 vp = [];

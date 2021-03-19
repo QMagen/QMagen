@@ -1,9 +1,10 @@
 clear all
-addpath('lossfunc')
-addpath('ManyBodySolver')
-addpath('UtilityFunc')
-addpath (genpath('SpinModel'))
-addpath ('Class')
+addpath('../lossfunc')
+addpath('../ManyBodySolver')
+addpath('../UtilityFunc')
+addpath(genpath('../SpinModel'))
+addpath('../Class')
+addpath('../svd_lapack_interface')
 
 % TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
@@ -29,14 +30,14 @@ Config.Mode = 'LOSS';
 %                   data(:,2) susceptibility(cm^3 * mol^-1 in SI unit)
 % =========================================================================
 
-CmData(1) = ThermoData('Cm', [0,0,0], [4,40], 'ExpData/TMGO_C_expdata_0T.mat'); 
+CmData(1) = ThermoData('Cm', [0,0,0], [4,40], '../ExpData/TMGO_C_expdata_0T.mat'); 
 
 if strcmp(ModelConf.gFactor_Type, 'dir')
     CmData(1).Info.g_info = {};
 end
 
 
-ChiData(1) = ThermoData('Chi', [0,0,0.1], [4,40], 'ExpData/TMGO_Chi_expdata_Sz.mat');
+ChiData(1) = ThermoData('Chi', [0,0,0.1], [4,40], '../ExpData/TMGO_Chi_expdata_Sz.mat');
 
 if strcmp(ModelConf.gFactor_Type, 'dir')
     ChiData(1).Info.g_info = {};

@@ -1,9 +1,10 @@
 clear all
-addpath('lossfunc')
-addpath('ManyBodySolver')
-addpath('UtilityFunc')
-addpath (genpath('SpinModel'))
-addpath ('Class')
+addpath('../lossfunc')
+addpath('../ManyBodySolver')
+addpath('../UtilityFunc')
+addpath(genpath('../SpinModel'))
+addpath('../Class')
+addpath('../svd_lapack_interface')
 
 % TStr = datestr(now,'YYYYmmDD_HHMMSS');
 

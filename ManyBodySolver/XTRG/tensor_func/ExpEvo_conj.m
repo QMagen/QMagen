@@ -13,10 +13,10 @@ M = zeros(It_max, 1);
 En = zeros(It_max, 1);
 beta = zeros(It_max, 1);
 
-global EVO_check;
+global EVOFLAG;
 
 for It = 1:1:It_max
-    if EVO_check == 1
+    if EVOFLAG == 1
         tic
     end
     Para.MCrit = Para.D_list(It);
@@ -31,7 +31,7 @@ for It = 1:1:It_max
     end
     [rho.A, nm] = VariProdMPO(Para, rho.A, crho.A);
     rho.lgnorm = (2 * rho.lgnorm + log(nm));
-    if EVO_check == 1
+    if EVOFLAG == 1
         toc
     end
     

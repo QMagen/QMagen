@@ -1,25 +1,25 @@
 function [Rslt, Rslt_exp_unit] = GetResult(QMagenConf, K_min, ThDQ)
-addpath('svd_lapack_interface');
 Para = GetPara(QMagenConf, K_min);
 
 switch Para.ManyBodySolver
     case {'ED'}
-        addpath(genpath('./ManyBodySolver/ED'));
+        addpath(genpath('../ManyBodySolver/ED'));
         
         Rslt = GetEDRslt(Para, ThDQ);
         
-        rmpath(genpath('./ManyBodySolver/ED'));
+        rmpath(genpath('../ManyBodySolver/ED'));
     case {'XTRG'}
-        addpath(genpath('./ManyBodySolver/XTRG'));
+        addpath(genpath('../ManyBodySolver/XTRG'));
         
         Rslt = GetXTRGRslt(Para);
         
-        rmpath(genpath('./ManyBodySolver/XTRG'));
+        rmpath(genpath('../ManyBodySolver/XTRG'));
     case {'iLTRG'}
-        addpath(genpath('./ManyBodySolver/iLTRG'));
+        addpath(genpath('../ManyBodySolver/iLTRG'));
         
         Rslt = GetiLTRGRslt(Para, ThDQ);
         
+        rmpath(genpath('../ManyBodySolver/iLTRG'));
     otherwise
         fprintf('Illegal mant-body solver! \n');
         keyboard;

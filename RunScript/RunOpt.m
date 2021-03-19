@@ -1,6 +1,6 @@
 clear all
 addpath('../lossfunc')
-addpath(genpath('../ManyBodySolver'))
+addpath('../ManyBodySolver')
 addpath('../UtilityFunc')
 addpath(genpath('../SpinModel'))
 addpath('../Class')
@@ -50,7 +50,7 @@ LossConf.Design = 'log'; % 'native', 'log'
 
 % =========================================================================
 Setting.PLOTFLAG = 0; % 0 -> off, 1 -> on
-Setting.EVOFLAG = 0;
+
 % Save intermediate results.
 Setting.SAVEFLAG = 1;   % 0 -> off, 1 -> save the best, 2 -> save all
 

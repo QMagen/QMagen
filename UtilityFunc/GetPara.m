@@ -22,7 +22,7 @@ switch QMagenConf.Config.Mode
         PLOTFLAG = QMagenConf.Setting.PLOTFLAG;
         
         global EVOFLAG
-        EVOFLAG = QMagenConf.Setting.EVOFLAG;
+        EVOFLAG = 0;
         
         global SAVEFLAG
         SAVEFLAG = QMagenConf.Setting.SAVEFLAG;

@@ -5,11 +5,6 @@ function [ varargout ] = QMagenMain(QMagenConf, varargin)
 %       [LOSS] = QMagenConf(QMagenConf)
 %       [Rslt_NU, Rslt_EXP] = QMagenConf(QMagenConf, 'Kmin', lowest set temperature)
 % -------------------------------------------------
-addpath('lossfunc')
-addpath('ManyBodySolver')
-addpath('UtilityFunc')
-addpath (genpath('SpinModel'))
-addpath ('Class')
 
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
@@ -17,22 +12,22 @@ TStr = datestr(now,'YYYYmmDD_HHMMSS');
 switch QMagenConf.Config.Mode
     case 'OPT' 
         display(QMagenConf)
-        mkdir(['tmp_', TStr]);
+        mkdir(['../tmp_', TStr]);
         
         if QMagenConf.Setting.SAVEFLAG ~= 0
-            mkdir([QMagenConf.Setting.SAVENAME, '_', TStr])
+            mkdir(['../', QMagenConf.Setting.SAVENAME, '_', TStr])
         end
         QMagenConf.Config.TStr = TStr;
-        save(['tmp_', TStr, '/configuration.mat'], 'QMagenConf');
-        opt_func(TStr)
+        save(['../tmp_', TStr, '/configuration.mat'], 'QMagenConf');
+        opt_func(TStr, QMagenConf)
     case 'LOSS'
-        mkdir(['tmp_', TStr]);
+        mkdir(['../tmp_', TStr]);
         
         if QMagenConf.Setting.SAVEFLAG ~= 0
-            mkdir([QMagenConf.Setting.SAVENAME, '_', TStr])
+            mkdir(['../', QMagenConf.Setting.SAVENAME, '_', TStr])
         end
         QMagenConf.Config.TStr = TStr;
-        save(['tmp_', TStr, '/configuration.mat'], 'QMagenConf');
+        save(['../tmp_', TStr, '/configuration.mat'], 'QMagenConf');
         loss = zeros(length(varargin{2}), 1);
         for loop_num = 1:1:length(varargin{2})
             ParaVal = zeros(1, length(QMagenConf.ModelConf.Para_Name));

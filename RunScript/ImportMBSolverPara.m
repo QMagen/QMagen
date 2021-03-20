@@ -16,14 +16,14 @@ switch Para.ManyBodySolver
         Para.tau = 0.025;
         % // N_max: iLTRG iterations
         Para.N_max = floor(Para.beta_max / 2 / Para.tau) + 3;
-        %---------------------------------RG--------------------------------%
         
         % // Trotter order
         Para.TroOrd = '1';      % '1' only
         % // D_max: bond dimension of rho(beta/2)
         Para.D_max = 40;
         
-        
+        % // Number of interp
+        Para.InterNum = 20;
     case 'XTRG'
         % // SETTEN initial tau
         Para.tau = 0.00025;   

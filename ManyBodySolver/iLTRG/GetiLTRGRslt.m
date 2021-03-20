@@ -26,5 +26,25 @@ else
 end
 Rslt.beta = Rslt.beta(2:1:(end-1));
 Rslt.T = Rslt.T(2:1:(end-1));
+
+Tp = Rslt.T;
+T_min = min(Rslt.T);
+T_max = max(Rslt.T);
+Delta = (log(T_max)-log(T_min))/Para.InterNum;
+Rslt.T = exp(log(T_max):-Delta:log(T_min));
+
+if strcmp(ThDQ, 'Cm') || strcmp(ThDQ, 'Cm&Chi')
+    Rslt.Cm = interp1(Tp, Rslt.Cm, Rslt.T);
+    Rslt.Cm = transpose(Rslt.Cm);
+end
+
+if norm(Para.Field.h) ~= 0 && (strcmp(ThDQ, 'Chi') || strcmp(ThDQ, 'Cm&Chi'))
+    Rslt.M = interp1(Tp, Rslt.M, Rslt.T);
+    Rslt.M = transpose(Rslt.M);
+else
+    Rslt.M = 0;
+end
+Rslt.T = transpose(Rslt.T);
+Rslt.beta = 1 ./ Rslt.T;
 end
 

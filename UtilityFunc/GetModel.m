@@ -12,7 +12,7 @@ if nargin == 3
     end
     
     for i = 1:1:length(Para_List)
-        if strcmp(QMagenConf.ModelConf.Para_Name{i}, 'ES')
+        if strcmp(QMagenConf.ModelConf.Para_Unit{i}, 'ES')
             QMagenConf.ModelParaValue = setfield(QMagenConf.ModelParaValue, QMagenConf.ModelConf.Para_Name{i}, Para_List(i));
         else
             QMagenConf.ModelParaValue = setfield(QMagenConf.ModelParaValue, QMagenConf.ModelConf.Para_Name{i}, Para_List(i)/QMagenConf.ModelParaValue.ES);

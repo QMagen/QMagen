@@ -7,6 +7,7 @@ T_min = max(min(T_exp), Trange(1));
 T_max = min(max(T_exp), Trange(2));
 
 ThDQ = 'Chi';
+
 [~, Rslt] = GetResult(QMagenConf, 0.9 * T_min, ThDQ);
 T = Rslt.T_l;
 chi = Rslt.Chi_l;

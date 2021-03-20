@@ -7,7 +7,8 @@ T_min = max(min(T_exp), Trange(1));
 T_max = min(max(T_exp), Trange(2));
 
 ThDQ = 'Cm';
-[~, Rslt] = GetResult(QMagenConf, T_min-0.1 * T_min, ThDQ);
+
+[~, Rslt] = GetResult(QMagenConf, 0.9 * T_min, ThDQ);
 T = Rslt.T_l;
 C = Rslt.Cm_l;
 

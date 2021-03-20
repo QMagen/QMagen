@@ -1,6 +1,6 @@
 function [ loss ] = loss_func( TStr, g, ParaVal )
 loss = 0;
-load(['../tmp_', TStr, '/configuration.mat'])
+load(['../Tmp/tmp_', TStr, '/configuration.mat'])
 
 ModelConf = QMagenConf.ModelConf;
 CmData = QMagenConf.CmData;
@@ -90,12 +90,12 @@ global SAVE_COUNT
 
 if SAVEFLAG == 1
     if loss < MIN_LOSS_VAL
-        save(['../', SAVENAME, 'best.mat'], 'RsltCv', 'RsltChi');
+        save(['../Tmp/', SAVENAME, 'best.mat'], 'RsltCv', 'RsltChi');
         MIN_LOSS_VAL = loss;
     end
     
 elseif SAVEFLAG == 2
-    save(['../', SAVENAME, num2str(SAVE_COUNT), '.mat'], 'RsltCv', 'RsltChi');
+    save(['../Tmp/', SAVENAME, num2str(SAVE_COUNT), '.mat'], 'RsltCv', 'RsltChi');
     SAVE_COUNT = SAVE_COUNT + 1;
 end
 end

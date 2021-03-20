@@ -7,27 +7,29 @@ function [ varargout ] = QMagenMain(QMagenConf, varargin)
 % -------------------------------------------------
 
 TStr = datestr(now,'YYYYmmDD_HHMMSS');
-
+if ~exist('../Tmp','dir')
+	mkdir('../Tmp');
+end
 
 switch QMagenConf.Config.Mode
     case 'OPT' 
         display(QMagenConf)
-        mkdir(['../tmp_', TStr]);
+        mkdir(['../Tmp/tmp_', TStr]);
         
         if QMagenConf.Setting.SAVEFLAG ~= 0
-            mkdir(['../', QMagenConf.Setting.SAVENAME, '_', TStr])
+            mkdir(['../Tmp/', QMagenConf.Setting.SAVENAME, '_', TStr])
         end
         QMagenConf.Config.TStr = TStr;
-        save(['../tmp_', TStr, '/configuration.mat'], 'QMagenConf');
+        save(['../Tmp/tmp_', TStr, '/configuration.mat'], 'QMagenConf');
         opt_func(TStr, QMagenConf)
     case 'LOSS'
-        mkdir(['../tmp_', TStr]);
+        mkdir(['../Tmp/tmp_', TStr]);
         
         if QMagenConf.Setting.SAVEFLAG ~= 0
-            mkdir(['../', QMagenConf.Setting.SAVENAME, '_', TStr])
+            mkdir(['../Tmp/', QMagenConf.Setting.SAVENAME, '_', TStr])
         end
         QMagenConf.Config.TStr = TStr;
-        save(['../tmp_', TStr, '/configuration.mat'], 'QMagenConf');
+        save(['../Tmp/tmp_', TStr, '/configuration.mat'], 'QMagenConf');
         loss = zeros(length(varargin{2}), 1);
         for loop_num = 1:1:length(varargin{2})
             ParaVal = zeros(1, length(QMagenConf.ModelConf.Para_Name));

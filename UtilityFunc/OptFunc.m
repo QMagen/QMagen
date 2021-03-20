@@ -1,4 +1,4 @@
-function [ res ] = opt_func( TStr, QMagenConf )
+function [ res ] = OptFunc( TStr, QMagenConf )
 
 
 % fprintf('Many-body solver: %s\n', QMagenConf.Config.ManyBodySolver)
@@ -59,25 +59,25 @@ end
 gFac_input = [gFac_input, ']'];
 
 
-for i = 1:1:10
+for i = 1:1:5
     if i == 1
         lf = @(x) loss_func( TStr, eval(gFac_input), eval(Para_input) );
         
         res = bayesopt(lf, [vp, vg], ...
                         'AcquisitionFunctionName', 'expected-improvement-plus', ...
-                        'MaxObjectiveEvaluations', 100, 'IsObjectiveDeterministic', true, ...
+                        'MaxObjectiveEvaluations', 20, 'IsObjectiveDeterministic', true, ...
                         'ExplorationRatio',0.5);
         save(['tmp_', TStr, '/res', num2str(i), '.mat'],'res');
     elseif i > 1 && i < 6
         load(['tmp_', TStr, '/res' num2str(i-1), '.mat']);
         res = resume(res,'AcquisitionFunctionName', 'expected-improvement-plus', ...
-                         'MaxObjectiveEvaluations', 100, 'IsObjectiveDeterministic', true, ...
+                         'MaxObjectiveEvaluations', 20, 'IsObjectiveDeterministic', true, ...
                          'ExplorationRatio', 0.5);
         save(['tmp_', TStr, '/res' num2str(i),'.mat'],'res');
     else
         load(['tmp_', TStr, '/res' num2str(i-1), '.mat']);
         res = resume(res,'AcquisitionFunctionName', 'expected-improvement-plus', ...
-                         'MaxObjectiveEvaluations', 100, 'IsObjectiveDeterministic', true, ...
+                         'MaxObjectiveEvaluations', 20, 'IsObjectiveDeterministic', true, ...
                          'ExplorationRatio', 0.05);
         save(['tmp_', TStr, '/res' num2str(i),'.mat'],'res');
     end

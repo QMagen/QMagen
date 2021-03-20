@@ -1,5 +1,5 @@
-function [ maxeig ] = BilayerTrace( Ta, La, Tb, Lb )
-% function [ maxeig ] = BilayerTrace( Ta, La, Tb, Lb)
+function [ maxeig ] = BilayerTraceLTRG( Ta, La, Tb, Lb )
+% function [ maxeig ] = BilayerTraceLTRG( Ta, La, Tb, Lb)
 
 T = eye(size(La));
 fmaxval = 0;

@@ -53,9 +53,9 @@ for i = 1:1:length(t_ba(:,1))
     end
     
     if norm(Sl-Sr) < 1e-10
-        hba = t_ab{i,3} * real(kron(Sl, Sr));
+        hba = t_ba{i,3} * real(kron(Sl, Sr));
     else
-        hba = t_ab{i,3} * kron(Sl, Sr);
+        hba = t_ba{i,3} * kron(Sl, Sr);
     end
     Hba = Hba + hba;
 end

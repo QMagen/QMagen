@@ -1,5 +1,7 @@
-function [ t_ab, t_ba ] = Trotter_AAFHC( Para )
+function [ t_ab, t_ba ] = Trotter_AFHC( Para )
 
+Para.Model.Delta = Para.Model.Delta * Para.Model.ES;
+Para.Model.alpha = Para.Model.alpha * Para.Model.ES;
 
 t_ab = cell(3,3);
 

@@ -1,4 +1,4 @@
-function [ Lattice, ModelConf ] = SpinModel_SCAXXZ( )
+function [ Lattice, ModelConf ] = SpinModel_AFHC( )
 % -------------------------------------------------------------
 % Spin Chain
 % XXZ model
@@ -19,9 +19,9 @@ function [ Lattice, ModelConf ] = SpinModel_SCAXXZ( )
 % =============================================================
 % DEFAULT SETTINGS
 % =============================================================
-ModelConf.ModelName = 'SCAXXZ';
-ModelConf.ModelName_Full = 'Spin Chain-alternative XXZ model';
-ModelConf.Trotter = 'Trotter_AAFHC';
+ModelConf.ModelName = 'AFHC';
+ModelConf.ModelName_Full = 'Antiferromagnetic Heisenberg Chain';
+ModelConf.Trotter = 'Trotter_AFHC';
 ModelConf.AvlbSolver = {'iLTRG'};    % available solvers: iLTRG (full-T)
 ModelConf.LocalSpin = '1/2';
 ModelConf.Para_Name = {'J'; 'Delta'; 'alpha'};

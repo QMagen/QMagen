@@ -1,18 +1,18 @@
 clear all
 
-addpath(genpath('../SpinModel'))
-addpath('../')
+addpath(genpath('../'))
+% addpath('../')
 % TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
-% =========================================================================
-Config.ManyBodySolver = 'iLTRG'; % 'ED', 'iLTRG', 'XTRG'
-Config.ModelName = 'TLTI';
-Config.Mode = 'OPT';
+% ======================= Use Input: Parameters ===========================
+Para.ManyBodySolver = 'XTRG'; % 'ED', 'iLTRG', 'XTRG'
+Para.ModelName = 'TLTI';
+Para.Mode = 'OPT';
 
 % =========================================================================
 % MODEL SPECIFICATION
 % =========================================================================
-[ Lattice, ModelConf, Config ] = GetSpinModel( Config );
+[ Lattice, ModelConf, Para ] = GetSpinModel( Para );
 
 % =========================================================================
 % DATA INPUT
@@ -53,6 +53,6 @@ Setting.SAVEFLAG = 1;   % 0 -> off, 1 -> save the best, 2 -> save all
 % The file name to save intermediate results.
 Setting.SAVENAME = 'TMGO';
 
-QMagenConf = QMagen(Config, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
+QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
 
 QMagenMain(QMagenConf)

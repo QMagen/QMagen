@@ -3,25 +3,24 @@ function [ Para ] = GetPara( QMagenConf, K_min )
 % Set the parameter of the problem.
 
 
-Para.ManyBodySolver = QMagenConf.Config.ManyBodySolver;   
+Para.ManyBodySolver = QMagenConf.Config.ManyBodySolver; 
 
-if ismember(Para.ManyBodySolver, {'ED', 'XTRG'})
-    try
-        Para.IntrcMap_Name = QMagenConf.ModelConf.IntrcMap;
-    catch 
-        error('This problem can not be solved by current solver!')
-    end
-elseif ismember(Para.ManyBodySolver, {'iLTRG'})
-    try
-        Para.Trotter_Name = QMagenConf.ModelConf.Trotter;
-    catch
-        error('This problem can not be solved by current solver!')
-    end
+% //whether the many-body solver is available for the model or not
+if ~ismember(Para.ManyBodySolver, QMagenConf.ModelConf.AvlbSolver)
+    warning('Para.ManyBodySolver not within ModelConf.AvlbSolver!');
+    pause;
 end
+
+% //pass interaction map (ED, XTRG) or Trotter gates (iLTRG) to solvers
+try
+    Para.IntrcMap_Name = QMagenConf.ModelConf.IntrcMap;
+catch
+    Para.Trotter_Name = QMagenConf.ModelConf.Trotter;
+end
+
 Para.d = eval(QMagenConf.ModelConf.LocalSpin) * 2 + 1;
 Para.L = QMagenConf.Lattice.L;
 Para.Geo = QMagenConf.Lattice;
-
 
 % ====================================================
 switch QMagenConf.Config.Mode
@@ -49,15 +48,22 @@ switch QMagenConf.Config.Mode
         end
     case {'CALC-Cm', 'CALC-Chi'}
 end
+
+% //Common parameters for many-body solvers: iLTRG, XTRG, ED, etc.
 Para.Model = QMagenConf.ModelParaValue;
 Para.Field = QMagenConf.Field;
 Para.UnitCon = GetUnitCon(Para);
-Para.tau = 0.0025;   % default
+Para.tau = 0.00025;   % default
 Para.beta_max = 1 / (K_min / Para.UnitCon.T_con);
 
+% //Import runtime parameters for each solver
+% Para = InportPara(Para, 'XXX.m');
+
+% pack it! 
 try
     Para.Field.h = Para.Field.h*1;
 catch
     Para.Field.h = Para.Field.B ./ Para.UnitCon.h_con;
 end
+
 end

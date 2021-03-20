@@ -18,9 +18,10 @@ function [ Lattice, ModelConf ] = SpinModel_TLTI( )
 % =============================================================
 % DEFAULT SETTINGS
 % =============================================================
-ModelConf.ModelName = 'TLTI';
-ModelConf.ModelName_Full = 'Triangular lattice-Transverse field Ising Model';
+ModelConf.ModelName = 'TLTI';      
+ModelConf.ModelName_Full = 'Triangular-Lattice Transverse Field Ising Model';
 ModelConf.IntrcMap = 'IntrcMap_TLTI';
+ModelConf.AvlbSolver = {'ED', 'XTRG'};    % can be solved by ED (high-T) and XTRG (low-T)
 ModelConf.LocalSpin = '1/2';
 ModelConf.Para_Name = {'J1'; 'J2'; 'Delta'};
 ModelConf.Para_EnScale = 'J1';

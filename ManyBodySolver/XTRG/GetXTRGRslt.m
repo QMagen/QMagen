@@ -1,11 +1,11 @@
 function [ RG_Rslt ] = GetXTRGRslt( Para )
 
 tau = Para.tau;
-RG_Rslt.LnZ = [];
-RG_Rslt.Cm = [];
-RG_Rslt.M = [];
-RG_Rslt.En = [];
-RG_Rslt.beta = [];
+RG_Rslt.LnZ = [ ];
+RG_Rslt.Cm = [ ];
+RG_Rslt.M = [ ];
+RG_Rslt.En = [ ];
+RG_Rslt.beta = [ ];
 
 Para.tau = tau;
 Para = XTRGPara(Para);

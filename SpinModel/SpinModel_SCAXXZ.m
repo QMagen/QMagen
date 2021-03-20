@@ -22,6 +22,7 @@ function [ Lattice, ModelConf ] = SpinModel_SCAXXZ( )
 ModelConf.ModelName = 'SCAXXZ';
 ModelConf.ModelName_Full = 'Spin Chain-alternative XXZ model';
 ModelConf.Trotter = 'Trotter_AAFHC';
+ModelConf.AvlbSolver = {'iLTRG'};    % available solvers: iLTRG (full-T)
 ModelConf.LocalSpin = '1/2';
 ModelConf.Para_Name = {'J'; 'Delta'; 'alpha'};
 ModelConf.Para_EnScale = 'J';

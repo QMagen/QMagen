@@ -3,25 +3,24 @@ function [ Para ] = GetPara( QMagenConf, K_min )
 % Set the parameter of the problem.
 
 
-Para.ManyBodySolver = QMagenConf.Config.ManyBodySolver;   
+Para.ManyBodySolver = QMagenConf.Config.ManyBodySolver; 
 
-if ismember(Para.ManyBodySolver, QMagenConf.ModelConf.AvlbSolver)
-    try
-        Para.IntrcMap_Name = QMagenConf.ModelConf.IntrcMap;
-    catch 
-        error('Para.ManyBodySolver not within ModelConf.AvlbSolver!'); pause;
-    end
-elseif ismember(Para.ManyBodySolver, {'iLTRG'})
-    try
-        Para.Trotter_Name = QMagenConf.ModelConf.Trotter;
-    catch
-        error('Config.ManyBodySolver not within ModelConf.AvlbSolver!')
-    end
+% //whether the many-body solver is available for the model or not
+if ~ismember(Para.ManyBodySolver, QMagenConf.ModelConf.AvlbSolver)
+    warning('Para.ManyBodySolver not within ModelConf.AvlbSolver!');
+    pause;
 end
+
+% //pass interaction map (ED, XTRG) or Trotter gates (iLTRG) to solvers
+try
+    Para.IntrcMap_Name = QMagenConf.ModelConf.IntrcMap;
+catch
+    Para.Trotter_Name = QMagenConf.ModelConf.Trotter;
+end
+
 Para.d = eval(QMagenConf.ModelConf.LocalSpin) * 2 + 1;
 Para.L = QMagenConf.Lattice.L;
 Para.Geo = QMagenConf.Lattice;
-
 
 % ====================================================
 switch QMagenConf.Config.Mode

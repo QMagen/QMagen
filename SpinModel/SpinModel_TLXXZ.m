@@ -24,6 +24,7 @@ ModelConf.ModelName_Full = 'Triangular lattice-XXZ model';
 ModelConf.IntrcMap = 'IntrcMap_TLXXZ';
 ModelConf.LocalSpin = '1/2';
 ModelConf.Para_Name = {'J1xy'; 'J1z'; 'J2xy'; 'J2z'};
+ModelConf.Para_Name = {'K'; 'K'; 'K'; 'K'};
 ModelConf.Para_EnScale = 'J1xy';
 ModelConf.Para_Range = cell(length(ModelConf.Para_Name), 1);
 ModelConf.gFactor_Num = 2;

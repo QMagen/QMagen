@@ -1,4 +1,4 @@
-function [ Intr ] = IntrcMap_TLTI( Para )
+function [ Intr ] = IntrcMap_TLI( Para )
 % Triangular lattice 
 % Transverse field Ising model
 % Parameter: 

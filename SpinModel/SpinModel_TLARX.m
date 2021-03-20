@@ -23,10 +23,11 @@ function [ Lattice, ModelConf, Conf ] = SpinModel_TLARX( Conf )
 % DEFAULT SETTINGS
 % =============================================================
 ModelConf.ModelName = 'TLARX';
-ModelConf.ModelName_Full = 'Triangular lattice-ARX model';
+ModelConf.ModelName_Full = 'Triangular-Lattice ARX model';
 ModelConf.IntrcMap = 'IntrcMap_TLARX';
 ModelConf.LocalSpin = '1/2';
 ModelConf.Para_Name = {'J1xy'; 'J1z'; 'Jpm'; 'Jpmz'; 'J2xy'; 'J2z'; 'Delta'};
+ModelConf.Para_Unit = {'K'; 'K'; 'K'; 'K'; 'K'; 'K'; 'K'};
 ModelConf.Para_EnScale = 'J1z';
 ModelConf.Para_Range = cell(length(ModelConf.Para_Name), 1);
 ModelConf.gFactor_Num = 2;

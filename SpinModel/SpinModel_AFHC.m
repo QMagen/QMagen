@@ -3,17 +3,18 @@ function [ Lattice, ModelConf ] = SpinModel_AFHC( )
 % Spin Chain
 % XXZ model
 % Parameter:
-%           J1xy        Nearest neighbor SxSx+SySy term
-%           J1z         Nearest neighbor SzSz term
-%           J2xy        Next-nearest neighbor SxSx+SySy term
-%           J2z         Next-nearest neighbor SzSz term
-%           gx          Lande factor of Sx direction
-%           gz          Lande factor of Sz direction
+%           J                   2i-1 <-> 2i SxSx+SySy term
+%           J * Delta           2i-1 <-> 2i SzSz term
+%           alpha * J           2i <-> 2i+1 SxSx+SySy term
+%           alpha * J * Delta   2i <-> 2i+1 SzSz term
+%           gz                  Lande factor of Sz direction
 %
 % Hamiltonian:
-%   H = \sum_<i,j> J1xy (Sx_i Sx_j + Sy_i Sy_j) + J1z Sz_i Sz_j
-%       + \sum_<<i,j>> J1xy (Sx_i Sx_j + Sy_i Sy_j) + J2z Sz_i Sz_j
-%       - h\sum_i Sh_i
+%   H = J[\sum_i  (Sx_{2i-1} Sx_{2i} + Sy_{2i-1} Sy_{2i})
+%                 + Delta Sz_{2i-1} Sz_{2i}
+%        + alpha(Sx_{2i} Sx_{2i+1} + Sy_{2i} Sy_{2i+1} 
+%                 + Delta Sz_{2i} Sz_{2i+1})]
+%       - gz mu_B \sum_i Sz_i
 % -------------------------------------------------------------
 
 % =============================================================
@@ -25,6 +26,7 @@ ModelConf.Trotter = 'Trotter_AFHC';
 ModelConf.AvlbSolver = {'iLTRG'};    % available solvers: iLTRG (full-T)
 ModelConf.LocalSpin = '1/2';
 ModelConf.Para_Name = {'J'; 'Delta'; 'alpha'};
+ModelConf.Para_Unit = {'K'; 'ES'; 'ES'};
 ModelConf.Para_EnScale = 'J';
 ModelConf.Para_Range = cell(length(ModelConf.Para_Name), 1);
 ModelConf.gFactor_Num = 1;

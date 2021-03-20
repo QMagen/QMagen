@@ -30,14 +30,16 @@ Config.Mode = 'OPT';
 %                   data(:,2) susceptibility(cm^3 * mol^-1 in SI unit)
 % =========================================================================
 
-CmData(1) = ThermoData('Cm', [0,0,0], [4,40], '../ExpData/TMGO_C_expdata_0T.mat'); 
+CmData(1) = ThermoData('Cm', [0,0,0], [0.3,40], '../ExpData/TMGO_C_expdata_0T.mat'); 
+CmData(2) = ThermoData('Cm', [0,0,2.82], [0.3,40], '../ExpData/CuN_C_expdata_2.82T.mat'); 
+CmData(3) = ThermoData('Cm', [0,0,3.57], [0.3,40], '../ExpData/CuN_C_expdata_3.57T.mat'); 
 
 if strcmp(ModelConf.gFactor_Type, 'dir')
     CmData(1).Info.g_info = {};
 end
 
 
-ChiData(1) = ThermoData('Chi', [0,0,0.1], [4,40], '../ExpData/TMGO_Chi_expdata_Sz.mat');
+ChiData(1) = ThermoData('Chi', [0,0,0.6], [1,40], '../ExpData/CuN_Chi_expdata_Sz.mat');
 
 if strcmp(ModelConf.gFactor_Type, 'dir')
     ChiData(1).Info.g_info = {};

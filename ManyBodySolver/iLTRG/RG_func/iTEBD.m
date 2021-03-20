@@ -26,7 +26,7 @@ for It = 1:1:Para.N_max
     lgnorm = lgnorm + log(Ns);
     [Tb, La, Ta, Ns] = EvoRG(Lb, Tb, La, Ta, Uba, Para);
     lgnorm = lgnorm + log(Ns);
-    maxeig = BilayerTrace(Ta, La, Tb, Lb);
+    maxeig = BilayerTraceLTRG(Ta, La, Tb, Lb);
     LnZ(It) = lgnorm + log(maxeig)/2;
 end
  

@@ -70,6 +70,11 @@ methods
             obj.LossConf = varargin{1};
             obj.Setting = varargin{2};
             len = length(varargin);
+            % //whether the many-body solver is available for the model or not
+            if ~ismember(Config.ManyBodySolver, obj.ModelConf.AvlbSolver)
+                warning('Para.ManyBodySolver not within ModelConf.AvlbSolver!');
+                pause;
+            end
             if len ~= 4 && len ~= 6
                 error('Illegal thermodynamic data import format!\n')
             else

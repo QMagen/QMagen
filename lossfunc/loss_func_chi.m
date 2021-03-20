@@ -51,8 +51,9 @@ if PLOTFLAG == 1
     legend({'exp', 'sim'}, 'FontSize', 20);
     xlabel('T (K)', 'FontSize' ,20);
     ylabel('cm^3/mol', 'FontSize', 20);
-    axis([0.1 T_max+1 0 14]);
+    % axis([0.01 T_max+1 0 max(chi_int) * 1.1]);
     saveas(gcf, 'chi.png')
+    keyboard;
     hold off
 end
 end

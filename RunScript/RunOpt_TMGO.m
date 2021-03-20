@@ -5,7 +5,7 @@ addpath(genpath('../'))
 % // ==================== User Input: Parameters ==========================
 Para.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
 Para.ModelName = 'TLTI';
-Para.Mode = 'LOSS';
+Para.Mode = 'OPT';
 
 % // import specific heat data --------------------------------------------
 % CmDataFile: experimental data file name include Data
@@ -102,7 +102,4 @@ QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, '
 % =========================================================================
 
 % // main function of QMagen
-loss = QMagenMain(QMagenConf, 'J1', 10, ...
-                              'J2', 0.5, ...
-                              'Delta', 6, ...
-                              'gz', 13);
+QMagenMain(QMagenConf)

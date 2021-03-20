@@ -3,24 +3,30 @@ clear all
 addpath(genpath('../'))
 
 % // ==================== User Input: Parameters ==========================
-Para.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
-Para.ModelName = 'TLTI';
-Para.Mode = 'LOSS';
+Para.ManyBodySolver = 'iLTRG'; % 'ED', 'iLTRG', 'XTRG'
+Para.ModelName = 'SCAXXZ';
+Para.Mode = 'OPT';
 
 % // import specific heat data --------------------------------------------
 % CmDataFile: experimental data file name include Data
 %             Data(:,1) -> temperarture   Unit: K
 %             Data(:,2) -> specifit heat  Unit: J/(mol K)
 % CmDataFile = {'FileName1'; 'FileName2'; ...};
-CmDataFile = {'../ExpData/TMGO_C_expdata_0T.mat'};
+CmDataFile = {'../ExpData/CuN_C_expdata_0T.mat'; ...
+              '../ExpData/CuN_C_expdata_2.82T.mat'; ...
+              '../ExpData/CuN_C_expdata_3.57T.mat'};
 
 % CmDataTRange: the temperature range to be fitted (Unit: K)
 % CmDataTRange = {[T1l, T1u]; [T2l, T2u]; ...};
-CmDataTRange = {[4,40]};
+CmDataTRange = {[0.3, 5]; ...
+                [0.3, 5]; ...
+                [0.5, 3]};
 
 % CmDataField: the magnetic filed of experimantal data (Unit: Tesla)
 % CmDataTRange = {[B1x, B1y, B1z]; [B2x, B2y, B2z]; ...};
-CmDataField = {[0,0,0]};
+CmDataField = {[0,0,0]; ...
+               [0,0,2.82]; ...
+               [0,0,3.57]};
 
 % CmDatagInfo: the No. of g factor used for the conversion
 % Only require when MoldeConf.gFactor_Type = 'dir';
@@ -33,11 +39,11 @@ CmDatagInfo = {};
 %             Data(:,1) -> temperarture   Unit: K
 %             Data(:,2) -> susceptibility Unit: cm^3/mol (4pi * emu/mol)
 % ChiDataFile = {'FileName1'; 'FileName2'; ...};
-ChiDataFile = {'../ExpData/TMGO_Chi_expdata_Sz.mat'};
+ChiDataFile = {'../ExpData/CuN_Chi_expdata_Sz.mat'};
 
 % ChiDataTRange: the temperature range to be fitted (Unit: K)
 % ChiDataTRange = {[T1l, T1u]; [T2l, T2u]; ...};
-ChiDataTRange = {[4, 40]};
+ChiDataTRange = {[1.5, 20]};
 
 % CmDataField: the magnetic filed of experimantal data (Unit: Tesla)
 % CmDataTRange = {[B1x, B1y, B1z]; [B2x, B2y, B2z]; ...};
@@ -74,7 +80,7 @@ Setting.PLOTFLAG = 0; % 0 -> off, 1 -> on
 Setting.SAVEFLAG = 1;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % the file name to save intermediate results.
-Setting.SAVENAME = 'TMGO';
+Setting.SAVENAME = 'CuN';
 %--------------------------------------------------------------------------
 % =========================================================================
 
@@ -102,7 +108,4 @@ QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, '
 % =========================================================================
 
 % // main function of QMagen
-loss = QMagenMain(QMagenConf, 'J1', 10, ...
-                              'J2', 0.5, ...
-                              'Delta', 6, ...
-                              'gz', 13);
+QMagenMain(QMagenConf)

@@ -52,8 +52,9 @@ if PLOTFLAG == 1
     legend({'exp', 'sim'}, 'FontSize', 20);
     xlabel('T (K)', 'FontSize', 20);
     ylabel('Cm (J/mol K)', 'FontSize', 20);
-    axis([0.1 T_max+1 0 3])
+    % axis([0.01 T_max+1 0 max(C_int) * 1.1])
     saveas(gcf, 'C.png')
+    keyboard;
     hold off
 end
 end

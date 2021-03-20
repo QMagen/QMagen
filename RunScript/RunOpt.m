@@ -19,7 +19,7 @@ CmDataFile = {'../ExpData/ToyModel_C_expdata_0T.mat'};
 CmDataTRange = {[0.3, 20]};
 
 % CmDataField: the magnetic filed of experimantal data (Unit: Tesla)
-% CmDataTRange = {[B1x, B1y, B1z]; [B2x, B2y, B2z]; ...};
+% CmDataField = {[B1x, B1y, B1z]; [B2x, B2y, B2z]; ...};
 CmDataField = {[0,0,0]};
 
 % CmDatagInfo: the No. of g factor used for the conversion
@@ -42,7 +42,7 @@ ChiDataTRange = {[0.3, 20]; ...
                  [0.3, 20]};
 
 % CmDataField: the magnetic filed of experimantal data (Unit: Tesla)
-% CmDataTRange = {[B1x, B1y, B1z]; [B2x, B2y, B2z]; ...};
+% CmDataField = {[B1x, B1y, B1z]; [B2x, B2y, B2z]; ...};
 ChiDataField = {[0.1,0,0]; ...
                 [0,0,0.1]};
 

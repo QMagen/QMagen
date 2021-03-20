@@ -8,7 +8,6 @@ addpath(genpath('../'))
 Para.ManyBodySolver = 'XTRG'; % 'ED', 'iLTRG', 'XTRG'
 Para.ModelName = 'TLTI';
 Para.Mode = 'OPT';
-% DataFile = ''
 
 % =========================================================================
 % MODEL SPECIFICATION

@@ -67,19 +67,19 @@ for i = 1:1:5
                         'AcquisitionFunctionName', 'expected-improvement-plus', ...
                         'MaxObjectiveEvaluations', 20, 'IsObjectiveDeterministic', true, ...
                         'ExplorationRatio',0.5);
-        save(['tmp_', TStr, '/res', num2str(i), '.mat'],'res');
+        save(['../Tmp/tmp_', TStr, '/res', num2str(i), '.mat'],'res');
     elseif i > 1 && i < 6
-        load(['tmp_', TStr, '/res' num2str(i-1), '.mat']);
+        load(['../Tmp/tmp_', TStr, '/res' num2str(i-1), '.mat']);
         res = resume(res,'AcquisitionFunctionName', 'expected-improvement-plus', ...
                          'MaxObjectiveEvaluations', 20, 'IsObjectiveDeterministic', true, ...
                          'ExplorationRatio', 0.5);
-        save(['tmp_', TStr, '/res' num2str(i),'.mat'],'res');
+        save(['../Tmp/tmp_', TStr, '/res' num2str(i),'.mat'],'res');
     else
-        load(['tmp_', TStr, '/res' num2str(i-1), '.mat']);
+        load(['../Tmp/tmp_', TStr, '/res' num2str(i-1), '.mat']);
         res = resume(res,'AcquisitionFunctionName', 'expected-improvement-plus', ...
                          'MaxObjectiveEvaluations', 20, 'IsObjectiveDeterministic', true, ...
                          'ExplorationRatio', 0.05);
-        save(['tmp_', TStr, '/res' num2str(i),'.mat'],'res');
+        save(['../Tmp/tmp_', TStr, '/res' num2str(i),'.mat'],'res');
     end
 
 end

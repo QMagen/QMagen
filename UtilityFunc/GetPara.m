@@ -48,15 +48,22 @@ switch QMagenConf.Config.Mode
         end
     case {'CALC-Cm', 'CALC-Chi'}
 end
+
+% //Common parameters for many-body solvers: iLTRG, XTRG, ED, etc.
 Para.Model = QMagenConf.ModelParaValue;
 Para.Field = QMagenConf.Field;
 Para.UnitCon = GetUnitCon(Para);
-Para.tau = 0.0025;   % default
+Para.tau = 0.00025;   % default
 Para.beta_max = 1 / (K_min / Para.UnitCon.T_con);
 
+% //Import runtime parameters for each solver
+% Para = InportPara(Para, 'XXX.m');
+
+% pack it! 
 try
     Para.Field.h = Para.Field.h*1;
 catch
     Para.Field.h = Para.Field.B ./ Para.UnitCon.h_con;
 end
+
 end

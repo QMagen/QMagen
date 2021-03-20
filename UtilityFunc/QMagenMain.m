@@ -21,7 +21,7 @@ switch QMagenConf.Config.Mode
         end
         QMagenConf.Config.TStr = TStr;
         save(['../Tmp/tmp_', TStr, '/configuration.mat'], 'QMagenConf');
-        opt_func(TStr, QMagenConf)
+        OptFunc(TStr, QMagenConf)
     case 'LOSS'
         mkdir(['../Tmp/tmp_', TStr]);
         

@@ -1,6 +1,7 @@
 clear all
-addpath(genpath('../SpinModel'))
+
 addpath('../')
+% TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
 Config.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'

@@ -35,13 +35,23 @@ switch QMagenConf.Config.Mode
             ParaVal = zeros(1, length(QMagenConf.ModelConf.Para_Name));
             for i = 1:1:length(ParaVal)
                 pos = find(strcmp(varargin, QMagenConf.ModelConf.Para_Name{i}), 1) + 1;
-                ParaVal(i) = varargin{pos}(loop_num);
+                try
+                    ParaVal(i) = varargin{pos}(loop_num);
+                catch
+                    error('Not enough input arguemet! The value of %s is required!', ...
+                            QMagenConf.ModelConf.Para_Name{i})
+                end
             end
             
             g = zeros(1, QMagenConf.ModelConf.gFactor_Num);
             for i = 1:1:length(g)
                 pos = find(strcmp(varargin, QMagenConf.ModelConf.gFactor_Name{i}), 1) + 1;
-                g(i) = varargin{pos}(loop_num);
+                try
+                    g(i) = varargin{pos}(loop_num);
+                catch
+                    error('Not enough input arguemet! The value of %s is required!', ...
+                            QMagenConf.ModelConf.gFactor_Name{i})
+                end
             end
             loss(loop_num) = loss_func( TStr, g, ParaVal );
         end

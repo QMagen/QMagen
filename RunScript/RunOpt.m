@@ -1,58 +1,105 @@
 clear all
 
 addpath(genpath('../'))
-% addpath('../')
-% TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
-% ======================= Use Input: Parameters ===========================
-Para.ManyBodySolver = 'XTRG'; % 'ED', 'iLTRG', 'XTRG'
+% // ==================== User Input: Parameters ==========================
+Para.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
 Para.ModelName = 'TLTI';
 Para.Mode = 'OPT';
 
-% =========================================================================
-% MODEL SPECIFICATION
-% =========================================================================
-[ Lattice, ModelConf, Para ] = GetSpinModel( Para );
+% // import specific heat data --------------------------------------------
+% CmDataFile: experimental data file name include Data
+%             Data(:,1) -> temperarture   Unit: K
+%             Data(:,2) -> specifit heat  Unit: J/(mol K)
+% CmDataFile = {'FileName1'; 'FileName2'; ...};
+CmDataFile = {'../ExpData/TMGO_C_expdata_0T.mat'};
 
-% =========================================================================
-% DATA INPUT
-%
-%       CmData:     Heat capacity experimental data 
-%                   data(:,1) temperature   (K)
-%                   data(:,2) heat capacity (J * mol^-1 * K^-1)
-%
-%       ChiData:    Susceptibility experimental data 
-%                   data(:,1) temperature   (K)
-%                   data(:,2) susceptibility(cm^3 * mol^-1 in SI unit)
-% =========================================================================
+% CmDataTRange: the temperature range to be fitted (Unit: K)
+% CmDataTRange = {[T1l, T1u]; [T2l, T2u]; ...};
+CmDataTRange = {[4,40]};
 
-CmData(1) = ThermoData('Cm', [0,0,0], [4,40], '../ExpData/TMGO_C_expdata_0T.mat'); 
+% CmDataField: the magnetic filed of experimantal data (Unit: Tesla)
+% CmDataTRange = {[B1x, B1y, B1z]; [B2x, B2y, B2z]; ...};
+CmDataField = {[0,0,0]};
 
-if strcmp(ModelConf.gFactor_Type, 'dir')
-    CmData(1).Info.g_info = {};
-end
+% CmDatagInfo: the No. of g factor used for the conversion
+% Only require when MoldeConf.gFactor_Type = 'dir';
+% CmDatagInfo = {gNum1, gNum2, ...};
+CmDatagInfo = {};
+%--------------------------------------------------------------------------
 
+% // import susceptibility data -------------------------------------------
+% CmDataFile: experimental data file name include Data
+%             Data(:,1) -> temperarture   Unit: K
+%             Data(:,2) -> susceptibility Unit: cm^3/mol (4pi * emu/mol)
+% ChiDataFile = {'FileName1'; 'FileName2'; ...};
+ChiDataFile = {'../ExpData/TMGO_Chi_expdata_Sz.mat'};
 
-ChiData(1) = ThermoData('Chi', [0,0,0.1], [4,40], '../ExpData/TMGO_Chi_expdata_Sz.mat');
+% ChiDataTRange: the temperature range to be fitted (Unit: K)
+% ChiDataTRange = {[T1l, T1u]; [T2l, T2u]; ...};
+ChiDataTRange = {[4, 40]};
 
-if strcmp(ModelConf.gFactor_Type, 'dir')
-    ChiData(1).Info.g_info = {};
-end
+% CmDataField: the magnetic filed of experimantal data (Unit: Tesla)
+% CmDataTRange = {[B1x, B1y, B1z]; [B2x, B2y, B2z]; ...};
+ChiDataField = {[0,0,0.1]};
 
-% =========================================================================
+% ChiDatagInfo: the No. of g factor used for the conversion
+% Only require when MoldeConf.gFactor_Type = 'dir';
+% ChiDatagInfo = {gNum1, gNum2, ...};
+ChiDatagInfo = {};
+%--------------------------------------------------------------------------
+
+% // loss function --------------------------------------------------------
+% the weights between different data
+% LossConf.WeightList = [], equal weight
+% LossConf.WeightList = [w1, w2, ...];
 LossConf.WeightList = [];
-LossConf.Type = 'abs-err'; % 'abs-err', 'rel-err'
-LossConf.Design = 'log'; % 'native', 'log'
 
-% =========================================================================
+% type of loss function 
+%       'abs-err' absolute error, normalized by maximum value
+%       'rel-err' relative error
+LossConf.Type = 'abs-err'; % 'abs-err', 'rel-err'
+
+% design of loss function
+%       'log'     L = log10(L)
+%       'native'  L = L
+LossConf.Design = 'log'; % 'native', 'log'
+%--------------------------------------------------------------------------
+
+% // settings -------------------------------------------------------------
+% plot result in each iteration
 Setting.PLOTFLAG = 0; % 0 -> off, 1 -> on
 
-% Save intermediate results.
+% save intermediate results.
 Setting.SAVEFLAG = 1;   % 0 -> off, 1 -> save the best, 2 -> save all
 
-% The file name to save intermediate results.
+% the file name to save intermediate results.
 Setting.SAVENAME = 'TMGO';
+%--------------------------------------------------------------------------
+% =========================================================================
+
+
+% // ====================== Package input data ============================
+[ Lattice, ModelConf, Para ] = GetSpinModel( Para );
+
+for i = 1:1:length(CmDataFile)
+    CmData(i) = ThermoData('Cm', CmDataField{i}, CmDataTRange{i}, CmDataFile{i});
+    
+    if strcmp(ModelConf.gFactor_Type, 'dir')
+        CmData(i).Info.g_info = CmDatagInfo{i};
+    end
+end
+
+for i = 1:1:length(ChiDataFile)
+    ChiData(i) = ThermoData('Chi', ChiDataField{i}, ChiDataTRange{i}, ChiDataFile{i});
+    
+    if strcmp(ModelConf.gFactor_Type, 'dir')
+        ChiData(i).Info.g_info = ChiDatagInfo{i};
+    end
+end
 
 QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
+% =========================================================================
 
+% // main function of QMagen
 QMagenMain(QMagenConf)

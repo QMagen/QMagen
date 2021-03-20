@@ -1,11 +1,7 @@
 function [ ED_Rslt ] = GetEDRslt( Para, ThDQ )
 InMap = eval([Para.IntrcMap_Name, '(Para)']);
 [H, M] = ED_Hamiltonian(Para, InMap);
-betaCHA = 0.0025.*2.^(0:1:15).*2^0.1;
-for int = 0.3:0.2:0.9
-    betaCHA = [betaCHA, 0.0025.*2.^(0:1:15).*2^int];
-end
-beta_list = sort(betaCHA);
+beta_list = Para.beta_list;
 switch ThDQ
     case 'Cm'
         [T, C] = ED_Cm(H, beta_list);

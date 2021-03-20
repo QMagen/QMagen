@@ -78,7 +78,7 @@ end
 switch loss_design
     case 'native'
     case 'log'
-        loss = log(loss);
+        loss = log10(loss);
     otherwise
         keyboard;
 end

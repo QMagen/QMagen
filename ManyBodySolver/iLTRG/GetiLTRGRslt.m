@@ -1,6 +1,5 @@
 function [ Rslt ] = GetiLTRGRslt( Para, ThDQ )
 
-Para = iLTRGPara(Para);
 LnZ_l = iTEBD(Para);
 [Rslt.beta, Rslt.T] = Tem_cal(Para);
 

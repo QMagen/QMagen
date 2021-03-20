@@ -5,17 +5,17 @@ function [ Para ] = GetPara( QMagenConf, K_min )
 
 Para.ManyBodySolver = QMagenConf.Config.ManyBodySolver;   
 
-if ismember(Para.ManyBodySolver, {'ED', 'XTRG'})
+if ismember(Para.ManyBodySolver, QMagenConf.ModelConf.AvlbSolver)
     try
         Para.IntrcMap_Name = QMagenConf.ModelConf.IntrcMap;
     catch 
-        error('This problem can not be solved by current solver!')
+        error('Para.ManyBodySolver not within ModelConf.AvlbSolver!'); pause;
     end
 elseif ismember(Para.ManyBodySolver, {'iLTRG'})
     try
         Para.Trotter_Name = QMagenConf.ModelConf.Trotter;
     catch
-        error('This problem can not be solved by current solver!')
+        error('Config.ManyBodySolver not within ModelConf.AvlbSolver!')
     end
 end
 Para.d = eval(QMagenConf.ModelConf.LocalSpin) * 2 + 1;

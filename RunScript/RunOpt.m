@@ -1,7 +1,7 @@
 clear all
 
-addpath(genpath('../SpinModel'))
-addpath('../')
+addpath(genpath('../'))
+% addpath('../')
 % TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================

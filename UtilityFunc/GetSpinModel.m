@@ -9,7 +9,9 @@ switch Config.ModelName
         
     case 'TLARX'
         [ Lattice, ModelConf ] = SpinModel_TLARX( );
-        
+    
+    case 'SCAXXZ'
+        [ Lattice, ModelConf ] = SpinModel_SCAXXZ( );
     otherwise
         error('Undefined model name!\n')
         

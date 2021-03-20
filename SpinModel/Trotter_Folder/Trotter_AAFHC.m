@@ -22,7 +22,7 @@ t_ba{1,3} = Para.Model.J * Para.Model.alpha;
 
 t_ba{2,1} = 'Sy';
 t_ba{2,2} = 'Sy';
-t_ba{2,3} = Para.Model.J * Para.Molde.alpha;
+t_ba{2,3} = Para.Model.J * Para.Model.alpha;
 
 t_ba{3,1} = 'Sz';
 t_ba{3,2} = 'Sz';

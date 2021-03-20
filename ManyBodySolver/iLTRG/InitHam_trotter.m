@@ -1,7 +1,7 @@
-function [ Hab, Hba ] = InitHam_trotter( t_ab, t_ba )
+function [ Hab, Hba ] = InitHam_trotter( t_ab, t_ba, Para )
 % function [ Hab, Hba ] = InitHam_tortter( Para )
 
-[Sx, Sy, Sz, Id] = SpinOp(Para.S);
+[Sx, Sy, Sz, Id] = SpinOp(Para.d);
 
 Hab = 0;
 Hba = 0;

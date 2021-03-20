@@ -4,10 +4,11 @@ addpath(genpath('../'))
 % addpath('../')
 % TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
-% ======================= Use Input: Parameters ===========================
+% ======================= User Input: Entrance Parameters ===========================
 Para.ManyBodySolver = 'XTRG'; % 'ED', 'iLTRG', 'XTRG'
 Para.ModelName = 'TLTI';
 Para.Mode = 'OPT';
+% DataFile = ''
 
 % =========================================================================
 % MODEL SPECIFICATION
@@ -32,7 +33,6 @@ if strcmp(ModelConf.gFactor_Type, 'dir')
     CmData(1).Info.g_info = {};
 end
 
-
 ChiData(1) = ThermoData('Chi', [0,0,0.1], [4,40], '../ExpData/TMGO_Chi_expdata_Sz.mat');
 
 if strcmp(ModelConf.gFactor_Type, 'dir')
@@ -53,6 +53,9 @@ Setting.SAVEFLAG = 1;   % 0 -> off, 1 -> save the best, 2 -> save all
 % The file name to save intermediate results.
 Setting.SAVENAME = 'TMGO';
 
+% //package QMagenConf class
 QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
 
+% //main function of QMagen
 QMagenMain(QMagenConf)
+

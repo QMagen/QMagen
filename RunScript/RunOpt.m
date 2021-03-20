@@ -5,7 +5,7 @@ addpath('../')
 % TStr = datestr(now,'YYYYmmDD_HHMMSS');
 
 % =========================================================================
-Config.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
+Config.ManyBodySolver = 'iLTRG'; % 'ED', 'iLTRG', 'XTRG'
 Config.ModelName = 'TLTI';
 Config.Mode = 'OPT';
 

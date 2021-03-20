@@ -6,9 +6,17 @@ function [ Para ] = GetPara( QMagenConf, K_min )
 Para.ManyBodySolver = QMagenConf.Config.ManyBodySolver;   
 
 if ismember(Para.ManyBodySolver, {'ED', 'XTRG'})
-    Para.IntrcMap_Name = QMagenConf.ModelConf.IntrcMap;
+    try
+        Para.IntrcMap_Name = QMagenConf.ModelConf.IntrcMap;
+    catch 
+        error('This problem can not be solved by current solver!')
+    end
 elseif ismember(Para.ManyBodySolver, {'iLTRG'})
-    Para.Trotter_Name = QMagenConf.ModelConf.Trotter;
+    try
+        Para.Trotter_Name = QMagenConf.ModelConf.Trotter;
+    catch
+        error('This problem can not be solved by current solver!')
+    end
 end
 Para.d = eval(QMagenConf.ModelConf.LocalSpin) * 2 + 1;
 Para.L = QMagenConf.Lattice.L;

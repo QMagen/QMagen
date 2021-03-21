@@ -19,7 +19,7 @@ switch Para.ManyBodySolver
         % // Trotter order
         Para.TroOrd = '1';      % '1' only
         % // D_max: bond dimension of rho(beta/2)
-        Para.D_max = 4;
+        Para.D_max = 40;
         
         % // Number of interp
         Para.InterNum = 20;

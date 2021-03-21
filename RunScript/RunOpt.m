@@ -1,5 +1,6 @@
 clear all
 addpath(genpath('../'))
+maxNumCompThreads(4);
 
 % // ==================== User Input: Parameters ==========================
 Para.ManyBodySolver = 'iLTRG'; % 'ED', 'iLTRG', 'XTRG'

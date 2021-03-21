@@ -4,7 +4,7 @@ addpath(genpath('../'))
 
 % // ==================== User Input: Parameters ==========================
 Para.ManyBodySolver = 'iLTRG'; % 'ED', 'iLTRG', 'XTRG'
-Para.ModelName = 'AFHC';
+Para.ModelName = 'HAFC';
 Para.Mode = 'OPT';
 
 % // import specific heat data --------------------------------------------

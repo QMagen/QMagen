@@ -1,4 +1,4 @@
-function [ Lattice, ModelConf ] = SpinModel_AFHC( )
+function [ Lattice, ModelConf ] = SpinModel_HAFC( )
 % -------------------------------------------------------------
 % Spin Chain
 % XXZ model
@@ -20,9 +20,9 @@ function [ Lattice, ModelConf ] = SpinModel_AFHC( )
 % =============================================================
 % DEFAULT SETTINGS
 % =============================================================
-ModelConf.ModelName = 'AFHC';
-ModelConf.ModelName_Full = 'Antiferromagnetic Heisenberg Chain';
-ModelConf.Trotter = 'Trotter_AFHC';
+ModelConf.ModelName = 'HAFC';
+ModelConf.ModelName_Full = 'Heisenberg Antiferromagnetic Chain';
+ModelConf.Trotter = 'Trotter_HAFC';
 ModelConf.AvlbSolver = {'iLTRG'};    % available solvers: iLTRG (full-T)
 ModelConf.LocalSpin = '1/2';
 

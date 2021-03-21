@@ -3,7 +3,7 @@ addpath(genpath('../'))
 
 % // ==================== User Input: Parameters ==========================
 Para.ManyBodySolver = 'iLTRG'; % 'ED', 'iLTRG', 'XTRG'
-Para.ModelName = 'ToyAFHC';
+Para.ModelName = 'XYZC';
 Para.Mode = 'OPT';
 
 % // import specific heat data --------------------------------------------
@@ -105,4 +105,4 @@ QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, '
 
 % // main function of QMagen
 QMagenMain(QMagenConf);
-% QMagenMain(QMagenConf, 'J', 0.76693, 'Delta', 1.4786, 'gx', 2, 'gz', 2)
+% QMagenMain(QMagenConf, 'Jx', 0.26974, 'Jy', 0.26974, 'Jz', 5, 'gx', 2, 'gy', 2, 'gz', 2)

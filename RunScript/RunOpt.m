@@ -19,7 +19,7 @@ CmDataTRange = {[0.3, 20]};
 
 % CmDataField: the magnetic filed of experimantal data (Unit: Tesla)
 % CmDataField = {[B1x, B1y, B1z]; [B2x, B2y, B2z]; ...};
-CmDataField = {[0, 0,0]};
+CmDataField = {[0, 0, 0]};
 
 % CmDatagInfo: the No. of g factor used for the conversion
 % Only require when MoldeConf.gFactor_Type = 'dir';
@@ -49,9 +49,10 @@ ChiDataField = {[0.1,0,0]; ...
 % Only require when MoldeConf.gFactor_Type = 'dir';
 % ChiDatagInfo = {gNum1, gNum2, ...};
 ChiDatagInfo = {};
-%--------------------------------------------------------------------------
 
-% // loss function --------------------------------------------------------
+% ============================ %
+% Loss function customization
+% ============================ %
 % the weights between different data
 % LossConf.WeightList = [], equal weight
 % LossConf.WeightList = [w1, w2, ...];
@@ -65,10 +66,11 @@ LossConf.Type = 'abs-err'; % 'abs-err', 'rel-err'
 % design of loss function
 %       'log'     L = log10(L)
 %       'native'  L = L
-LossConf.Design = 'log'; % 'native', 'log'
-%--------------------------------------------------------------------------
+LossConf.Design = 'native'; % 'native', 'log'
 
-% // settings -------------------------------------------------------------
+% ====================== %
+% Save & Plot Settings
+% ====================== %
 % plot result in each iteration
 Setting.PLOTFLAG = 1; % 0 -> off, 1 -> on
 
@@ -77,8 +79,6 @@ Setting.SAVEFLAG = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % the file name to save intermediate results.
 Setting.SAVENAME = 'ToyModel';
-%--------------------------------------------------------------------------
-% =========================================================================
 
 
 % // ====================== Package input data ============================

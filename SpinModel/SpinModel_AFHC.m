@@ -25,9 +25,12 @@ ModelConf.ModelName_Full = 'Antiferromagnetic Heisenberg Chain';
 ModelConf.Trotter = 'Trotter_AFHC';
 ModelConf.AvlbSolver = {'iLTRG'};    % available solvers: iLTRG (full-T)
 ModelConf.LocalSpin = '1/2';
+
+% //Some comments are needed [WL]
 ModelConf.Para_Name = {'J'; 'Delta'; 'alpha'};
 ModelConf.Para_Unit = {'K'; 'ES'; 'ES'};
 ModelConf.Para_EnScale = 'J';
+
 ModelConf.Para_Range = cell(length(ModelConf.Para_Name), 1);
 ModelConf.gFactor_Num = 1;
 ModelConf.gFactor_Type = 'xyz';

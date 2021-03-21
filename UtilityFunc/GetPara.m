@@ -2,6 +2,8 @@ function [ Para ] = GetPara( QMagenConf, K_min )
 % function [Para] = GetPara(Model, Field, K_min)
 % Set the parameter of the problem.
 
+% WL: change name as PassPara ?
+
 Para.ManyBodySolver = QMagenConf.Config.ManyBodySolver; 
 
 % //pass interaction map (ED, XTRG) or Trotter gates (iLTRG) to solvers

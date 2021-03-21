@@ -1,7 +1,7 @@
 function [ Lattice, ModelConf ] = SpinModel_ToyAFHC( )
 % -------------------------------------------------------------
 % Spin Chain
-% XXZ model
+% XYZC model [WL]
 % Parameter:
 %           J      Nearest neighbor SxSx + SySy term
 %           Delta  Nearest neighbor SzSz term
@@ -47,9 +47,9 @@ Lattice.L = Inf;
 % PARAMETERS OPTIMIZATION RANGE SETTINGS
 % =============================================================
 % J range
-ModelConf.Para_Range{1} = [-10, 10];
+ModelConf.Para_Range{1} = [-5, 5];
 % Delta range
-ModelConf.Para_Range{2} = [-10, 10];
+ModelConf.Para_Range{2} = [-5, 5];
 % gx range
 ModelConf.gFactor_Range{1} = 2;
 % gz range

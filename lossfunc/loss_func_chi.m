@@ -43,6 +43,7 @@ switch loss_type
             loss = loss + ((chi_int(i) - chi(i))/chi_int(i))^2; 
         end
 end
+
 loss = loss/length(T);
 global PLOTFLAG
 if PLOTFLAG == 1

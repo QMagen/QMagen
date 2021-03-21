@@ -10,7 +10,6 @@ switch Para.ManyBodySolver
         beta_list = sort(beta_list);
         Para.beta_list = beta_list;
         
-        
     case 'iLTRG'
         % // Trotter step
         Para.tau = 0.025;
@@ -20,10 +19,11 @@ switch Para.ManyBodySolver
         % // Trotter order
         Para.TroOrd = '1';      % '1' only
         % // D_max: bond dimension of rho(beta/2)
-        Para.D_max = 40;
+        Para.D_max = 4;
         
         % // Number of interp
         Para.InterNum = 20;
+        
     case 'XTRG'
         % // SETTEN initial tau
         Para.tau = 0.00025;   

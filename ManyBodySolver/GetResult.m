@@ -1,4 +1,6 @@
 function [Rslt, Rslt_exp_unit] = GetResult(QMagenConf, K_min, ThDQ)
+
+% //set up runtime parameters
 Para = GetPara(QMagenConf, K_min);
 
 switch Para.ManyBodySolver
@@ -24,6 +26,7 @@ switch Para.ManyBodySolver
         fprintf('Illegal mant-body solver! \n');
         keyboard;
 end
+
 if strcmp(ThDQ, 'Cm') && strcmp(Para.ManyBodySolver, 'XTRG')
     Rslt.beta = Rslt.betaCHA;
     Rslt.Cm = Rslt.CCHA;

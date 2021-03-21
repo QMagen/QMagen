@@ -9,7 +9,10 @@ T = contract(T, 4, La, 1, [1,2,3,6,4,5]);
 Uab = reshape(Uab, [Para.d,Para.d,Para.d,Para.d]);
 T = contract(Uab, [3,4], T, [2,5], [3,1,4,5,2,6]);
 T = reshape(T, [D * Para.d^2, D * Para.d^2]);
+
+% //truncate the enlarged bond space by Para.D_max
 [U, S, V, ~, ~] = svdT(T, 'Nkeep', Para.D_max, 'epsilon', 1e-8);
+
 Dp = length(S);
 Ns = norm(diag(S));
 Lb = diag(S) / Ns;

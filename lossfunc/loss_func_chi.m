@@ -54,7 +54,6 @@ if PLOTFLAG == 1
     ylabel('cm^3/mol', 'FontSize', 20);
     % axis([0.01 T_max+1 0 max(chi_int) * 1.1]);
     saveas(gcf, 'chi.png')
-    keyboard;
     hold off
 end
 end

@@ -1,8 +1,10 @@
 function [ Lattice, ModelConf, Config ] = GetSpinModel( Config )
 
 switch Config.ModelName
+    
     case 'ToyAFHC'
         [ Lattice, ModelConf ] = SpinModel_ToyAFHC( );
+        
     case 'TLI'
         [ Lattice, ModelConf ] = SpinModel_TLI( );
         
@@ -14,6 +16,7 @@ switch Config.ModelName
     
     case 'AFHC'
         [ Lattice, ModelConf ] = SpinModel_AFHC( );
+        
     otherwise
         error('Undefined model name!\n')
         

@@ -1,5 +1,4 @@
 clear all
-
 addpath(genpath('../'))
 
 % // ==================== User Input: Parameters ==========================
@@ -20,7 +19,7 @@ CmDataTRange = {[0.3, 20]};
 
 % CmDataField: the magnetic filed of experimantal data (Unit: Tesla)
 % CmDataField = {[B1x, B1y, B1z]; [B2x, B2y, B2z]; ...};
-CmDataField = {[0,0,0]};
+CmDataField = {[0, 0,0]};
 
 % CmDatagInfo: the No. of g factor used for the conversion
 % Only require when MoldeConf.gFactor_Type = 'dir';

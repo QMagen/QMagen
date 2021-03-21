@@ -1,18 +1,20 @@
 function [ Rslt ] = GetiLTRGRslt( Para, ThDQ )
 
-LnZ_l = iTEBD(Para);
-[Rslt.beta, Rslt.T] = Tem_cal(Para);
+[Rslt.beta, Rslt.T] = Tem_cal(Para);  % get temperature points
 
+% //Compute specific heat
 if strcmp(ThDQ, 'Cm') || strcmp(ThDQ, 'Cm&Chi')
+    LnZ_l = iTEBD(Para);              % call iLTRG to compute lnZ
     Rslt.Cm = Cm_cal(LnZ_l, Rslt.beta, Para);
     Rslt.Cm = Rslt.Cm(2:1:(end-1));
 else
     Rslt.Cm = 0;
 end
 
+% //Compute magnetic susceptibility
 if norm(Para.Field.h) ~= 0 && (strcmp(ThDQ, 'Chi') || strcmp(ThDQ, 'Cm&Chi'))
     
-    delta_h = 0.025;
+    delta_h = 0.025;  % Move it out to runtime parameter setting, say, GetPara [WL]
     
     Para.Field.h = Para.Field.h + delta_h * Para.Field.h / norm(Para.Field.h);
     LnZ_l_u = iTEBD(Para);

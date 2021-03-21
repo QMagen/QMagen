@@ -41,7 +41,7 @@ ModelConf.gFactor_Vec{1} = [0,0,1];
 % =============================================================
 Lattice.Lx = 3;
 Lattice.Ly = 3;
-Lattice.BCX = 'OBC';
+Lattice.BCX = 'PBC';
 Lattice.BCY = 'PBC';
 Lattice.L = Lattice.Lx * Lattice.Ly;
 

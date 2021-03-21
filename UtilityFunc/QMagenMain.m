@@ -22,6 +22,7 @@ switch QMagenConf.Config.Mode
         QMagenConf.Config.TStr = TStr;
         save(['../Tmp/tmp_', TStr, '/configuration.mat'], 'QMagenConf');
         OptFunc(TStr, QMagenConf)
+        
     case 'LOSS'
         mkdir(['../Tmp/tmp_', TStr]);
         
@@ -46,6 +47,7 @@ switch QMagenConf.Config.Mode
             loss(loop_num) = loss_func( TStr, g, ParaVal );
         end
         varargout{1} = loss;
+        
     case 'CALC-Cm'
 %         mkdir(['tmp_', TStr]);
 %         
@@ -60,6 +62,7 @@ switch QMagenConf.Config.Mode
         varargout{1} = Rslt1;
 %         varargout{2} = Rslt_exp;
 %         save(['tmp_', TStr, '/Rslt.mat'], 'Rslt', 'Rslt_exp');
+
     case 'CALC-Chi'
 %         mkdir(['tmp_', TStr]);
 %         

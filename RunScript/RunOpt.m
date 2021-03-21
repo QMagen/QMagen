@@ -106,4 +106,4 @@ QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, '
 
 % // main function of QMagen
 QMagenMain(QMagenConf);
-% QMagenMain(QMagenConf, 'J', 1, 'Delta', 1.5, 'gx', 2, 'gz', 2)
+% QMagenMain(QMagenConf, 'J', 0.76693, 'Delta', 1.4786, 'gx', 2, 'gz', 2)

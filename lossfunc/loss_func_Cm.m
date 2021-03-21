@@ -45,6 +45,7 @@ switch loss_type
         end
 end
 loss = loss/length(T);
+
 global PLOTFLAG
 if PLOTFLAG == 1
     semilogx(T_exp, C_exp, 'LineWidth', 2); hold on

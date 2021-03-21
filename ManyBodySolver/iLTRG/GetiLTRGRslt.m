@@ -30,8 +30,8 @@ Rslt.beta = Rslt.beta(2:1:(end-1));
 Rslt.T = Rslt.T(2:1:(end-1));
 
 Tp = Rslt.T;
-T_min = min(Rslt.T);
-T_max = max(Rslt.T);
+T_min = min(Rslt.T) * 0.99;
+T_max = max(Rslt.T) * 0.99;
 Delta = (log(T_max)-log(T_min))/Para.InterNum;
 Rslt.T = exp(log(T_max):-Delta:log(T_min));
 

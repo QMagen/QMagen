@@ -60,7 +60,7 @@ if PLOTFLAG == 1
     ylabel('\chi (cm^3/mol)', 'FontSize', 20);
     title(FIGTITLE, 'fontsize', 20, 'Interpreter', 'none')
     % axis([0.01 T_max+1 0 max(chi_int) * 1.1]);
-    saveas(gcf, 'chi.png')
+    saveas(gcf, ['Chi_', FIGTITLE, '.png'])
     hold off
 end
 end

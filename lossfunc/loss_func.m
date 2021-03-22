@@ -16,12 +16,15 @@ if isempty(wl)
     wl(:) = 1;
 end
 
+global FIGCOUNT
+FIGCOUNT = 1;
+global FIGTITLE
 % // Cm =======================================
-
 RsltCv = cell(length(CmData), 1);
 for i = 1:1:length(CmData)
     clear Field
     QMagenConf.Field.B = CmData(i).Info.Field;
+    FIGTITLE = CmData(i).Info.Storage(1:1:end-4);
     switch ModelConf.gFactor_Type
         case 'xyz'
             g_fec = [0, 0, 0];
@@ -50,7 +53,9 @@ end
 
 RsltChi = cell(length(ChiData), 1);
 for i = 1:1:length(ChiData)
+    clear Field
     QMagenConf.Field.B = ChiData(i).Info.Field;
+    FIGTITLE = ChiData(i).Info.Storage(1:1:end-4);
     switch ModelConf.gFactor_Type
         case 'xyz'
             g_fec = [0, 0, 0];

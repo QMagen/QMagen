@@ -46,15 +46,19 @@ end
 
 loss = loss/length(T);
 global PLOTFLAG
+global FIGCOUNT
+global FIGTITLE
 if PLOTFLAG == 1
     hold off
-    figure(3)
+    figure(FIGCOUNT + 2)
+    FIGCOUNT = FIGCOUNT + 1;
     semilogx(T_exp, chi_exp, 'LineWidth', 2); hold on
     semilogx(T, chi, '-*', 'LineWidth', 2);
     set(gca, 'FontSize', 15)
     legend({'exp', 'sim'}, 'FontSize', 20);
     xlabel('T (K)', 'FontSize' ,20);
-    ylabel('cm^3/mol', 'FontSize', 20);
+    ylabel('\chi (cm^3/mol)', 'FontSize', 20);
+    title(FIGTITLE, 'fontsize', 20, 'Interpreter', 'none')
     % axis([0.01 T_max+1 0 max(chi_int) * 1.1]);
     saveas(gcf, 'chi.png')
     hold off

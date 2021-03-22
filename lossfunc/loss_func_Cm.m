@@ -47,15 +47,19 @@ end
 loss = loss/length(T);
 
 global PLOTFLAG
+global FIGCOUNT
+global FIGTITLE
 if PLOTFLAG == 1
     hold off
-    figure(3)
+    figure(FIGCOUNT + 2)
+    FIGCOUNT = FIGCOUNT + 1;
     semilogx(T_exp, C_exp, 'LineWidth', 2); hold on
-    plot(T, C, '*', 'LineWidth', 2);
+    plot(T, C, '-*', 'LineWidth', 2);
     set(gca, 'FontSize', 15);
     legend({'exp', 'sim'}, 'FontSize', 20);
     xlabel('T (K)', 'FontSize', 20);
-    ylabel('Cm (J/mol K)', 'FontSize', 20);
+    ylabel('C_m (J/mol K)', 'FontSize', 20);
+    title(FIGTITLE, 'fontsize', 20, 'Interpreter', 'none')
     % axis([0.01 T_max+1 0 max(C_int) * 1.1])
     saveas(gcf, 'C.png')
     hold off

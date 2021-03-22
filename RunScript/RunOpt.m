@@ -101,9 +101,9 @@ for i = 1:1:length(ChiDataFile)
     end
 end
 
+Para.BOPara = ImportBOPara(Para.ManyBodySolver);
 QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
 % =========================================================================
-
 % // main function of QMagen
 QMagenMain(QMagenConf);
 % QMagenMain(QMagenConf, 'Jx', 0.26974, 'Jy', 0.26974, 'Jz', 5, 'gx', 2, 'gy', 2, 'gz', 2)

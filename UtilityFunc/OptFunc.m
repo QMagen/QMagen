@@ -58,7 +58,7 @@ for i = 1:1:QMagenConf.ModelConf.gFactor_Num
 end
 gFac_input = [gFac_input, ']'];
 
-[ OptPara ] = ImportBOPara( QMagenConf.Config.ManyBodySolver );
+OptPara = QMagenConf.Config.BOPara;
 for i = 1:1:OptPara.Group_Number
     if i == 1
         lf = @(x) loss_func( TStr, eval(gFac_input), eval(Para_input) );

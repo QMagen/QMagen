@@ -98,6 +98,7 @@ for i = 1:1:length(ChiDataFile)
     end
 end
 
+Para.BOPara = ImportBOPara(Para.ManyBodySolver);
 QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
 % =========================================================================
 

@@ -1,7 +1,7 @@
 function [Rslt, Rslt_exp_unit] = GetResult(QMagenConf, K_min, ThDQ)
 
 % //set up runtime parameters
-Para = GetPara(QMagenConf, K_min);
+Para = PassPara(QMagenConf, K_min);
 
 switch Para.ManyBodySolver
     case {'ED'}

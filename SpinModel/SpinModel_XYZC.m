@@ -1,41 +1,45 @@
-function [ Lattice, ModelConf ] = SpinModel_TLXXZ( )
+function [ Lattice, ModelConf ] = SpinModel_XYZC( )
 % -------------------------------------------------------------
-% Triangular lattice
-% XXZ model
+% Spin Chain
+% XYZC model [WL]
 % Parameter:
-%           J1xy        Nearest neighbor SxSx+SySy term
-%           J1z         Nearest neighbor SzSz term
-%           J2xy        Next-nearest neighbor SxSx+SySy term
-%           J2z         Next-nearest neighbor SzSz term
-%           gx          Lande factor of Sx direction
-%           gz          Lande factor of Sz direction
+%           Jx     Nearest neighbor SxSx term
+%           Jy     Nearest neighbor SySy term
+%           Jz     Nearest neighbor SzSz term
+%           gx     Lande factor of Sx direction
+%           gy     Lande factor of Sy direction
+%           gz     Lande factor of Sz direction
 %
 % Hamiltonian:
-%   H = \sum_<i,j> J1xy (Sx_i Sx_j + Sy_i Sy_j) + J1z Sz_i Sz_j
-%       + \sum_<<i,j>> J1xy (Sx_i Sx_j + Sy_i Sy_j) + J2z Sz_i Sz_j
-%       - h\sum_i Sh_i
+%   H = \sum_i  Jx Sx_{i} Sx_{i+1} 
+%             + Jy Sy_{i} Sy_{i+1})
+%             + Jz Sz_{i} Sz_{i+1}
+%       - gx mu_B Bx \sum_i Sx_i
+%       - gy mu_B By \sum_i Sy_i
+%       - gz mu_B Bz \sum_i Sz_i
 % -------------------------------------------------------------
 
 % =============================================================
 % DEFAULT SETTINGS
 % =============================================================
-ModelConf.ModelName = 'TLXXZ';
-ModelConf.ModelName_Full = 'Triangular lattice-XXZ model';
-ModelConf.IntrcMap = 'IntrcMap_TLXXZ';
+ModelConf.ModelName = 'XYZC';
+ModelConf.ModelName_Full = 'Antiferromagnetic Heisenberg Chain';
+ModelConf.Trotter = 'Trotter_XYZC';
+ModelConf.AvlbSolver = {'iLTRG'};    % available solvers: iLTRG (full-T)
 ModelConf.LocalSpin = '1/2';
 
 % Parameters' name in Hamiltonian
-ModelConf.Para_Name = {'J1xy'; 'J1z'; 'J2xy'; 'J2z'};
+ModelConf.Para_Name = {'Jx'; 'Jy'; 'Jz'};
 % Parameters' unit
-%  'K':   Set the unit as Kelvin.
-%  'ES':  Set the unit as energy scale, i.e. the correspoding term
-%         interaction strength is [*] times of energy scale.
-ModelConf.Para_Name = {'K'; 'K'; 'K'; 'K'};
+%   'K'  to set the unit as Kelvin
+%   'ES' to set the unit as energy scale, i.e. the correspoding term
+%   interaction strength is [*] times of energy scale.
+ModelConf.Para_Unit = {'K'; 'K'; 'K'};
 % Energy scale of this model, choose one from ModelConf.Para_Name
-ModelConf.Para_EnScale = 'J1xy';
+ModelConf.Para_EnScale = 'Jx';
 ModelConf.Para_Range = cell(length(ModelConf.Para_Name), 1);
 
-ModelConf.gFactor_Num = 2;
+ModelConf.gFactor_Num = 3;
 % Choose the type of Lande g factor
 %  'xyz': The direction of g factor is given along Sx, Sy, or Sz as [1,0,0], [0,1,0], [0,0,1] respectively.
 %  'dir': The direction of g factor is given along a chosen direction as [x, y, z] where x^2+y^+z^2 = 1;
@@ -47,32 +51,30 @@ ModelConf.gFactor_Vec = cell(ModelConf.gFactor_Num, 1);
 ModelConf.gFactor_Range = cell(ModelConf.gFactor_Num, 1);
 ModelConf.gFactor_Name{1} = 'gx';
 ModelConf.gFactor_Vec{1} = [1,0,0];
-ModelConf.gFactor_Name{2} = 'gz';
-ModelConf.gFactor_Vec{2} = [0,0,1];
+ModelConf.gFactor_Name{2} = 'gy';
+ModelConf.gFactor_Vec{2} = [0,1,0];
+ModelConf.gFactor_Name{3} = 'gz';
+ModelConf.gFactor_Vec{3} = [0,0,1];
 
 % =============================================================
 % LATTICE GEOMETRY SETTINGS
 % =============================================================
-Lattice.Lx = 3;
-Lattice.Ly = 3;
-Lattice.BCX = 'OBC';
-Lattice.BCY = 'PBC';
-Lattice.L = Lattice.Lx * Lattice.Ly;
+Lattice.L = Inf;
 
 % =============================================================
 % PARAMETERS OPTIMIZATION RANGE SETTINGS
 % =============================================================
-% J1xy range
-ModelConf.Para_Range{1} = [5, 20];
-% J1z range
-ModelConf.Para_Range{2} = 'J1xy';
-% J2xy range
-ModelConf.Para_Range{3} = [0, 20];
-% J2z range
-ModelConf.Para_Range{4} = 'J2xy';
+% Jx range
+ModelConf.Para_Range{1} = [-5, 5];
+% Jy range
+ModelConf.Para_Range{2} = 'Jx';
+% Jz range
+ModelConf.Para_Range{3} = [-5, 5];
 % gx range
-ModelConf.gFactor_Range{1} = 'gz';
+ModelConf.gFactor_Range{1} = 2;
+% gy range
+ModelConf.gFactor_Range{2} = 2;
 % gz range
-ModelConf.gFactor_Range{2} = [1.5, 3];
+ModelConf.gFactor_Range{3} = 2;
 end
 

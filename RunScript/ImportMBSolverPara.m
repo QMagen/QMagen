@@ -13,6 +13,12 @@ switch Para.ManyBodySolver
     case 'iLTRG'
         % // Trotter step
         Para.tau = 0.025;
+        
+        % Percentage change of field when calculate susceptibility
+        % Recommended value
+        %       Zero field     0.25
+        %       Finite field   0.01
+        Para.DeltaHRatio = 0.25;
         % // N_max: iLTRG iterations
         Para.N_max = floor(Para.beta_max / 2 / Para.tau) + 3;
         

@@ -14,7 +14,7 @@ end
 % //Compute magnetic susceptibility
 if norm(Para.Field.h) ~= 0 && (strcmp(ThDQ, 'Chi') || strcmp(ThDQ, 'Cm&Chi'))
     
-    delta_h = 0.025;  % Move it out to runtime parameter setting, say, GetPara [WL]
+    delta_h = norm(Para.Field.h) * Para.DeltaHRatio;
     
     Para.Field.h = Para.Field.h + delta_h * Para.Field.h / norm(Para.Field.h);
     LnZ_l_u = iTEBD(Para);

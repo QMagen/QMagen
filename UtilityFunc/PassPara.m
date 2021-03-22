@@ -1,4 +1,4 @@
-function [ Para ] = GetPara( QMagenConf, K_min )
+function [ Para ] = PassPara( QMagenConf, K_min )
 % function [Para] = GetPara(Model, Field, K_min)
 % Set the parameter of the problem.
 

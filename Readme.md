@@ -16,6 +16,12 @@ This program be used in the following two typical circumstances (and possibly ot
 * Carrying out many-body calculation on specific model: \
   **RunScript/RunMBSolver.m**.
 
-### Hamiltonian Learning ###
 Hera we give an example of automatic parameter searching.
-#### Basic Configuration ####
+### Basic Configuration ###
+To start a QMagen job, one needs to firstly set the following parameters in **RunScript/RunOpt.m**
+* **Para.ManyBodySolver**\
+  To choose the many-body solver as **'ED'**, **'iLTRG'** or **'XTRG'**;
+* **Para.ModelName**\
+  To choose the model of material, all the available models are given in **SpinModel**;
+* **Para.Mode = 'OPT'**\
+  To choose the working mode as paremeter searching.

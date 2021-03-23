@@ -61,7 +61,7 @@ if PLOTFLAG == 1
     ylabel('C_m (J/mol K)', 'FontSize', 20);
     title(FIGTITLE, 'fontsize', 20, 'Interpreter', 'none')
     % axis([0.01 T_max+1 0 max(C_int) * 1.1])
-    saveas(gcf, ['C_', FIGTITLE, '.png'])
+    saveas(gcf, ['C_', num2str(FIGCOUNT), '.png'])
     hold off
 end
 end

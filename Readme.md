@@ -53,3 +53,39 @@ Import specific data and susceptibility data.
 * **ChiDatagInfo = {gNum1; ...}**
   To set use which Lande factor to converse unit. Only required
   when the Lande factors are not given along *Sx, Sy, Sz* direction. 
+### Modle Information ###
+The lattice geometry and parameter optimization range should be set in
+**SpinModel/SpinModel_XXX.m**.
+* **Lattivc**\
+  To set the lattice geometry information as **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D system or
+  **.L = Inf** for 1D system.
+* **ModelConf.Para_Range{i}**\
+  To set the range of **ModelConf.Para_Name{i}** as an interval **[a, b]**
+  or as a fixed value **a**, or keep it the same as another model parameter **'J'**.
+* **ModelConf.gFactor_Range{i}**\
+  To set the range of **ModelConf.gFactor_Name{i}** like above.
+### Runtime parameters ###
+For beginners, we do not recommend changing the relevant parameters.
+* **RunScript/ImportMBSolverPara.m**\
+  To change the parameter of many-body solver.
+* **RunScript/ImportBOPara.m**\
+  To change the parameter of Bayesian optimization.
+### Loss Function ###
+We have provided several forms of the loss function, which one needs to select in **RunScript/RunOpt.m**.
+* **LossConf.WeightList**\
+  To set the weights of different experimental data.
+* **LossConf.Type**\
+  To choose the form of loss function.
+* **LossConf.Design**\
+  To design loss function by constitute a composite function.
+### Save Settings ###
+* **Setting.PLOTFLAG**\
+  To decide whether plots result in each iteration.
+* **Setting.SAVEFLAG**\
+  To decide whether save thermal result of each iteration calculated by many-body solver.
+* **Setting.SAVENAME**\
+  To set the name of save folder.
+### Result ###
+The Bayesian optimization will be stored in **Tmp** after the program is finished. The result contains a 
+class **BayesianOptimization** called **res** which include parameters’ value and corresponding loss 
+function objective value of each iterations. To get the landscape predicted by Bayesian optimization one can use **PlotScript/LandscapePlot.m**.

@@ -2,9 +2,9 @@ clear all
 addpath(genpath('../'))
 
 % =========================================================================
-Config.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
-Config.ModelName = 'TLI';
-Config.Mode = 'CALC-Chi';
+Config.ManyBodySolver = 'iLTRG'; % 'ED', 'iLTRG', 'XTRG'
+Config.ModelName = 'XYZC';
+Config.Mode = 'CALC-Cm';
 
 % =========================================================================
 % MODEL SPECIFICATION
@@ -12,13 +12,15 @@ Config.Mode = 'CALC-Chi';
 [ Lattice, ModelConf, Config ] = GetSpinModel( Config );
 
 % // set the field to calculate
-Field.h = [0, 0, 0.1];
+Field.h = [0, 0, 0];
 
 QMagenConf = QMagen(Config, ModelConf, Lattice, Field);
 
+
+
 % // set the parameter value to calculate
-QMagenConf = GetModel(QMagenConf, 'J1', 1, ...
-                                  'J2', 0.1, ...
-                                  'Delta', 0.6);
+QMagenConf = GetModel(QMagenConf, 'Jx', 1, ...
+                                  'Jy', 1, ...
+                                  'Jz', 1.5);
                               
-[Rslt] = QMagenMain(QMagenConf, 'Kmin', 1);
+[Rslt] = QMagenMain(QMagenConf, 'Kmin', 2);

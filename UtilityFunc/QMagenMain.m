@@ -66,7 +66,7 @@ switch QMagenConf.Config.Mode
         display(QMagenConf)
         [Rslt, ~] = GetResult(QMagenConf, varargin{2}, 'Cm');
         pos = find(Rslt.T < varargin{2});
-        pos = pos(1) + 1;
+        pos = pos(1) - 1;
         Rslt1.T = Rslt.T(1:1:pos);
         Rslt1.Cm = Rslt.Cm(1:1:pos);
         varargout{1} = Rslt1;
@@ -81,7 +81,7 @@ switch QMagenConf.Config.Mode
         display(QMagenConf)
         [Rslt, ~] = GetResult(QMagenConf, varargin{2}, 'Chi');
         pos = find(Rslt.T < varargin{2});
-        pos = pos(1) + 1;
+        pos = pos(1) - 1;
         Rslt1.T = Rslt.T(1:1:pos);
         Rslt1.Chi = Rslt.M(1:1:pos) ./ norm(QMagenConf.Field.h);
         varargout{1} = Rslt1;

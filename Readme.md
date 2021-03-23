@@ -1,7 +1,7 @@
 # QMagen_Matlab # 
 ## Introduction ##
 QMagen is a package for the finite-temperature many-body simulations and an advanced tool for thermal data analysis of magnetic quantum materials.
-The program consists of two main parts: 
+The package consists of two main parts: 
 ### Many-Body Sovlers ###
 * Exact diagonalization (ED, as a high-*T* solver);
 * Linearized tensor renormalization group (LTRG, as a full-*T* solver for 1D spin chain);
@@ -30,13 +30,13 @@ Import specific data and susceptibility data.
 * **CmDataFile = {'FileName1'; ...}**\
   To set the file name of specific heat data.\
   The file should only cantains a N-by-2 array where
-  the firsl column is temperature with Kelvin and
+  the first column is temperature in Kelvin and
   the second column is corresponding specific heat with
   J mol^-1 K^-1.
-* **CmDataTRange = {[T1l, T1u]; ...}**\
+* **CmDataTRange = {[T1, T2]; ...}**\
   To set the fitting temperature range of corresponding data.
 * **CmDataField = {[B1x, B1y, B1z]; ...}**\
-  To give the magentic field strength (Tesla) of experimental data.
+  To give the magentic field strength (in Tesla) of experimental data.
 * **CmDatagInfo = {gNum1; ...}**
   To set use which Lande factor to converse unit. Only required
   when the Lande factors are not given along *Sx, Sy, Sz* direction. 
@@ -46,17 +46,17 @@ Import specific data and susceptibility data.
   the firsl column is temperature with Kelvin and
   the second column is corresponding susceptibility with
   cm^3 mol^-1 under SI unit.
-* **ChiDataTRange = {[T1l, T1u]; ...}**\
+* **ChiDataTRange = {[T1, T2]; ...}**\
   To set the fitting temperature range of corresponding data.
 * **ChiDataField = {[B1x, B1y, B1z]; ...}**\
   To give the magentic field strength (Tesla) of experimental data.
 * **ChiDatagInfo = {gNum1; ...}**
   To set use which Lande factor to converse unit. Only required
   when the Lande factors are not given along *Sx, Sy, Sz* direction. 
-### Modle Information ###
+### Model Information ###
 The lattice geometry and parameter optimization range should be set in
 **SpinModel/SpinModel_XXX.m**.
-* **Lattivc**\
+* **Lattice**\
   To set the lattice geometry information as **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D system or
   **.L = Inf** for 1D system.
 * **ModelConf.Para_Range{i}**\

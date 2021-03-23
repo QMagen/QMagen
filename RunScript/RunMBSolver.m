@@ -1,6 +1,5 @@
 clear all
-addpath(genpath('../SpinModel'))
-addpath('../')
+addpath(genpath('../'))
 
 % =========================================================================
 Config.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'

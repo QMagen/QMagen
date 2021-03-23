@@ -12,7 +12,7 @@ Para.Mode = 'OPT';
 %             Data(:,1) -> temperarture   Unit: K
 %             Data(:,2) -> specifit heat  Unit: J/(mol K)
 % CmDataFile = {'FileName1'; 'FileName2'; ...};
-CmDataFile = {'../ExpData/ToyModel_C_expdata_0T.mat'};
+CmDataFile = {'../ExpData/XYZC_C_expdata_0T.mat'};
 
 % CmDataTRange: the temperature range to be fitted (Unit: K)
 % CmDataTRange = {[T1l, T1u]; [T2l, T2u]; ...};
@@ -33,8 +33,8 @@ CmDatagInfo = {};
 %             Data(:,1) -> temperarture   Unit: K
 %             Data(:,2) -> susceptibility Unit: cm^3/mol (4pi * emu/mol)
 % ChiDataFile = {'FileName1'; 'FileName2'; ...};
-ChiDataFile = {'../ExpData/ToyModel_Chi_expdata_Sx.mat'; ...
-               '../ExpData/ToyModel_Chi_expdata_Sz.mat'};
+ChiDataFile = {'../ExpData/XYZC_Chi_expdata_Sx.mat'; ...
+               '../ExpData/XYZC_Chi_expdata_Sz.mat'};
 
 % ChiDataTRange: the temperature range to be fitted (Unit: K)
 % ChiDataTRange = {[T1l, T1u]; [T2l, T2u]; ...};
@@ -79,7 +79,7 @@ Setting.PLOTFLAG = 1; % 0 -> off, 1 -> on
 Setting.SAVEFLAG = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % the file name to save intermediate results.
-Setting.SAVENAME = 'ToyModel';
+Setting.SAVENAME = 'XYZC';
 
 
 % // ====================== Package input data ============================
@@ -106,4 +106,3 @@ QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, '
 % =========================================================================
 % // main function of QMagen
 QMagenMain(QMagenConf);
-% QMagenMain(QMagenConf, 'Jx', 0.26974, 'Jy', 0.26974, 'Jz', 5, 'gx', 2, 'gy', 2, 'gz', 2)

@@ -15,3 +15,7 @@ This program be used in the following two typical circumstances (and possibly ot
   **RunScript/RunOpt.m**;
 * Carrying out many-body calculation on specific model: \
   **RunScript/RunMBSolver.m**.
+
+### Hamiltonian Learning ###
+Hera we give an example of automatic parameter searching.
+#### Basic Configuration ####

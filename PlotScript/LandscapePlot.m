@@ -1,5 +1,8 @@
 function LandscapePlot(res, xlab, ylab)
 % function LandscapePlot(res, xlab, ylab)
+% res is a BayesianOptimization class
+% xlab is the paramater name of x axis
+% ylab is the parameter name of y axis
 bs = table2array(res.XAtMinObjective);
 
 var_name = cell(length(res.VariableDescriptions), 1);

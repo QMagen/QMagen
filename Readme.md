@@ -1,4 +1,4 @@
-# QMagen_Matlab v0.1.0# 
+# QMagen_Matlab v0.1.0
 ## Introduction ##
 QMagen is a package for the finite-temperature many-body simulations and an advanced tool for thermal data analysis of magnetic quantum materials.
 The package consists of two main parts: 

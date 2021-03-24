@@ -52,6 +52,6 @@ set(gca, 'FontSize', 20, 'LineWidth', 1.5)
 set(c, 'LineWidth', 1.5)
 xlabel(xlab, 'FontSize', 20)
 ylabel(ylab, 'FontSize', 20)
-scatter(bs(xpos), bs(ypos), 100, 'ro', 'filled')
+scatter(bs(xpos), bs(ypos), 100, 'kx')
 legend({'Predicted Mean', 'Best Objective point'}, 'FontSize', 20)
 end

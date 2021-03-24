@@ -17,10 +17,8 @@ Field.h = [0, 0, 0];
 QMagenConf = QMagen(Config, ModelConf, Lattice, Field);
 
 
-
+    
 % // set the parameter value to calculate
 QMagenConf = GetModel(QMagenConf, 'Jx', 1, ...
                                   'Jy', 1, ...
                                   'Jz', 1.5);
-                              
-[Rslt] = QMagenMain(QMagenConf, 'Kmin', 2);

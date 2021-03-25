@@ -54,15 +54,15 @@ Import specific data and susceptibility data.
   To set use which Lande factor to converse unit. Only required
   when the Lande factors are not given along *Sx, Sy, Sz* direction. 
 ### Model Information ###
-The lattice geometry and parameter optimization range should be assigned in the file
+The lattice geometry and parameter optimization range (called **ModelConf.**) should be assigned in the file
 **SpinModel/SpinModel_XXX.m**.
 * **Lattice**\
   To set the lattice geometry information as **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D system and
   **.L = Inf** for 1D system (now we only support finite-size XTRG for 2D and infinite-size LTRG for 1D).
-* **ModelConf.Para_Range{i}**\
+* **Para_Range{i}**\
   To set the range of **ModelConf.Para_Name{i}** as an interval **[a, b]**
   or as a fixed value **a**, or keep it the same as another model parameter **'J'**.
-* **ModelConf.gFactor_Range{i}**\
+* **gFactor_Range{i}**\
   To set the range of **ModelConf.gFactor_Name{i}** like above.
 ### Runtime parameters ###
 For beginners, we do not recommend changing the relevant parameters.

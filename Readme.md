@@ -87,5 +87,90 @@ We have provided several forms of the loss function, which one needs to select i
   To set the name of save folder.
 ### Result ###
 The Bayesian optimization will be stored in **Tmp** after the program is finished. The result contains a 
-class **BayesianOptimization** called **res** which include parameters’ value and corresponding loss 
+class **BayesianOptimization** called **res** which include parameters??value and corresponding loss 
 function objective value of each iterations. To get the landscape predicted by Bayesian optimization one can use **PlotScript/LandscapePlot.m**.
+## Maintainer ##
+* Yuan Gao, Beihang university\
+  *mail*: 17231064@buaa.edu.cn
+* Bin-Bin Chen, Beihang university\
+  *mail*:
+* Wei Li, Institute of Theoretical Physics, Chinese Academy of Sciences\
+  *mail*: w.li@buaa.edu.cn
+## Citation
+If you use QMagen in teaching and research, please cite our work:
+
+```bib
+@article{QMagenFramework2020,
+  title={Learning Effective Spin Hamiltonian of Quantum Magnet},
+  author={Sizhuo Yu, Yuan Gao, Bin-Bin Chen and Wei Li},
+  journal={arXiv preprint arXiv:2011.12282},
+  year={2020}
+}
+```
+```bib
+@article{LTRG2011,
+  title = {Linearized Tensor Renormalization Group Algorithm for the Calculation of Thermodynamic Properties of Quantum Lattice Models},
+  author = {Li, W. and Ran, S.-J. and Gong, S.-S. and Zhao, Y. and Xi, B. and Ye, F. and Su, G.},
+  journal = {Phys. Rev. Lett.},
+  volume = {106},
+  issue = {12},
+  pages = {127202},
+  numpages = {4},
+  year = {2011},
+  month = {Mar},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevLett.106.127202},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.106.127202}
+}
+```
+```bib
+@article{BilayerLTRG2017,
+	Author = {Dong, Y.-L. and Chen, L. and Liu, Y.-J. and Li, W.},
+	Doi = {10.1103/PhysRevB.95.144428},
+	Issue = {14},
+	Journal = {Phys. Rev. B},
+	Month = {Apr},
+	Numpages = {10},
+	Pages = {144428},
+	Publisher = {American Physical Society},
+	Title = {Bilayer linearized tensor renormalization group approach for thermal tensor networks},
+	Url = {https://link.aps.org/doi/10.1103/PhysRevB.95.144428},
+	Volume = {95},
+	Year = {2017},
+	Bdsk-Url-1 = {https://link.aps.org/doi/10.1103/PhysRevB.95.144428},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1103/PhysRevB.95.144428}
+}
+```
+```bib
+@article{SETTN2017,
+	Author = {Chen, B.-B. and Liu, Y.-J. and Chen, Z. and Li, W.},
+	Doi = {10.1103/PhysRevB.95.161104},
+	Issue = {16},
+	Journal = {Phys. Rev. B},
+	Month = {Apr},
+	Numpages = {5},
+	Pages = {161104(R)},
+	Publisher = {American Physical Society},
+	Title = {Series-expansion thermal tensor network approach for quantum lattice models},
+	Url = {https://link.aps.org/doi/10.1103/PhysRevB.95.161104},
+	Volume = {95},
+	Year = {2017},
+	Bdsk-Url-1 = {https://link.aps.org/doi/10.1103/PhysRevB.95.161104},
+	Bdsk-Url-2 = {http://dx.doi.org/10.1103/PhysRevB.95.161104}
+}
+```
+```bib
+@Article{XTRG2018,
+  title = {Exponential Thermal Tensor Network Approach for Quantum Lattice Models},
+  author = {Chen, B.-B. and Chen, L. and Chen, Z. and Li, W. and Weichselbaum, A.},
+  journal = {Phys. Rev. X},
+  volume = {8},
+  issue = {3},
+  pages = {031082},
+  numpages = {29},
+  year = {2018},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevX.8.031082},
+  url = {https://link.aps.org/doi/10.1103/PhysRevX.8.031082}
+}
+```

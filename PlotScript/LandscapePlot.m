@@ -1,4 +1,4 @@
-function LandscapePlot(res, xlab, ylab)
+function LandscapePlot(res, xlab, ylab, varargin)
 % function LandscapePlot(res, xlab, ylab)
 % res is a BayesianOptimization class
 % xlab is the paramater name of x axis

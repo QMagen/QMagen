@@ -57,9 +57,9 @@ Import magnetic specific heat (**Cm**) and susceptibility (**Chi**) data.
 The lattice geometry and parameter optimization range (called **ModelConf.**) should be assigned in the file
 **SpinModel/SpinModel_*XXX*.m**.
 * **Lattice**\
-  To set the lattice geometry information (currently we only support infinite-size LTRG for 1D. and finite-size XTRG for 2D):
-  * **.L = Inf** for 1D systems
-  * **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D systems
+  To set the lattice geometry information :
+  * **.L = Inf** for 1D systems (currently we only support infinite-size LTRG for 1D)
+  * **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D systems (be remined we support finite-size XTRG for 2D)
 * **Para_Range{i}**\
   To set the range of **ModelConf.Para_Name{i}** 
   * an interval **[a, b]**

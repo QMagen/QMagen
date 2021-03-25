@@ -16,7 +16,7 @@ This program can be used in the following two typical circumstances (and possibl
 * Carrying out many-body calculations on specific model: \
   **RunScript/RunMBSolver.m**.
 
-Hera we give an example of the automatic parameter searching.
+Here we give an example of the automatic parameter searching.
 ### Basic Configuration ###
 To start a QMagen job, one needs to firstly set the following parameters (**Para.**) in **RunScript/RunOpt.m**
 * **ManyBodySolver**\
@@ -29,7 +29,7 @@ To start a QMagen job, one needs to firstly set the following parameters (**Para
 Import magnetic specific heat (**Cm**) and susceptibility (**Chi**) data.
 * **CmDataFile = {'FileName1'; ...}**\
   To set the file name of magnetic specific heat data.\
-  The file should only cantains a N-by-2 array where
+  The file should only contains a N-by-2 array where
   the first column is temperature in Kelvin and
   the second column is corresponding specific heat with
   J mol^-1 K^-1.
@@ -42,7 +42,7 @@ Import magnetic specific heat (**Cm**) and susceptibility (**Chi**) data.
   when the Lande factors are not given along *Sx, Sy, Sz* direction. 
 * **ChiDataFile = {'FileName1'; ...}**\
   To set the file name of magnetic susceptibility data.\
-  The file should only cantain a N-by-2 array where
+  The file should only contain a N-by-2 array where
   the firsl column is temperature (in a unit of Kelvin) 
   and the second column lists the corresponding susceptibility 
   data (in the SI unit cm^3 mol^-1).
@@ -59,7 +59,7 @@ The lattice geometry and parameter optimization range (called **ModelConf.**) sh
 * **Lattice**\
   To set the lattice geometry information :
   * **.L = Inf** for 1D systems (currently we only support infinite-size LTRG for 1D)
-  * **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D systems (be remined we support finite-size XTRG for 2D)
+  * **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D systems (be reminded we support finite-size XTRG for 2D)
 * **Para_Range{i}**\
   To set the range of **ModelConf.Para_Name{i}** 
   * an interval **[a, b]**

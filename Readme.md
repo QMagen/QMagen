@@ -93,7 +93,7 @@ function objective value of each iterations. To get the landscape predicted by B
 * Yuan Gao, Beihang university\
   mail: 17231064@buaa.edu.cn
 * Bin-Bin Chen, Beihang university\
-  mail:
+  mail: bunbun@buaa.edu.cn
 * Wei Li, Institute of Theoretical Physics, Chinese Academy of Sciences\
   mail: w.li@buaa.edu.cn
 ## Citation

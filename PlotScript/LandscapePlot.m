@@ -102,7 +102,7 @@ end
 colormap(map);
 switch Para.FigDim
     case '2D'
-        [~, h] = contourf(x_ms, y_ms, log10(objective_ms), 400);hold on
+        [~, h] = contourf(x_ms, y_ms, log10(abs(objective_ms)), 400);hold on
         c = colorbar();
         Ticks = c.Ticks;
         TickLabel = cell(1, length(Ticks));
@@ -118,7 +118,7 @@ switch Para.FigDim
         scatter(bs(xpos), bs(ypos), 100, 'kx', 'LineWidth', 1.5); hold on
         legend({'Predicted Mean', 'Best Objective point'}, 'FontSize', 20)
     case '3D'
-        surf(x_ms, y_ms, log10(objective_ms)); hold on
+        surf(x_ms, y_ms, log10(abs(objective_ms))); hold on
         scatter(bs(xpos), bs(ypos), 100, 'kx', 'LineWidth', 1.5); hold on
         plot3([bs(xpos), bs(xpos)], [bs(ypos), bs(ypos)], [min(log10(objective)), max(log10(objective))], 'k', 'LineWidth', 2)
         xlabel(xlab, 'FontSize', 15)

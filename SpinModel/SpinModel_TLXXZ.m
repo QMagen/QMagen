@@ -31,7 +31,7 @@ ModelConf.Para_Name = {'J1xy'; 'J1z'; 'J2xy'; 'J2z'};
 %  'K':   Set the unit as Kelvin.
 %  'ES':  Set the unit as energy scale, i.e. the correspoding term
 %         interaction strength is [*] times of energy scale.
-ModelConf.Para_Name = {'K'; 'K'; 'K'; 'K'};
+ModelConf.Para_Unit = {'K'; 'K'; 'K'; 'K'};
 % Energy scale of this model, choose one from ModelConf.Para_Name
 ModelConf.Para_EnScale = 'J1xy';
 ModelConf.Para_Range = cell(length(ModelConf.Para_Name), 1);

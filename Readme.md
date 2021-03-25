@@ -91,11 +91,11 @@ class **BayesianOptimization** called **res** which include parameters??value an
 function objective value of each iterations. To get the landscape predicted by Bayesian optimization one can use **PlotScript/LandscapePlot.m**.
 ## Maintainer ##
 * Yuan Gao, Beihang university\
-  *mail*: 17231064@buaa.edu.cn
+  mail: 17231064@buaa.edu.cn
 * Bin-Bin Chen, Beihang university\
-  *mail*:
+  mail:
 * Wei Li, Institute of Theoretical Physics, Chinese Academy of Sciences\
-  *mail*: w.li@buaa.edu.cn
+  mail: w.li@buaa.edu.cn
 ## Citation
 If you use QMagen in teaching and research, please cite our work:
 

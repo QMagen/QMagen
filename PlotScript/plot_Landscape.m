@@ -1,2 +1,2 @@
 load('res.mat')
-LandscapePlot(res, 'J1', 'Delta')
+[bs] = LandscapePlot(res, 'J1', 'Delta', 'FigDim', '3D');

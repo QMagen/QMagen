@@ -76,7 +76,7 @@ methods
                 pause;
             end
             if len ~= 4 && len ~= 6
-                error('Illegal thermodynamic data import format!\n')
+                error('Illegal thermodynamic data import format!')
             else
                for i = 1:1:(len-2)/2
                    switch varargin{2 * i + 1}
@@ -93,7 +93,7 @@ methods
             obj.Lattice = Lattice;
             obj.Field = varargin{1};
         else
-            error('Illegal import format!\n')
+            error('Illegal import format!')
         end
     end
     

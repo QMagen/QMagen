@@ -1,4 +1,4 @@
-function LandscapePlot(res, xlab, ylab, varargin)
+function [bs] = LandscapePlot(res, xlab, ylab, varargin)
 % function LandscapePlot(res, xlab, ylab, varargin)
 % res is a BayesianOptimization class
 % xlab is the paramater name of x axis
@@ -27,8 +27,16 @@ Para.CrossSectionPoint = 'MinLandScape';
 Para.LossDesign = 'native';
 Para.FigDim = '2D';
 
-% for i = 1:1:lenght
-% end
+if mod(length(varargin),2)~=0
+    error('Illegal input format!')
+end
+for i = 1:1:(length(varargin)/2)
+    if isfield(Para, varargin{2*i-1})
+        Para = setfield(Para, varargin{2*i-1}, varargin{2*i});
+    else
+        error('Undefined input parameter!')
+    end
+end
 switch Para.CrossSectionPoint
     case 'MinObj'
         bs = table2array(res.XAtMinObjective);

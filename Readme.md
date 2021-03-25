@@ -84,11 +84,9 @@ We have provided several forms of the loss function, which one needs to select i
 * **Setting.SAVEFLAG**\
   To decide whether save thermal results of each iteration calculated by many-body solver.
 * **Setting.SAVENAME**\
-  To set the name of folder saving results, including the measured parameter points and their corresponding thermodynamics simulation results.
-### Result ###
-The Bayesian optimization will be stored in **Tmp** after the program is finished. The result contains a 
-class **BayesianOptimization** called **res** which include parameters??value and corresponding loss 
-function objective value of each iterations. To get the landscape predicted by Bayesian optimization one can use **PlotScript/LandscapePlot.m**.
+  To set the name of folder saving many-body simulation results in **Tmp**, including the model informationn and their corresponding thermodynamics data.
+### Fitting Results ###
+The landscape information of Bayesian optimization will also be stored in **Tmp** after the specified number of iterations (Group_MaxEvalu in ImportBOPara.m) is finished. The result contains a class **BayesianOptimization** called **res** which include parameters??value and corresponding loss function objective value of each iterations. To get the landscape predicted by Bayesian optimization one can use **PlotScript/LandscapePlot.m**.
 ## Maintainer ##
 * Yuan Gao, Beihang University\
   mail: 17231064@buaa.edu.cn

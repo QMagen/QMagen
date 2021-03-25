@@ -4,8 +4,8 @@ QMagen is a package for the finite-temperature many-body simulations and an adva
 The package consists of two main parts: 
 ### Quantum Many-Body Sovlers ###
 * Exact diagonalization (ED, as a high-*T* solver);
-* Linearized tensor renormalization group (LTRG, as a low-*T* solver for 1D spin chain);
-* Exponential tensor renormalization group (XTRG, as a low-*T* solver for 2D system).
+* Linearized tensor renormalization group (LTRG, as a low-*T* solver for 1D spin chain materials, etc);
+* Exponential tensor renormalization group (XTRG, as a low-*T* solver for quasi-1D and 2D magnets, etc).
 ### Efficient Optimizers ###
 * Bayesian optimization.
 

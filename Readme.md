@@ -26,28 +26,28 @@ To start a QMagen job, one needs to firstly set the following parameters in **Ru
 * **Para.Mode = 'OPT'**\
   To choose the working mode as paremeter searching.
 ### Experimental Data ###
-Import specific data and susceptibility data.
+Import magnetic specific heat (**Cm**) and susceptibility (**Chi**) data.
 * **CmDataFile = {'FileName1'; ...}**\
-  To set the file name of specific heat data.\
+  To set the file name of magnetic specific heat data.\
   The file should only cantains a N-by-2 array where
   the first column is temperature in Kelvin and
   the second column is corresponding specific heat with
   J mol^-1 K^-1.
 * **CmDataTRange = {[T1, T2]; ...}**\
-  To set the fitting temperature range of corresponding data.
+  To set the fitting temperature range of **Cm** data.
 * **CmDataField = {[B1x, B1y, B1z]; ...}**\
   To give the magentic field strength (in Tesla) of experimental data.
 * **CmDatagInfo = {gNum1; ...}**
   To set use which Lande factor to converse unit. Only required
   when the Lande factors are not given along *Sx, Sy, Sz* direction. 
 * **ChiDataFile = {'FileName1'; ...}**\
-  To set the file name of susceptibility data.\
+  To set the file name of magnetic susceptibility data.\
   The file should only cantains a N-by-2 array where
   the firsl column is temperature with Kelvin and
   the second column is corresponding susceptibility with
   cm^3 mol^-1 under SI unit.
 * **ChiDataTRange = {[T1, T2]; ...}**\
-  To set the fitting temperature range of corresponding data.
+  To set the fitting temperature range of corresponding **Chi** data.
 * **ChiDataField = {[B1x, B1y, B1z]; ...}**\
   To give the magentic field strength (Tesla) of experimental data.
 * **ChiDatagInfo = {gNum1; ...}**

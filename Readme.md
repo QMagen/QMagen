@@ -59,7 +59,7 @@ The lattice geometry and parameter optimization range (called **ModelConf.**) sh
 * **Lattice**\
   To set the lattice geometry information :
   * **.L = Inf** for 1D systems (currently we only support infinite-size LTRG for 1D)
-  * **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D systems (be remined we support finite-size XTRG for 2D)
+  * **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D systems (be reminded we support finite-size XTRG for 2D)
 * **Para_Range{i}**\
   To set the range of **ModelConf.Para_Name{i}** 
   * an interval **[a, b]**

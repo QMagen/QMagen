@@ -25,6 +25,7 @@ function [ Lattice, ModelConf, Conf ] = SpinModel_TLARX( Conf )
 ModelConf.ModelName = 'TLARX';
 ModelConf.ModelName_Full = 'Triangular-Lattice ARX model';
 ModelConf.IntrcMap = 'IntrcMap_TLARX';
+ModelConf.AvlbSolver = {'ED', 'XTRG'};    % can be solved by ED (high-T) and XTRG (low-T)
 ModelConf.LocalSpin = '1/2';
 
 % Parameters' name in Hamiltonian

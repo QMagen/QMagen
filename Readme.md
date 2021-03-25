@@ -16,14 +16,14 @@ This program can be used in the following two typical circumstances (and possibl
 * Carrying out many-body calculations on specific model: \
   **RunScript/RunMBSolver.m**.
 
-Hera we give an example of the automatic parameter searching.
+Hera we give an example of the automatic parameter (**Para.**) searching.
 ### Basic Configuration ###
 To start a QMagen job, one needs to firstly set the following parameters in **RunScript/RunOpt.m**
-* **Para.ManyBodySolver**\
+* **ManyBodySolver**\
   To choose the many-body solver as **'ED'**, **'iLTRG'** or **'XTRG'**;
-* **Para.ModelName**\
+* **ModelName**\
   To choose the model of material, all the available models are given in **SpinModel**;
-* **Para.Mode = 'OPT'**\
+* **Mode = 'OPT'**\
   To choose the working mode as paremeter searching.
 ### Experimental Data ###
 Import magnetic specific heat (**Cm**) and susceptibility (**Chi**) data.

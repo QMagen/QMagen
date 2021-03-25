@@ -49,7 +49,8 @@ loss = loss/length(T);
 global PLOTFLAG
 global FIGCOUNT
 global FIGTITLE
-if PLOTFLAG == 1
+global SAVE_COUNT
+if (mod(SAVE_COUNT, PLOTFLAG) == 1 || PLOTFLAG == 1) && PLOTFLAG ~= 0
     hold off
     figure(FIGCOUNT + 2)
     FIGCOUNT = FIGCOUNT + 1;

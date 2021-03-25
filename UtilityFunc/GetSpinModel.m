@@ -18,8 +18,8 @@ switch Config.ModelName
         [ Lattice, ModelConf ] = SpinModel_HAFC( );
         
     otherwise
-        error('Undefined model name!\n')
-        
+        warning('Undefined model name!\n')
+        pause
 end
 
 for i = 1:1:length(ModelConf.Para_Name)

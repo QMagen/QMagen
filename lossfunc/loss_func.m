@@ -105,16 +105,23 @@ global SAVEFLAG
 global MIN_LOSS_VAL
 global SAVENAME
 global SAVE_COUNT
-
+% keyboard;
+ModelVal = struct();
+for i = 1:1:length(ParaVal)
+    ModelVal = setfield(ModelVal, QMagenConf.ModelConf.Para_Name{i}, ParaVal(i));
+end
+for i = 1:1:length(g)
+    ModelVal = setfield(ModelVal, QMagenConf.ModelConf.gFactor_Name{i}, g(i));
+end
 if SAVEFLAG == 1
     if loss < MIN_LOSS_VAL
-        save(['../Tmp/', SAVENAME, 'best.mat'], 'RsltCv', 'RsltChi');
+        save(['../Tmp/', SAVENAME, 'best.mat'], 'ModelVal', 'RsltCv', 'RsltChi');
         MIN_LOSS_VAL = loss;
     end
     
 elseif SAVEFLAG == 2
-    save(['../Tmp/', SAVENAME, num2str(SAVE_COUNT), '.mat'], 'RsltCv', 'RsltChi');
-    SAVE_COUNT = SAVE_COUNT + 1;
+    save(['../Tmp/', SAVENAME, num2str(SAVE_COUNT), '.mat'], 'ModelVal', 'RsltCv', 'RsltChi');
 end
+SAVE_COUNT = SAVE_COUNT + 1;
 end
 

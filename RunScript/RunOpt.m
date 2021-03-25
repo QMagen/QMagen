@@ -73,10 +73,10 @@ LossConf.Design = 'native'; % 'native', 'log'
 % Save & Plot Settings
 % ====================== %
 % plot result in each iteration
-Setting.PLOTFLAG = 1; % 0 -> off, 1 -> on
+Setting.PLOTFLAG = 1; % 0 -> off, n -> plot the graph every n iterations
 
 % save intermediate results.
-Setting.SAVEFLAG = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
+Setting.SAVEFLAG = 1;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % the file name to save intermediate results.
 Setting.SAVENAME = 'XYZC';

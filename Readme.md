@@ -55,7 +55,7 @@ Import magnetic specific heat (**Cm**) and susceptibility (**Chi**) data.
   when the Lande factors are not given along *Sx, Sy, Sz* direction. 
 ### Model Information ###
 The lattice geometry and parameter optimization range (called **ModelConf.**) should be assigned in the file
-**SpinModel/SpinModel_XXX.m**.
+**SpinModel/SpinModel_*XXX*.m**.
 * **Lattice**\
   To set the lattice geometry information as **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D system and
   **.L = Inf** for 1D system (now we only support finite-size XTRG for 2D and infinite-size LTRG for 1D).

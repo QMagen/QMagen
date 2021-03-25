@@ -32,7 +32,7 @@ Import specific data and susceptibility data.
   The file should only cantains a N-by-2 array where
   the first column is temperature in Kelvin and
   the second column is corresponding specific heat with
-  J mol\(^-1\) K\(^-1\).
+  J mol^-1 K^-1.
 * **CmDataTRange = {[T1, T2]; ...}**\
   To set the fitting temperature range of corresponding data.
 * **CmDataField = {[B1x, B1y, B1z]; ...}**\
@@ -54,11 +54,11 @@ Import specific data and susceptibility data.
   To set use which Lande factor to converse unit. Only required
   when the Lande factors are not given along *Sx, Sy, Sz* direction. 
 ### Model Information ###
-The lattice geometry and parameter optimization range should be set in
+The lattice geometry and parameter optimization range should be assigned in the file
 **SpinModel/SpinModel_XXX.m**.
 * **Lattice**\
-  To set the lattice geometry information as **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D system or
-  **.L = Inf** for 1D system.
+  To set the lattice geometry information as **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D system and
+  **.L = Inf** for 1D system (now we only support finite-size XTRG for 2D and infinite-size LTRG for 1D).
 * **ModelConf.Para_Range{i}**\
   To set the range of **ModelConf.Para_Name{i}** as an interval **[a, b]**
   or as a fixed value **a**, or keep it the same as another model parameter **'J'**.
@@ -67,7 +67,7 @@ The lattice geometry and parameter optimization range should be set in
 ### Runtime parameters ###
 For beginners, we do not recommend changing the relevant parameters.
 * **RunScript/ImportMBSolverPara.m**\
-  To change the parameter of many-body solver.
+  To change the parameters of many-body solvers, including ED, LTRG, and XTRG.
 * **RunScript/ImportBOPara.m**\
   To change the parameter of Bayesian optimization.
 ### Loss Function ###
@@ -77,14 +77,14 @@ We have provided several forms of the loss function, which one needs to select i
 * **LossConf.Type**\
   To choose the form of loss function.
 * **LossConf.Design**\
-  To design loss function by constitute a composite function.
+  To adapt the loss function, like log(Loss), so as to improve its performance in parameter searching.
 ### Save Settings ###
 * **Setting.PLOTFLAG**\
-  To decide whether plots result in each iteration.
+  To decide whether plotting result in each iteration.
 * **Setting.SAVEFLAG**\
-  To decide whether save thermal result of each iteration calculated by many-body solver.
+  To decide whether save thermal results of each iteration calculated by many-body solver.
 * **Setting.SAVENAME**\
-  To set the name of save folder.
+  To set the name of folder saving results, including the measured parameter points and their corresponding thermodynamics simulation results.
 ### Result ###
 The Bayesian optimization will be stored in **Tmp** after the program is finished. The result contains a 
 class **BayesianOptimization** called **res** which include parameters??value and corresponding loss 

@@ -2,21 +2,21 @@
 ## Introduction ##
 QMagen is a package for the finite-temperature many-body simulations and an advanced tool for thermal data analysis of magnetic quantum materials.
 The package consists of two main parts: 
-### Many-Body Sovlers ###
+### Quantum Many-Body Sovlers ###
 * Exact diagonalization (ED, as a high-*T* solver);
 * Linearized tensor renormalization group (LTRG, as a low-*T* solver for 1D spin chain);
 * Exponential tensor renormalization group (XTRG, as a low-*T* solver for 2D system).
-### Optimizer ###
+### Efficient Optimizers ###
 * Bayesian optimization.
 
 ## Try Your First QMagen Program ##
-This program be used in the following two typical circumstances (and possibly others):
-* Learning model Hamiltonian according to thermodynamic experimental data by Bayesian optimization: \
+This program can be used in the following two typical circumstances (and possibly others):
+* Learning model Hamiltonian by automatically fitting experimental thermal data through the Bayesian optimization: \
   **RunScript/RunOpt.m**;
-* Carrying out many-body calculation on specific model: \
+* Carrying out many-body calculations on specific model: \
   **RunScript/RunMBSolver.m**.
 
-Hera we give an example of automatic parameter searching.
+Hera we give an example of the automatic parameter searching.
 ### Basic Configuration ###
 To start a QMagen job, one needs to firstly set the following parameters in **RunScript/RunOpt.m**
 * **Para.ManyBodySolver**\

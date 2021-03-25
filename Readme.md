@@ -90,17 +90,17 @@ The Bayesian optimization will be stored in **Tmp** after the program is finishe
 class **BayesianOptimization** called **res** which include parameters??value and corresponding loss 
 function objective value of each iterations. To get the landscape predicted by Bayesian optimization one can use **PlotScript/LandscapePlot.m**.
 ## Maintainer ##
-* Yuan Gao, Beihang university\
+* Yuan Gao, Beihang University\
   mail: 17231064@buaa.edu.cn
-* Bin-Bin Chen, Beihang university\
+* Bin-Bin Chen, Beihang University\
   mail: bunbun@buaa.edu.cn
-* Wei Li, Institute of Theoretical Physics, Chinese Academy of Sciences\
+* Wei Li, Beihang University\
   mail: w.li@buaa.edu.cn
 ## Citation
 If you use QMagen in teaching and research, please cite our work:
 
 ```bib
-@article{QMagenFramework2020,
+@article{QMagen2020,
   title={Learning Effective Spin Hamiltonian of Quantum Magnet},
   author={Sizhuo Yu, Yuan Gao, Bin-Bin Chen and Wei Li},
   journal={arXiv preprint arXiv:2011.12282},
@@ -172,5 +172,20 @@ If you use QMagen in teaching and research, please cite our work:
   publisher = {American Physical Society},
   doi = {10.1103/PhysRevX.8.031082},
   url = {https://link.aps.org/doi/10.1103/PhysRevX.8.031082}
+}
+```
+```bib
+@article{XTRG2019,
+  title = {Thermal tensor renormalization group simulations of square-lattice quantum spin models},
+  author = {Li, H. and Chen, B.-B. and Chen, Z. and von Delft, J. and Weichselbaum, A. and Li, W.},
+  journal = {Phys. Rev. B},
+  volume = {100},
+  issue = {4},
+  pages = {045110},
+  numpages = {17},
+  year = {2019},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevB.100.045110},
+  url = {https://link.aps.org/doi/10.1103/PhysRevB.100.045110}
 }
 ```

@@ -32,7 +32,7 @@ Import specific data and susceptibility data.
   The file should only cantains a N-by-2 array where
   the first column is temperature in Kelvin and
   the second column is corresponding specific heat with
-  J $mol^-1$ $K^-1$.
+  J mol$^-1$ K$^-1$.
 * **CmDataTRange = {[T1, T2]; ...}**\
   To set the fitting temperature range of corresponding data.
 * **CmDataField = {[B1x, B1y, B1z]; ...}**\

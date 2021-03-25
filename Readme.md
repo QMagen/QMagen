@@ -98,7 +98,7 @@ The landscape information of Bayesian optimization will also be stored in **Tmp*
 * Wei Li, Beihang University & ITP-CAS\
   mail: w.li@buaa.edu.cn
 ## Citation
-If you use QMagen in teaching and research, please cite our work:
+If you use QMagen in teaching and research, please cite the following related works:
 
 ```bib
 @article{QMagen2020,

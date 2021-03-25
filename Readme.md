@@ -61,8 +61,10 @@ The lattice geometry and parameter optimization range (called **ModelConf.**) sh
   * **.L = Inf** for 1D systems
   * **.Lx**, **.Ly**, **.BCX**, **.BCY** for 2D systems
 * **Para_Range{i}**\
-  To set the range of **ModelConf.Para_Name{i}** as an interval **[a, b]**
-  or as a fixed value **a**, or keep it the same as another model parameter **'J'**.
+  To set the range of **ModelConf.Para_Name{i}** 
+  * an interval **[a, b]**
+  * a fixed value **a**
+  * keep it the same as another model parameter **'J'**.
 * **gFactor_Range{i}**\
   To set the range of **ModelConf.gFactor_Name{i}** like above.
 ### Runtime parameters ###

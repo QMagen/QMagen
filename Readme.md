@@ -16,9 +16,9 @@ This program can be used in the following two typical circumstances (and possibl
 * Carrying out many-body calculations on specific model: \
   **RunScript/RunMBSolver.m**.
 
-Hera we give an example of the automatic parameter (**Para.**) searching.
+Hera we give an example of the automatic parameter searching.
 ### Basic Configuration ###
-To start a QMagen job, one needs to firstly set the following parameters in **RunScript/RunOpt.m**
+To start a QMagen job, one needs to firstly set the following parameters (**Para.**) in **RunScript/RunOpt.m**
 * **ManyBodySolver**\
   To choose the many-body solver as **'ED'**, **'iLTRG'** or **'XTRG'**;
 * **ModelName**\

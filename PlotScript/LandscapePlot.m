@@ -1,30 +1,32 @@
-function [bs] = LandscapePlot(res, xlab, ylab, varargin)
+function [bs] = LandscapePlot(res, xlab, ylab, LossDesign, varargin)
 % function LandscapePlot(res, xlab, ylab, varargin)
 % res is a BayesianOptimization class
 % xlab is the paramater name of x axis
 % ylab is the parameter name of y axis
 % -------------------------------------------------
-% Usage: LandscapePlot( BayesianOptimization, 'xlabelName', 'ylabelName', 'PARAM', val, ...)
-%        'CrossSectionPoint'   -The cross section point of loss landscape.
-%                               The following are accepted:
-%                           'MinObj'       (default)
-%                           'MinEstObj'
-%                           'MinLandScape'
+% Usage: LandscapePlot( BayesianOptimization, 'xlabelName', 'ylabelName', LossDesign, 'PARAM', val, ...)
 %
-%        'LossDesign'          -Design of loss function. The colorbar of
+%        LossDesign            -Design of loss function. The colorbar of
 %                               landscape will be plot as log10(native). If
 %                               you choose 'log' as your LossConfig.Design,
 %                               then choose 'log' here.
 %                               The following are accepted:
 %                           'native'       (default)
 %                           'log'
+%
+%        'CrossSectionPoint'   -The cross section point of loss landscape.
+%                               The following are accepted:
+%                           'MinObj'       (default)
+%                           'MinEstObj'
+%                           'MinLandScape'
+%
 %        'FigDim'              -The dimension of figure.
 %                               The following are accepted:
 %                           '2D'           (default)
 %                           '3D'           
 % -------------------------------------------------
 Para.CrossSectionPoint = 'MinLandScape';
-Para.LossDesign = 'native';
+Para.LossDesign = LossDesign;
 Para.FigDim = '2D';
 
 if mod(length(varargin),2)~=0
@@ -86,7 +88,13 @@ end
 
 objective = predictObjective(res, struct2table(XTable));
 objective_ms = reshape(objective, [ylen, xlen]);
-
+switch Para.LossDesign
+    case 'native'
+    case 'log'
+        objective_ms = 10.^objective_ms;
+    otherwise
+        error('Undefined LossDesign')
+end
 % -------------------------------------------------------------------------
 keypoint = [238, 233, 95
             158, 53, 43
@@ -121,6 +129,8 @@ switch Para.FigDim
         surf(x_ms, y_ms, log10(abs(objective_ms))); hold on
         scatter(bs(xpos), bs(ypos), 100, 'kx', 'LineWidth', 1.5); hold on
         plot3([bs(xpos), bs(xpos)], [bs(ypos), bs(ypos)], [min(log10(objective)), max(log10(objective))], 'k', 'LineWidth', 2)
+        grid off
+        shading interp
         xlabel(xlab, 'FontSize', 15)
         ylabel(ylab, 'FontSize', 15)
         set(gca, 'FontSize', 20, 'LineWidth', 1.5)

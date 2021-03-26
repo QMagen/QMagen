@@ -54,7 +54,7 @@ if (mod(SAVE_COUNT, PLOTFLAG) == 1 || PLOTFLAG == 1) && PLOTFLAG ~= 0
     hold off
     figure(FIGCOUNT + 2)
     FIGCOUNT = FIGCOUNT + 1;
-    semilogx(T_exp, chi_exp, 'LineWidth', 2); hold on
+    semilogx(T_exp, chi_exp, '-*', 'LineWidth', 2); hold on
     semilogx(T, chi, '-*', 'LineWidth', 2);
     set(gca, 'FontSize', 15)
     legend({'exp', 'sim'}, 'FontSize', 20);

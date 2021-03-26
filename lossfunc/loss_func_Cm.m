@@ -1,5 +1,6 @@
 function [ loss, Rslt ] = loss_func_Cm( QMagenConf, Trange, C_data, loss_type )
 loss = 0;
+C_data = sortrows(C_data, -1);
 T_exp = C_data(:,1);
 C_exp = C_data(:,2);
 
@@ -12,36 +13,66 @@ ThDQ = 'Cm';
 T = Rslt.T_l;
 C = Rslt.Cm_l;
 
-
-for i = 1:length(T)
-    if T(end) < T_min
-        T(end) = [];
-        C(end) = [];
-    else
-        break;
-    end
+switch QMagenConf.LossConf.IntSet
+    case 'Int2Exp'
+        for i = 1:length(T)
+            if T(end) < T_min
+                T(end) = [];
+                C(end) = [];
+            else
+                break;
+            end
+        end
+        
+        while 1
+            if T(1) > T_max
+                T(1) = [];
+                C(1) = [];
+            else
+                break;
+            end
+        end
+        
+        C_int = interp1(T_exp, C_exp, T);
+        C_f_exp = C_int;
+        C_f_sim = C;
+        T_f = T;
+        
+    case 'Int2Sim'
+        while 1
+            if T_exp(1) > min(T_max, max(T))
+                T_exp(1) = [];
+                C_exp(1) = [];
+            else
+                break;
+            end
+        end
+        
+        for i = 1:length(T)
+            if T_exp(end) < T_min
+                T_exp(end) = [];
+                C_exp(end) = [];
+            else
+                break;
+            end
+        end
+        
+        C_int = interp1(T, C, T_exp);
+        C_f_exp = C_exp;
+        C_f_sim = C_int;
+        T_f = T_exp;
+        
 end
-
-while 1
-    if T(1) > T_max
-        T(1) = [];
-        C(1) = [];
-    else
-        break;
-    end
-end
-
-C_int = interp1(T_exp, C_exp, T);
 
 switch loss_type
     case {'abs-err'}
-        for i = 1:length(T)
-            loss = loss + (C_int(i) - C(i))^2; 
+        for i = 1:length(T_f)
+            loss = loss + (C_f_exp(i) - C_f_sim(i))^2; 
         end
-        loss = loss / max(C_int)^2;
+        loss = loss / max(C_f_exp)^2;
     case {'rel-err'}
-        for i = 1:length(T)
-            loss = loss + ((C_int(i) - C(i))/C_int(i))^2; 
+        for i = 1:length(T_f)
+            loss = loss + ((C_f_exp(i) - C_f_sim(i))/C_f_exp(i))^2; 
         end
 end
 loss = loss/length(T);

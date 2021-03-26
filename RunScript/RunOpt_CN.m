@@ -70,6 +70,11 @@ LossConf.Type = 'abs-err'; % 'abs-err', 'rel-err'
 %       'log'     L = log10(L)
 %       'native'  L = L
 LossConf.Design = 'log'; % 'native', 'log'
+
+% Interpolation options when fitting
+%       'Int2Exp' Interpolation to experimental data
+%       'Int2Sim' Interpolation to simulation data
+LossConf.IntSet = 'Int2Exp';
 %--------------------------------------------------------------------------
 
 % // settings -------------------------------------------------------------

@@ -22,6 +22,7 @@ h = Para.Field.h;
 if norm(Para.Field.h) ~= 0
     hm = h/norm(h);
     Sm.A = cell(Para.L, 1);
+    Sm.lgnorm = 0;
     SmOp = hm(1) * Op.Sx + hm(2) * Op.Sy + hm(3) * Op.Sz;
     hOp = - h(1) * Op.Sx - h(2) * Op.Sy - h(3) * Op.Sz;
     Ope.Sm = GetAMMPO(Sm, Op.Id, SmOp);
@@ -49,13 +50,13 @@ for i = 1:1:length(MPO.A)
         MPO.A{i}(1,2,:,:) = reshape(S, [1,1,d,d]);
     elseif i == length(MPO.A)
         MPO.A{i} = zeros(2,1,d,d);
+        MPO.A{i}(2,1,:,:) = reshape(Id, [1,1,d,d]);
+        MPO.A{i}(1,1,:,:) = reshape(S, [1,1,d,d]);
+    else
+        MPO.A{i} = zeros(2,2,d,d);
         MPO.A{i}(1,1,:,:) = reshape(Id, [1,1,d,d]);
         MPO.A{i}(2,2,:,:) = reshape(Id, [1,1,d,d]);
         MPO.A{i}(1,2,:,:) = reshape(S, [1,1,d,d]);
-    else
-        MPO.A{i} = zeros(2,2,d,d);
-        MPO.A{i}(1,1,:,:) = reshape(S, [1,1,d,d]);
-        MPO.A{i}(2,1,:,:) = reshape(Id, [1,1,d,d]);
     end
 end
 MPO.A{1} = permute(MPO.A{1}, [2,3,4,1]);

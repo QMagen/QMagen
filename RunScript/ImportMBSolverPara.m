@@ -42,7 +42,7 @@ switch Para.ManyBodySolver
         % Recommended value 200
         % Bigger is more accurate
         Para.D_list = 1:1:Para.It;
-        Para.D_list(:) = 200;
+        Para.D_list(:) = 100;
         Para.D_list(end:-1:end-4) = 200;
         
         % //MCrit: bond dimension compressing H^n

@@ -48,8 +48,8 @@ for i = 1:1:length(CmData)
     try
         [lossp, RsltCv{i}] = loss_func_Cm(QMagenConf, CmData(i).Info.TRange, CmData(i).Data, loss_type);
     catch
-        loss = NaN;
-        break;
+       loss = NaN;
+       break;
     end
     loss = loss + lossp * wl(i);
 end
@@ -87,8 +87,8 @@ for i = 1:1:length(ChiData)
     try
         [lossp, RsltChi{i}] = loss_func_chi(QMagenConf, ChiData(i).Info.TRange, ChiData(i).Data, loss_type);
     catch
-        loss = NaN;
-        break;
+       loss = NaN;
+       break;
     end
     loss = loss + lossp * wl(i + length(CmData));
 end

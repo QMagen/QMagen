@@ -49,7 +49,6 @@ H = AutomataInit(Para);
 [H, Ope] = AutomataInit1Site(H, Op, Para);
 [H.A, lgnorm] = CompressH(H.A);
 H.lgnorm = H.lgnorm + lgnorm;
-
 % =========================================================================
 
 cH = H;
@@ -65,7 +64,14 @@ end
 Hs.lgnorm = H.lgnorm + cH.lgnorm + log(nm);
 Ope.Hs = Hs;
 Ope.H = H;
-Ope.Id = Id;
+Id.A = cell(Para.L, 1);
+for i = 2:1:(Para.L-1)
+    Id.A{i} = Op.Id4;
+end
+Id.A{1} = Op.Id3;
+Id.A{end} = Op.Id3;
+Id.lgnorm = 0;
+Ope.Id = Op.Id;
 
 end
 

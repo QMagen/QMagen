@@ -44,7 +44,7 @@ end
 % \\ field
 h = Para.Field.h;
 hp = h/norm(h);
-H = H + h(1) * Sxtot + h(2) * Sytot + h(3) * Sztot;
+H = H - h(1) * Sxtot - h(2) * Sytot - h(3) * Sztot;
 M = hp(1) * Sxtot + hp(2) * Sytot + hp(3) * Sztot;
 end
 

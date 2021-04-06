@@ -2,7 +2,7 @@ function [ ThDQ ] = calThDQ( Para, rho, Op, beta )
 % function [ ThDQ ] = calThDQ( Para, rho, H )
 
 if norm(Para.Field.h) ~= 0
-    ThDQ.M = -real(InnerProd(rho, Op.Sm));
+    ThDQ.M = real(InnerProd(rho, Op.Sm));
 else
     ThDQ.M = 0;
 end

@@ -12,7 +12,7 @@ switch Para.ManyBodySolver
         
     case 'iLTRG'
         % // Trotter step
-        Para.tau = 0.025;
+        Para.tau = 0.01;
         
         % Percentage change of field when calculate susceptibility
         % Recommended value
@@ -25,7 +25,7 @@ switch Para.ManyBodySolver
         % // Trotter order
         Para.TroOrd = '1';      % '1' only
         % // D_max: bond dimension of rho(beta/2)
-        Para.D_max = 40;
+        Para.D_max = 80;
         
         % // Number of interp
         Para.InterNum = 20;
@@ -42,14 +42,14 @@ switch Para.ManyBodySolver
         % Recommended value 200
         % Bigger is more accurate
         Para.D_list = 1:1:Para.It;
-        Para.D_list(:) = 50;
-        Para.D_list(end:-1:end-4) = 50;
+        Para.D_list(:) = 200;
+        Para.D_list(end:-1:end-4) = 200;
         
         % //MCrit: bond dimension compressing H^n
         % used in SETTN initialization of rho(tau)
         % Recommended value 200
         % Bigger is more accurate
-        Para.MCrit = 50;
+        Para.MCrit = 200;
         
         % //XTRG runtime parameters
         % max iterations of MPO varitional product

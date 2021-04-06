@@ -1,5 +1,5 @@
 function [ Ope ] = AssignATensor1Site( Op, Id, Para )
-% function [ H ] = AssignATensor1Site( H, Op, IntrInfo, Para )
+% function [ Ope ] = AssignATensor1Site( Op, Id, Para )
 L = Para.L;
 
 Sxtot = Id;

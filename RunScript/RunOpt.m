@@ -16,7 +16,7 @@ CmDataFile = {'../ExpData/XYZC_C_expdata_0T.mat'};
 
 % CmDataTRange: the temperature range to be fitted (Unit: K)
 % CmDataTRange = {[T1l, T1u]; [T2l, T2u]; ...};
-CmDataTRange = {[0.3, 20]};
+CmDataTRange = {[1, 20]};
 
 % CmDataField: the magnetic filed of experimantal data (Unit: Tesla)
 % CmDataField = {[B1x, B1y, B1z]; [B2x, B2y, B2z]; ...};
@@ -38,8 +38,8 @@ ChiDataFile = {'../ExpData/XYZC_Chi_expdata_Sx.mat'; ...
 
 % ChiDataTRange: the temperature range to be fitted (Unit: K)
 % ChiDataTRange = {[T1l, T1u]; [T2l, T2u]; ...};
-ChiDataTRange = {[0.3, 20]; ...
-                 [0.3, 20]};
+ChiDataTRange = {[1, 20]; ...
+                 [1, 20]};
 
 % CmDataField: the magnetic filed of experimantal data (Unit: Tesla)
 % CmDataField = {[B1x, B1y, B1z]; [B2x, B2y, B2z]; ...};
@@ -67,7 +67,7 @@ LossConf.Type = 'abs-err'; % 'abs-err', 'rel-err'
 % design of loss function
 %       'log'     L = log10(L)
 %       'native'  L = L
-LossConf.Design = 'native'; % 'native', 'log'
+LossConf.Design = 'log'; % 'native', 'log'
 
 % Interpolation options when fitting
 %       'Int2Exp' Interpolation to experimental data
@@ -80,7 +80,7 @@ LossConf.IntSet = 'Int2Exp';
 Setting.PLOTFLAG = 1; % 0 -> off, n -> plot the graph every n iterations
 
 % save intermediate results.
-Setting.SAVEFLAG = 1;   % 0 -> off, 1 -> save the best, 2 -> save all
+Setting.SAVEFLAG = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % the file name to save intermediate results.
 Setting.SAVENAME = 'XYZC';

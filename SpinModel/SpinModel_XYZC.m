@@ -67,7 +67,7 @@ Lattice.L = Inf;
 % Jx range
 ModelConf.Para_Range{1} = [-5, 5];
 % Jy range
-ModelConf.Para_Range{2} = [0.1, 5]; %'Jx';
+ModelConf.Para_Range{2} = 'Jx';
 % Jz range
 ModelConf.Para_Range{3} = [-5, 5];
 % gx range

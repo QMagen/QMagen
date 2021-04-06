@@ -15,7 +15,7 @@ chi = zeros(Nb, 1);
 for it = 1:1:Nb
     T(it) = 1/beta(it);
     Z = sum(exp(-beta(it) .* ESF));
-    M(it) = -sum(Mnn .* exp(-beta(it).*ESF))/Z;
+    M(it) = sum(Mnn .* exp(-beta(it).*ESF))/Z;
     chi(it) = real(M(it)/h);
 end
 

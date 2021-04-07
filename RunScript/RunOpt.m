@@ -31,7 +31,7 @@ CmDatagInfo = {};
 % // import susceptibility data -------------------------------------------
 % CmDataFile: experimental data file name include Data
 %             Data(:,1) -> temperarture   Unit: K
-%             Data(:,2) -> susceptibility Unit: cm^3/mol (4pi * emu/mol)
+%             Data(:,2) -> susceptibility Unit: cm^3/mol (1/4pi * emu/mol)
 % ChiDataFile = {'FileName1'; 'FileName2'; ...};
 ChiDataFile = {'../ExpData/XYZC_Chi_expdata_Sx.mat'; ...
                '../ExpData/XYZC_Chi_expdata_Sz.mat'};

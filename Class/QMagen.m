@@ -57,8 +57,8 @@ properties % (Access = private)
     Field
     LossConf
     Setting
-    CmData
-    ChiData
+    CmData = {};
+    ChiData = {};
 end
   
 methods

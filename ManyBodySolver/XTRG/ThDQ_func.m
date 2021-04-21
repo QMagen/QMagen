@@ -1,8 +1,8 @@
 function [ CCHA, betaCHA ] = ThDQ_func( Rslt, Para )
 tau = Para.tau;
-betaCHA = tau.*2.^(0:1:15).*2^0.1;
+betaCHA = tau.*2.^(0:1:(Para.It+2)).*2^0.1;
 for int = 0.3:0.2:0.9
-    betaCHA = [betaCHA, tau.*2.^(0:1:15).*2^int];
+    betaCHA = [betaCHA, tau.*2.^(0:1:(Para.It+2)).*2^int];
 end
 
 beta = Rslt.beta;

@@ -5,7 +5,7 @@ function [ IntrMap ] = SortIntrMap( IntrMap )
 % mail: 17231064@buaa.edu.cn
 i = 1;
 while i < length(IntrMap)
-    if IntrMap(i).JmpOut > 0 && IntrMap(i).JmpOut > IntrMap(i+1).JmpOut
+    if IntrMap(i).JmpOut > 0 && IntrMap(i+1).JmpOut > 0 && IntrMap(i).JmpOut > IntrMap(i+1).JmpOut
         T = IntrMap(i);
         IntrMap(i) = IntrMap(i+1);
         IntrMap(i+1) = T;
@@ -15,7 +15,7 @@ while i < length(IntrMap)
 end
 i = 1;
 while i < length(IntrMap)
-    if IntrMap(i).JmpOut == IntrMap(i+1).JmpOut && IntrMap(i).JmpIn < IntrMap(i+1).JmpIn
+    if IntrMap(i).JmpOut == IntrMap(i+1).JmpOut && IntrMap(i).JmpOut > 0 && IntrMap(i).JmpIn < IntrMap(i+1).JmpIn
         T = IntrMap(i);
         IntrMap(i) = IntrMap(i+1);
         IntrMap(i+1) = T;

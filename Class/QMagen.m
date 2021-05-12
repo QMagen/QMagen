@@ -44,7 +44,7 @@ classdef QMagen < matlab.mixin.CustomDisplay
 %       .SAVENAME        
 % -------------------------------------------------
 % Usage: 
-%       QMagenConf(Conf, ModelConf, Lattice, LossConf, Setting, 'Thermo data name', ThermoData)
+%       QMagenConf(Conf, ModelConf, Lattice, LossConf, Setting, Restart, 'Thermo data name', ThermoData)
 %       QMagenConf(Conf, ModelConf, Lattice)
 % -------------------------------------------------
 % YG@BUAA, Mar16
@@ -57,13 +57,14 @@ properties % (Access = private)
     Field
     LossConf
     Setting
+    Restart = {};
     CmData = {};
     ChiData = {};
 end
   
 methods
     function obj = QMagen(Config, ModelConf, Lattice, varargin)
-        if nargin == 7 || nargin == 9
+        if nargin == 9 || nargin == 11
             obj.Config = Config;
             obj.ModelConf = ModelConf;
             obj.Lattice = Lattice;
@@ -75,7 +76,7 @@ methods
                 warning('Para.ManyBodySolver not within ModelConf.AvlbSolver!');
                 pause;
             end
-            if len ~= 4 && len ~= 6
+            if len ~= 4 && len ~= 6 && len ~= 8
                 error('Illegal thermodynamic data import format!')
             else
                for i = 1:1:(len-2)/2
@@ -84,6 +85,10 @@ methods
                            obj.CmData = varargin{2 * i + 2};
                        case {'Chi', 'chi'}
                            obj.ChiData = varargin{2 * i + 2};
+                       case {'Restart'}
+                           obj.Restart = varargin{2 * i + 2};
+                       otherwise
+                           error('Illegal data import format!')
                    end
                end
             end

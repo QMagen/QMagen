@@ -73,13 +73,19 @@ LossConf.IntSet = 'Int2Exp';
 
 % // settings -------------------------------------------------------------
 % plot result in each iteration
-Setting.PLOTFLAG = 1; % 0 -> off, 1 -> on
+Setting.PLOTFLAG = 0; % 0 -> off, 1 -> on
 
-% save intermediate results.
-Setting.SAVEFLAG = 1;   % 0 -> off, 1 -> save the best, 2 -> save all
+% save intermediate results
+Setting.SAVEFLAG = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % the file name to save intermediate results.
 Setting.SAVENAME = 'TMGO';
+%--------------------------------------------------------------------------
+
+% // restart --------------------------------------------------------------
+Restart.XTrace = [];
+Restart.ObjTrace = [];
+Restart.Resume = [];
 %--------------------------------------------------------------------------
 % =========================================================================
 
@@ -104,7 +110,7 @@ for i = 1:1:length(ChiDataFile)
 end
 
 Para.BOPara = ImportBOPara(Para.ManyBodySolver);
-QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
+QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Restart', Restart, 'Cm', CmData, 'Chi', ChiData);
 % =========================================================================
 
 % // main function of QMagen

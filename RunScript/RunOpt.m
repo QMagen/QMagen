@@ -85,6 +85,13 @@ Setting.SAVEFLAG = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
 % the file name to save intermediate results.
 Setting.SAVENAME = 'XYZC';
 
+% // restart --------------------------------------------------------------
+
+Restart.XTrace = [];
+Restart.ObjTrace = [];
+Restart.Resume = [];
+%--------------------------------------------------------------------------
+% =========================================================================
 
 % // ====================== Package input data ============================
 [ Lattice, ModelConf, Para ] = GetSpinModel( Para );
@@ -106,7 +113,7 @@ for i = 1:1:length(ChiDataFile)
 end
 
 Para.BOPara = ImportBOPara(Para.ManyBodySolver);
-QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Cm', CmData, 'Chi', ChiData);
+QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Restart', Restart, 'Cm', CmData, 'Chi', ChiData);
 % =========================================================================
 % // main function of QMagen
 QMagenMain(QMagenConf);

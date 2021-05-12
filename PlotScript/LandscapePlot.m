@@ -11,7 +11,7 @@ function [bs] = LandscapePlot(res, xlab, ylab, LossDesign, varargin)
 %                               you choose 'log' as your LossConfig.Design,
 %                               then choose 'log' here.
 %                               The following are accepted:
-%                           'native'       (default)
+%                           'native'       
 %                           'log'
 %
 %        'CrossSectionPoint'   -The cross section point of loss landscape.
@@ -25,7 +25,7 @@ function [bs] = LandscapePlot(res, xlab, ylab, LossDesign, varargin)
 %                           '2D'           (default)
 %                           '3D'           
 % -------------------------------------------------
-Para.CrossSectionPoint = 'MinLandScape';
+Para.CrossSectionPoint = 'MinObj';
 Para.LossDesign = LossDesign;
 Para.FigDim = '2D';
 
@@ -39,14 +39,24 @@ for i = 1:1:(length(varargin)/2)
         error('Undefined input parameter!')
     end
 end
-switch Para.CrossSectionPoint
-    case 'MinObj'
-        bs = table2array(res.XAtMinObjective);
-    case 'MinEstObj'
-        bs = table2array(res.XAtMinEstimateObjective);
-    case 'MinLandScape'
-        bs = table2array(res.XAtMinObjective);
-        [bs,~,~,~] = fminsearch(@(x) pred(res, x), bs);
+
+if ~ischar(Para.CrossSectionPoint)
+    bs = Para.CrossSectionPoint;
+else
+    switch Para.CrossSectionPoint
+        case 'MinObj'
+            bs = table2array(res.XAtMinObjective);
+        case 'MinEstObj'
+            bs = table2array(res.XAtMinEstimateObjective);
+        case 'MinLandScape'
+            bs = table2array(res.XAtMinObjective);
+            [bs,~,~,~] = fminsearch(@(x) pred(res, x), bs);
+        otherwise
+            
+            error('Illegal point!')
+            
+    end
+    error('Illegal point!')
 end
 var_name = cell(length(res.VariableDescriptions), 1);
 

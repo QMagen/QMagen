@@ -19,6 +19,7 @@ function [bs] = LandscapePlot(res, xlab, ylab, LossDesign, varargin)
 %                           'MinObj'       (default)
 %                           'MinEstObj'
 %                           'MinLandScape'
+%                           [x1, x2, ..., xN]
 %
 %        'FigDim'              -The dimension of figure.
 %                               The following are accepted:

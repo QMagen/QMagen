@@ -1,9 +1,17 @@
 clear all
 
-addpath(genpath('../'))
+addpath('../Class')
+addpath('../Expdata')
+addpath('../LossFunc')
+addpath('../ManyBodySolver')
+addpath('../svd_lapack_interface')
+addpath('../Tmp')
+addpath('../UtilityFunc')
+
+addpath(genpath('../SpinModel'))
 
 % // ==================== User Input: Parameters ==========================
-Para.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
+Para.ManyBodySolver = 'ED_C'; % 'ED', 'iLTRG', 'XTRG'
 Para.ModelName = 'TLI';
 Para.Mode = 'OPT';
 
@@ -76,7 +84,7 @@ LossConf.IntSet = 'Int2Exp';
 Setting.PLOTFLAG = 0; % 0 -> off, 1 -> on
 
 % save intermediate results
-Setting.SAVEFLAG = 0;   % 0 -> off, 1 -> save the best, 2 -> save all
+Setting.SAVEFLAG = 2;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % the file name to save intermediate results.
 Setting.SAVENAME = 'TMGO';

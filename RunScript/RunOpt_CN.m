@@ -1,6 +1,15 @@
 clear all
 
-addpath(genpath('../'))
+addpath('../Class')
+addpath('../Expdata')
+addpath('../LossFunc')
+addpath('../ManyBodySolver')
+addpath('../svd_lapack_interface')
+addpath('../Tmp')
+addpath('../UtilityFunc')
+
+addpath(genpath('../SpinModel'))
+maxNumCompThreads(4);
 
 % // ==================== User Input: Parameters ==========================
 Para.ManyBodySolver = 'iLTRG'; % 'ED', 'iLTRG', 'XTRG'

@@ -1,6 +1,13 @@
 function [ loss ] = loss_func( TStr, g, ParaVal )
+
 loss = 0;
-load(['../Tmp/tmp_', TStr, '/configuration.mat'])
+len = length(datestr(now,'YYYYmmDD_HHMMSS'));
+
+if len == length(TStr)
+    load(['../Tmp/tmp_', TStr, '/configuration.mat'])
+else
+    load(['../Tmp/tmp_', TStr(2:1:end), '/configuration.mat'])
+end
 
 ModelConf = QMagenConf.ModelConf;
 CmData = QMagenConf.CmData;
@@ -37,7 +44,7 @@ for i = 1:1:length(CmData)
                 end
             end
         case 'dir'
-            g_fec = g(CmData(i).Info.g_info) * ModelConf.gFactor_Vec{CmData(i).Info.g_info};
+            g_fec = g(CmData.Info.g_info{i}) * ModelConf.gFactor_Vec{CmData.Info.g_info{i}};
             for j = 1:1:3
                 if g_fec(j) == 0
                     g_fec(j) = 2;
@@ -45,18 +52,19 @@ for i = 1:1:length(CmData)
             end
     end
     QMagenConf = GetModel(QMagenConf, g_fec, ParaVal);
-    try
+    %try
         [lossp, RsltCv{i}] = loss_func_Cm(QMagenConf, CmData(i).Info.TRange, CmData(i).Data, loss_type);
-    catch
-       loss = NaN;
-       break;
-    end
+    %catch
+    %    loss = NaN;
+    %    break;
+    %end
     loss = loss + lossp * wl(i);
 end
 
 % // chi ======================================
 
 RsltChi = cell(length(ChiData), 1);
+chivvopt = zeros(length(ChiData), 1);
 for i = 1:1:length(ChiData)
     clear Field
     QMagenConf.Field.B = ChiData(i).Info.Field;
@@ -76,7 +84,7 @@ for i = 1:1:length(ChiData)
                 end
             end
         case 'dir'
-            g_fec = g(ChiData(i).Info.g_info) * ModelConf.gFactor_Vec{ChiData(i).Info.g_info};
+            g_fec = g(ChiData.Info.g_info{i}) * ModelConf.gFactor_Vec{Chidata.Info.g_info{i}};
             for j = 1:1:3
                 if g_fec(j) == 0
                     g_fec(j) = 2;
@@ -84,12 +92,12 @@ for i = 1:1:length(ChiData)
             end
     end
     QMagenConf = GetModel(QMagenConf, g_fec, ParaVal);
-    try
-        [lossp, RsltChi{i}] = loss_func_chi(QMagenConf, ChiData(i).Info.TRange, ChiData(i).Data, loss_type);
-    catch
-       loss = NaN;
-       break;
-    end
+%     try
+        [lossp, RsltChi{i}, chivvopt(i)] = loss_func_chi(QMagenConf, ChiData(i).Info.TRange, ChiData(i).Data, loss_type);
+%     catch
+%         loss = NaN;
+%         break;
+%     end
     loss = loss + lossp * wl(i + length(CmData));
 end
 
@@ -106,22 +114,32 @@ global MIN_LOSS_VAL
 global SAVENAME
 global SAVE_COUNT
 % keyboard;
+
 ModelVal = struct();
+
+TStrnow = datestr(now,'YYYYmmDD_HHMMSS');
+
 for i = 1:1:length(ParaVal)
     ModelVal = setfield(ModelVal, QMagenConf.ModelConf.Para_Name{i}, ParaVal(i));
 end
 for i = 1:1:length(g)
     ModelVal = setfield(ModelVal, QMagenConf.ModelConf.gFactor_Name{i}, g(i));
 end
-if SAVEFLAG == 1
+
+%ModelVal.chivvopt = chivvopt;
+
+if SAVEFLAG == 1 && length(TStr) == length(TStrnow)
     if loss < MIN_LOSS_VAL
         save(['../Tmp/', SAVENAME, 'best.mat'], 'ModelVal', 'RsltCv', 'RsltChi');
         MIN_LOSS_VAL = loss;
     end
     
-elseif SAVEFLAG == 2
+elseif SAVEFLAG == 2 && length(TStr) == length(TStrnow)
     save(['../Tmp/', SAVENAME, num2str(SAVE_COUNT), '.mat'], 'ModelVal', 'RsltCv', 'RsltChi');
+    SAVE_COUNT = SAVE_COUNT + 1;
+elseif SAVEFLAG == 2 && length(TStr) ~= length(TStrnow)
+    save(['../Tmp/', SAVENAME, [TStr(1), TStrnow], '.mat'], 'ModelVal', 'RsltCv', 'RsltChi');
 end
-SAVE_COUNT = SAVE_COUNT + 1;
+
 end
 

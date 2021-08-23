@@ -7,17 +7,34 @@ RG_Rslt.En = [ ];
 RG_Rslt.beta = [ ];
 
 [H, Id, Op] = InitHam(Para);
+
 global EVO_check
 if EVO_check == 1
     fprintf('Get the Hamiltonian!\n')
 end
-ST_l = [0,1,2,3];
-% parpool(4);
-Rslt = cell(4,1);
-parfor (i = 1:1:length(ST_l), 4)
-    maxNumCompThreads(1);
-    ST = ST_l(i);
-    Rslt{i} = XTRG_Main( Para, H, Id, Op, ST );
+switch Para.ThDQ
+    case 'Cm'
+        ST_l = [0,1,2,3];
+    case 'Chi'
+        ST_l = [0,2];
+    otherwise
+        ST_l = [0,1,2,3];
+end
+
+RunParallelmaxNumCompThreads = Para.RunParallelmaxNumCompThreads;
+if Para.Parallel && Para.RunParallel
+    Rslt = cell(length(ST_l), 1);
+    parfor(i = 1:length(ST_l), Para.RunParallelNum)
+        maxNumCompThreads(RunParallelmaxNumCompThreads);
+        ST = ST_l(i);
+        Rslt{i} = XTRG_Main( Para, H, Id, Op, ST );
+    end
+else
+    Rslt = cell(length(ST_l), 1);
+    for i = 1:1:length(ST_l)
+        ST = ST_l(i);
+        Rslt{i} = XTRG_Main( Para, H, Id, Op, ST );
+    end
 end
 
 for i = 1:1:length(ST_l)

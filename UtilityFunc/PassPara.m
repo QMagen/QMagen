@@ -2,14 +2,14 @@ function [ Para ] = PassPara( QMagenConf, K_min )
 % function [Para] = GetPara(Model, Field, K_min)
 % Set the parameter of the problem.
 
-% WL: change name as PassPara ?
 
 Para.ManyBodySolver = QMagenConf.Config.ManyBodySolver; 
-
+Para.TStr = QMagenConf.Config.TStr;
 % //pass interaction map (ED, XTRG) or Trotter gates (iLTRG) to solvers
 try
     Para.IntrcMap_Name = QMagenConf.ModelConf.IntrcMap;
-catch
+end
+try
     Para.Trotter_Name = QMagenConf.ModelConf.Trotter;
 end
 
@@ -17,9 +17,14 @@ Para.d = eval(QMagenConf.ModelConf.LocalSpin) * 2 + 1;
 Para.L = QMagenConf.Lattice.L;
 Para.Geo = QMagenConf.Lattice;
 
+if strcmp(QMagenConf.Config.Mode, 'LOSS') && strcmp(QMagenConf.Config.ManyBodySolver, 'XTRG')
+    Para.Parallel = true;
+else
+    Para.Parallel = false;
+end
 % ====================================================
 switch QMagenConf.Config.Mode
-    case {'OPT', 'LOSS'}
+    case {'OPT', 'LOSS', 'ThDQ'}
         global PLOTFLAG
         PLOTFLAG = QMagenConf.Setting.PLOTFLAG;
         

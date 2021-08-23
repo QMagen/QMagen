@@ -20,7 +20,7 @@ classdef ThermoData < matlab.mixin.CustomDisplay
   end
   
   methods
-    function obj = ThermoData(name, field, TRange, storage)
+    function obj = ThermoData(name, field, TRange, varargin)
       % Constructor
       if nargin>0
         if ischar(name)
@@ -42,14 +42,17 @@ classdef ThermoData < matlab.mixin.CustomDisplay
         end
         
         obj.Info.g_info = [];
-        
-        if ischar(storage)
-          obj.Info.Storage = storage;
+        if ~isempty(varargin)
+            storage = varargin{1};
+            if ischar(storage)
+                obj.Info.Storage = storage;
+            else
+                error('storage#4 not char?!');
+            end
+            obj = obj.loadStorage_();
         else
-          error('storage#4 not char?!');
+            obj.Data = [0,0];
         end
-                
-        obj = obj.loadStorage_();
       end
     end
     

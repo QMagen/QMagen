@@ -24,7 +24,7 @@ ModelConf.ModelName_Full = 'Triangular lattice-XXZ model';
 ModelConf.IntrcMap = 'IntrcMap_TLXXZ';
 ModelConf.AvlbSolver = {'ED', 'XTRG'};    % can be solved by ED (high-T) and XTRG (low-T)
 ModelConf.LocalSpin = '1/2';
-
+ModelConf.Symm = 'C';
 % Parameters' name in Hamiltonian
 ModelConf.Para_Name = {'J1xy'; 'J1z'; 'J2xy'; 'J2z'};
 % Parameters' unit
@@ -33,7 +33,7 @@ ModelConf.Para_Name = {'J1xy'; 'J1z'; 'J2xy'; 'J2z'};
 %         interaction strength is [*] times of energy scale.
 ModelConf.Para_Unit = {'K'; 'K'; 'K'; 'K'};
 % Energy scale of this model, choose one from ModelConf.Para_Name
-ModelConf.Para_EnScale = 'J1xy';
+ModelConf.Para_EnScale = 'J1z';
 ModelConf.Para_Range = cell(length(ModelConf.Para_Name), 1);
 
 ModelConf.gFactor_Num = 2;
@@ -64,16 +64,16 @@ Lattice.L = Lattice.Lx * Lattice.Ly;
 % PARAMETERS OPTIMIZATION RANGE SETTINGS
 % =============================================================
 % J1xy range
-ModelConf.Para_Range{1} = [5, 20];
+ModelConf.Para_Range{1} = [0, 10];
 % J1z range
-ModelConf.Para_Range{2} = 'J1xy';
+ModelConf.Para_Range{2} = [0.5, 10];
 % J2xy range
-ModelConf.Para_Range{3} = [0, 20];
+ModelConf.Para_Range{3} = [0, 10];
 % J2z range
 ModelConf.Para_Range{4} = 'J2xy';
 % gx range
-ModelConf.gFactor_Range{1} = 'gz';
+ModelConf.gFactor_Range{1} = [3, 5];
 % gz range
-ModelConf.gFactor_Range{2} = [1.5, 3];
+ModelConf.gFactor_Range{2} = [3, 5];
 end
 

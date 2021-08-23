@@ -102,7 +102,7 @@ If you use QMagen in teaching and research, please cite the following related wo
 
 ```bib
 @article{QMagen2020,
-  title={Learning Effective Spin Hamiltonian of Quantum Magnet},
+  title={Learning the Effective Spin Hamiltonian of a Quantum Magnet},
   author={Sizhuo Yu, Yuan Gao, Bin-Bin Chen and Wei Li},
   journal={arXiv preprint arXiv:2011.12282},
   year={2020}

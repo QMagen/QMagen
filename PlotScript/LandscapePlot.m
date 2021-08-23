@@ -123,7 +123,7 @@ switch Para.FigDim
     case '2D'
         [~, h] = contourf(x_ms, y_ms, log10(abs(objective_ms)), 400);hold on
         c = colorbar();
-        caxis([-2, 0])
+        % caxis([-2, 0])
         Ticks = c.Ticks;
         TickLabel = cell(1, length(Ticks));
         for i = 1:1:length(Ticks)
@@ -147,8 +147,6 @@ switch Para.FigDim
         ylabel(ylab, 'FontSize', 15)
         set(gca, 'FontSize', 20, 'LineWidth', 1.5)
 end
-% axis([0.1,3,-2,2])
-% axis([-2,2,-2,2])
 hold off
 end
 

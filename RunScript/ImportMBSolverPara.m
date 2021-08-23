@@ -10,15 +10,6 @@ switch Para.ManyBodySolver
         beta_list = sort(beta_list);
         Para.beta_list = beta_list;
         
-    case 'Lanczos'
-        % // beta list for ED
-        beta_list = 0.0025.*2.^(0:1:12).*2^0.1;
-        for int = 0.3:0.2:0.9
-            beta_list = [beta_list, 0.0025.*2.^(0:1:12).*2^int];
-        end
-        beta_list = sort(beta_list);
-        Para.beta_list = beta_list;
-        
     case 'iLTRG'
         % // Trotter step
         Para.tau = 0.01;
@@ -71,38 +62,8 @@ switch Para.ManyBodySolver
         Para.VariSum_step_max = 10000;
         % max expensian order of SETTN
         Para.SETTN_init_step_max = 10000;
-    case 'XTRG_QS'
-        % // SETTEN initial tau
-        Para.tau = 0.00025;   
-        
-        % It: XTRG iterations
-        Para.It = floor(log(Para.beta_max/Para.tau)/log(2)) + 1;
-        
-        % //D: bond dimension of rho(beta)
-        % D_list = [Di for i steps, Dj for j steps, etc .]
-        % Recommended value 200
-        % Bigger is more accurate
-        Para.D_list = 1:1:Para.It;
-        Para.D_list(:) = 100;
-        Para.D_list(end:-1:end-4) = 100;
-        
-        % //MCrit: bond dimension compressing H^n
-        % used in SETTN initialization of rho(tau)
-        % Recommended value 200
-        % Bigger is more accurate
-        Para.MCrit = 100;
-        
-        % //XTRG runtime parameters
-        % max iterations of MPO varitional product
-        Para.VariProd_step_max = 10000;
-        % max iterations of MPO varitional sum
-        Para.VariSum_step_max = 10000;
-        % max expensian order of SETTN
-        Para.SETTN_init_step_max = 10000;
+
     case 'DMRG'
-%         Para.RunParallel = true;
-%         Para.RunParallelNum = 2;
-%         Para.RunParallelmaxNumCompThreads = 4;
         Para.MCrit = 60;
         
         % //DMRG runtime parameters

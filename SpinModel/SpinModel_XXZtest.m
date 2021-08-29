@@ -24,7 +24,7 @@ ModelConf.AvlbSolver = {'ED', 'ED_C', 'iLTRG', 'XTRG'};    % available solvers: 
 ModelConf.LocalSpin = '1/2';
 
 % Parameters' name in Hamiltonian
-ModelConf.Para_Name = {'Jxy'; 'Jz'; 'gz'};
+ModelConf.Para_Name = {'Jxy'; 'Jz'};
 % Parameters' unit
 %  'K':   Set the unit as Kelvin.
 %  'ES':  Set the unit as energy scale, i.e. the correspoding term
@@ -62,8 +62,8 @@ ModelConf.Para_Range{1} = [0.5, 5];
 % Delta range
 ModelConf.Para_Range{2} = [0.5, 5];
 % gx range
-ModelConf.gFactor_Range{1} = 'gz';
+ModelConf.gFactor_Range{1} = [1, 3];
 % gz range
-ModelConf.gFactor_Range{2} = [1, 3];
+ModelConf.gFactor_Range{2} = 'gx';
 end
 

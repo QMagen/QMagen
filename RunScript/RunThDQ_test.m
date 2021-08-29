@@ -8,7 +8,7 @@ addpath('../UtilityFunc/');
 % maxNumCompThreads(16);
 
 % // ==================== User Input: Parameters ==========================
-Para.ManyBodySolver = 'ED_C'; % 'ED', 'ED_C', 'iLTRG', 'XTRG'
+Para.ManyBodySolver = 'iLTRG'; % 'ED', 'ED_C', 'iLTRG', 'XTRG'
 Para.ModelName = 'XXZtest';
 % Para.Mode = 'LOSS';
 Para.Mode = 'ThDQ';
@@ -31,8 +31,8 @@ CmDatagInfo = {};
 %--------------------------------------------------------------------------
 
 % // import susceptibility data -------------------------------------------
-ChiDataTRange = {[0.1,90]};
-ChiDataField = {[0,0,0.1]};
+ChiDataTRange = {[0.1,90], [0.1,90]};
+ChiDataField = {[0,0,0.1], [0.1,0,0]};
 ChiDatagInfo = {};
 
 % ============================ %
@@ -105,5 +105,5 @@ QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting,'Restart',Restar
 % =========================================================================
 % // main function of QMagen
 
-[RsltCvNU, RsltCv, RsltChiNU, RsltChi] = QMagenMain(QMagenConf, 'Jxy', 1, 'Jz', 1, 'gz', 2);
+[RsltCvNU, RsltCv, RsltChiNU, RsltChi] = QMagenMain(QMagenConf, 'Jxy', 1, 'Jz', 1.5, 'gx', 2, 'gz', 2);
 

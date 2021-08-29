@@ -3,6 +3,7 @@ function [ H ] = AutomataInit( Para )
 % Initialize the Hamiltonian by Automata picture.
 % Yuan Gao@buaa 2021.04.06
 % mail: 17231064@buaa.edu.cn
+% keyboard;
 IntrMap = eval([Para.IntrcMap_Name, '(Para)']);
 % IntrMap = SortIntrMap( IntrMap );
 L = Para.L;

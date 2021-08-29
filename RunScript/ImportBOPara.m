@@ -4,7 +4,7 @@ function [ Para ] = ImportBOPara( MBSolver )
 switch MBSolver
     case {'ED', 'ED_C'}
         % Parallel
-        Para.Parallel = 'on';
+        Para.Parallel = 'off';
         Para.MinWorkerUtilization = 4;
         Para.ParpoolNum = 4;
         Para.Parallel_maxNumCompThreads = 1;
@@ -33,7 +33,7 @@ switch MBSolver
         % AcqFunc_Name(i) =
         %       'expected-improvement-plus'
         %       'expected-improvement-per-second-plus'
-        Para.AcqFunc_ER = [0.5, 0.4, 0.3, 0.2, 0.1];
+        Para.AcqFunc_ER = [0.2, 0.4, 0.3, 0.2, 0.1];
         
     case 'iLTRG'
         % Parallel

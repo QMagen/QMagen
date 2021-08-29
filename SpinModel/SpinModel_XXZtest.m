@@ -34,7 +34,7 @@ ModelConf.Para_Unit = {'K'; 'K'};
 ModelConf.Para_EnScale = 'Jxy';
 ModelConf.Para_Range = cell(length(ModelConf.Para_Name), 1);
 
-ModelConf.gFactor_Num = 1;
+ModelConf.gFactor_Num = 2;
 % Choose the type of Lande g factor
 %  'xyz': The direction of g factor is given along Sx, Sy, or Sz as [1,0,0], [0,1,0], [0,0,1] respectively.
 %  'dir': The direction of g factor is given along a chosen direction as [x, y, z] where x^2+y^+z^2 = 1;
@@ -44,14 +44,15 @@ ModelConf.gFactor_Type = 'xyz';
 ModelConf.gFactor_Name = cell(ModelConf.gFactor_Num, 1);
 ModelConf.gFactor_Vec = cell(ModelConf.gFactor_Num, 1);
 ModelConf.gFactor_Range = cell(ModelConf.gFactor_Num, 1);
-ModelConf.gFactor_Name{1} = 'gz';
-ModelConf.gFactor_Vec{1} = [0,0,1];
-
+ModelConf.gFactor_Name{1} = 'gx';
+ModelConf.gFactor_Vec{1} = [1,0,0];
+ModelConf.gFactor_Name{2} = 'gz';
+ModelConf.gFactor_Vec{2} = [0,0,1];
 % =============================================================
 % LATTICE GEOMETRY SETTINGS
 % =============================================================
 % Lattice.L = Inf;
-Lattice.L = 16;
+Lattice.L = 10;
 Lattice.BC = 'PBC';
 % =============================================================
 % PARAMETERS OPTIMIZATION RANGE SETTINGS
@@ -60,7 +61,9 @@ Lattice.BC = 'PBC';
 ModelConf.Para_Range{1} = [0.5, 5];
 % Delta range
 ModelConf.Para_Range{2} = [0.5, 5];
+% gx range
+ModelConf.gFactor_Range{1} = 2;
 % gz range
-ModelConf.gFactor_Range{1} = [1.5, 3];
+ModelConf.gFactor_Range{2} = 2;
 end
 

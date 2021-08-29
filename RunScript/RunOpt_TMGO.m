@@ -11,7 +11,7 @@ addpath('../UtilityFunc')
 addpath(genpath('../SpinModel'))
 
 % // ==================== User Input: Parameters ==========================
-Para.ManyBodySolver = 'ED_C'; % 'ED', 'iLTRG', 'XTRG'
+Para.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
 Para.ModelName = 'TLI';
 Para.Mode = 'OPT';
 

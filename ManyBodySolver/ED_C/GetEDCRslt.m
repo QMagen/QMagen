@@ -4,6 +4,7 @@ function [ ED_Rslt ] = GetEDCRslt( Para, ThDQ )
 % fprintf('Get Ham:')
 InMap = eval([Para.IntrcMap_Name, '(Para)']);
 [H, M] = GetHamCpp(Para, InMap);
+
 % =========================================================================
 % keyboard;
 beta_list = Para.beta_list;

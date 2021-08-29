@@ -155,6 +155,8 @@ vals = complex(vals,0);
 
 % (rows, cols, vals) to sparse matrix
 H = sparse(rows+1,cols+1,vals,Dim,Dim,nnz);
+%keyboard;
+%save('S_Ham.mat', 'H')
 H = full(H);
 
 % =========================================================================

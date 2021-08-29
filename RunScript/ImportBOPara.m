@@ -4,10 +4,10 @@ function [ Para ] = ImportBOPara( MBSolver )
 switch MBSolver
     case {'ED', 'ED_C'}
         % Parallel
-        Para.Parallel = 'off';
-        Para.MinWorkerUtilization = 5;
-        Para.ParpoolNum = 9;
-        Para.Parallel_maxNumCompThreads = 2;
+        Para.Parallel = 'on';
+        Para.MinWorkerUtilization = 4;
+        Para.ParpoolNum = 4;
+        Para.Parallel_maxNumCompThreads = 1;
         % number of optimized groups
         Para.Group_Number = 5;
         % is Objective Deterministic

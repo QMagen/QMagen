@@ -8,7 +8,7 @@ addpath('../UtilityFunc/');
 % maxNumCompThreads(16);
 
 % // ==================== User Input: Parameters ==========================
-Para.ManyBodySolver = 'iLTRG'; % 'ED', 'iLTRG', 'XTRG'
+Para.ManyBodySolver = 'ED_C'; % 'ED', 'ED_C', 'iLTRG', 'XTRG'
 Para.ModelName = 'XXZtest';
 % Para.Mode = 'LOSS';
 Para.Mode = 'ThDQ';
@@ -105,5 +105,5 @@ QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting,'Restart',Restar
 % =========================================================================
 % // main function of QMagen
 
-[RsltCvNU, RsltCv, RsltChiNU, RsltChi] = QMagenMain(QMagenConf, 'Jxy', 1, 'Jz', 1.5, 'gz', 2);
+[RsltCvNU, RsltCv, RsltChiNU, RsltChi] = QMagenMain(QMagenConf, 'Jxy', 1, 'Jz', 1, 'gz', 2);
 

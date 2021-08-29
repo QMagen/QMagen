@@ -9,7 +9,7 @@ switch MBSolver
         Para.ParpoolNum = 4;
         Para.Parallel_maxNumCompThreads = 1;
         % number of optimized groups
-        Para.Group_Number = 5;
+        Para.Group_Number = 3;
         % is Objective Deterministic
         %        true or false
         Para.IsObjDet = true;
@@ -19,7 +19,7 @@ switch MBSolver
         Para.AcqFunc_ER = zeros(Para.Group_Number, 1);
         
         % max evaluations of corresponding group
-        Para.Group_MaxEval(:) = 400;
+        Para.Group_MaxEval(:) = 200;
         
         % acquisition function name of corresponding group
         %       'expected-improvement'

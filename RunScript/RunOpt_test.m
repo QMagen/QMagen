@@ -21,6 +21,7 @@ addpath(genpath('../SpinModel'))
 maxNumCompThreads(4);
 
 % // ==================== User Input: Parameters ==========================
+
 Para.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
 Para.ModelName = 'XXZtest';
 Para.Mode = 'OPT';

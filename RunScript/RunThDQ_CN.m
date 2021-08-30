@@ -98,9 +98,9 @@ end
 
 Para.BOPara = ImportBOPara(Para.ManyBodySolver);
 QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting,'Restart',Restart, 'Cm', CmData, 'Chi', ChiData);
-%only fit Cm
+%only calculate Cm
 %QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Restart', Restart, 'Cm',  CmData);
-%only fit Chi
+%only calculate Chi
 %QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Chi', ChiData);
 
 % =========================================================================

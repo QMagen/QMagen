@@ -1,3 +1,13 @@
+
+% // ====================== Cu(NO3)2 2.5 H2O ==============================
+% ref: Xiang, et al. Sci. Rep. 7, 44643 (2017).
+%
+% Spin model [../SpinModel/SpinModel_HAFC]
+% Bayesian optimization parameters [ImportBOPara.m]
+% Many-body solver parameters [ImportMBSolverPara.m]
+% =========================================================================
+% QMagen Collaboration: YG.BUAA & WL.ITP, 2021-08-30
+
 clear all
 
 addpath('../Class')

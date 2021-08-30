@@ -1,3 +1,13 @@
+
+% // ========================== TmMgGaO4 ==================================
+% ref: Li, et al. Nat. Commun. 11, 1111 (2020).
+%
+% Spin model [../SpinModel/SpinModel_TLI]
+% Bayesian optimization parameters [ImportBOPara.m]
+% Many-body solver parameters [ImportMBSolverPara.m]
+% =========================================================================
+% QMagen Collaboration: YG.BUAA & WL.ITP, 2021-08-30
+
 clear all
 
 addpath('../Class')

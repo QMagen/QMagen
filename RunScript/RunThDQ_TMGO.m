@@ -9,8 +9,7 @@ addpath('../UtilityFunc/');
 
 % // ==================== User Input: Parameters ==========================
 Para.ManyBodySolver = 'iLTRG'; % 'ED', 'iLTRG', 'XTRG'
-Para.ModelName = 'HAFC';
-% Para.Mode = 'LOSS';
+Para.ModelName = 'TLI';
 Para.Mode = 'ThDQ';
 % // import specific heat data --------------------------------------------
 
@@ -98,9 +97,9 @@ end
 
 Para.BOPara = ImportBOPara(Para.ManyBodySolver);
 QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting,'Restart',Restart, 'Cm', CmData, 'Chi', ChiData);
-%only fit Cm
+%only calculate Cm
 %QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Restart', Restart, 'Cm',  CmData);
-%only fit Chi
+%only calculate Chi
 %QMagenConf = QMagen(Para, ModelConf, Lattice, LossConf, Setting, 'Chi', ChiData);
 
 % =========================================================================

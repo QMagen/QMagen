@@ -25,15 +25,20 @@ function [bs] = LandscapePlot(res, xlab, ylab, LossDesign, varargin)
 %                               The following are accepted:
 %                           '2D'           (default)
 %                           '3D'    
-%        'CAxis',               caxis
+%        'CXRange',               caxis
 % -------------------------------------------------
+% QMagen Collaboration: YG.BUAA & WL.ITP, 2021-08-30
+% --------------------------------------------------
 Para.CrossSectionPoint = 'MinObj';
 Para.LossDesign = LossDesign;
 Para.FigDim = '2D';
-Para.CAxis = [];
-if mod(length(varargin),2)~=0
+Para.CXRange = [];
+
+% //check input varargin
+if mod(length(varargin),2)~=0       
     error('Illegal input format!')
 end
+
 for i = 1:1:(length(varargin)/2)
     if isfield(Para, varargin{2*i-1})
         Para = setfield(Para, varargin{2*i-1}, varargin{2*i});
@@ -42,10 +47,12 @@ for i = 1:1:(length(varargin)/2)
     end
 end
 
+
+% //assign CSP to bs
 if ~ischar(Para.CrossSectionPoint)
-    bs = Para.CrossSectionPoint;
+    bs = Para.CrossSectionPoint;          % varargin pinpoint in vector
 else
-    switch Para.CrossSectionPoint
+    switch Para.CrossSectionPoint         % varargin pinpoint in mode
         case 'MinObj'
             bs = table2array(res.XAtMinObjective);
         case 'MinEstObj'
@@ -53,13 +60,12 @@ else
         case 'MinLandScape'
             bs = table2array(res.XAtMinObjective);
             [bs,~,~,~] = fminsearch(@(x) pred(res, x), bs);
-        otherwise
-            
-            error('Illegal point!')
-            
+        otherwise        
+            error('Illegal point!')     
     end
-
 end
+
+
 var_name = cell(length(res.VariableDescriptions), 1);
 
 for i = 1:1:length(var_name)
@@ -100,6 +106,7 @@ end
 
 objective = predictObjective(res, struct2table(XTable));
 objective_ms = reshape(objective, [ylen, xlen]);
+
 switch Para.LossDesign
     case 'native'
     case 'log'
@@ -107,6 +114,7 @@ switch Para.LossDesign
     otherwise
         error('Undefined LossDesign')
 end
+
 % -------------------------------------------------------------------------
 keypoint = [238, 233, 95
             158, 53, 43
@@ -124,8 +132,8 @@ switch Para.FigDim
     case '2D'
         [~, h] = contourf(x_ms, y_ms, log10(abs(objective_ms)), 400);hold on
         c = colorbar();
-        if ~isempty(Para.CAxis)
-            caxis(Para.CAxis)
+        if ~isempty(Para.CXRange)
+            caxis(Para.CXRange)
         end
         Ticks = c.Ticks;
         TickLabel = cell(1, length(Ticks));

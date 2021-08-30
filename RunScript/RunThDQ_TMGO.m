@@ -8,7 +8,7 @@ addpath('../UtilityFunc/');
 % maxNumCompThreads(16);
 
 % // ==================== User Input: Parameters ==========================
-Para.ManyBodySolver = 'iLTRG'; % 'ED', 'iLTRG', 'XTRG'
+Para.ManyBodySolver = 'ED'; % 'ED', 'iLTRG', 'XTRG'
 Para.ModelName = 'TLI';
 Para.Mode = 'ThDQ';
 % // import specific heat data --------------------------------------------

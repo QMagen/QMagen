@@ -21,7 +21,7 @@ function [ Lattice, ModelConf ] = SpinModel_TLI( )
 ModelConf.ModelName = 'TLI';      
 ModelConf.ModelName_Full = 'Triangular-Lattice Transverse Field Ising Model';
 ModelConf.IntrcMap = 'IntrcMap_TLI';
-ModelConf.AvlbSolver = {'ED', 'ED_C', 'XTRG'};    % can be solved by ED (high-T) and XTRG (low-T)
+ModelConf.AvlbSolver = {'ED', 'XTRG'};    % can be solved by ED (high-T) and XTRG (low-T)
 ModelConf.LocalSpin = '1/2';
 
 % Parameters' name in Hamiltonian

@@ -10,13 +10,14 @@
 % 'FigDim', '2D' or '3D'
 % 'CrossSectionPoint' - cross section through point [X1, X2, ...] [c.f.
 % related model files in SpinMode folder]
+% 'CAxis', caxis
 
 % QMagen Collaboration: YG.BUAA & WL.ITP, 2021-08-30
 % ====================================================== %
-
+set(0, 'defaultfigurecolor', 'w')
 % load the result file (stored in "/Tmp/")
 % load ../Tmp/tmp_20210829_213241/res3.mat
 load res.mat
 
 % //Plot the crosssection 
-[bs] = LandscapePlot(res, 'Jxy', 'Jz', 'log', 'FigDim', '2D');
+[bs] = LandscapePlot(res, 'Jxy', 'Jz', 'log', 'FigDim', '2D', 'CAxis', [-4, 0]);

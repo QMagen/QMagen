@@ -24,12 +24,13 @@ function [bs] = LandscapePlot(res, xlab, ylab, LossDesign, varargin)
 %        'FigDim'              -The dimension of figure.
 %                               The following are accepted:
 %                           '2D'           (default)
-%                           '3D'           
+%                           '3D'    
+%        'CAxis',               caxis
 % -------------------------------------------------
 Para.CrossSectionPoint = 'MinObj';
 Para.LossDesign = LossDesign;
 Para.FigDim = '2D';
-
+Para.CAxis = [];
 if mod(length(varargin),2)~=0
     error('Illegal input format!')
 end
@@ -123,7 +124,9 @@ switch Para.FigDim
     case '2D'
         [~, h] = contourf(x_ms, y_ms, log10(abs(objective_ms)), 400);hold on
         c = colorbar();
-        % caxis([-2, 0])
+        if ~isempty(Para.CAxis)
+            caxis(Para.CAxis)
+        end
         Ticks = c.Ticks;
         TickLabel = cell(1, length(Ticks));
         for i = 1:1:length(Ticks)

@@ -1,4 +1,4 @@
-function [bs] = LandscapePlot(res, xlab, ylab, LossDesign, varargin)
+function [bs] = LandscapePlot(res, xlab, ylab, LossDesign, FigDim, varargin)
 % function LandscapePlot(res, xlab, ylab, varargin)
 % res is a BayesianOptimization class
 % xlab is the paramater name of x axis
@@ -25,26 +25,42 @@ function [bs] = LandscapePlot(res, xlab, ylab, LossDesign, varargin)
 %                               The following are accepted:
 %                           '2D'           (default)
 %                           '3D'           
-% -------------------------------------------------
-Para.CrossSectionPoint = 'MinObj';
-Para.LossDesign = LossDesign;
-Para.FigDim = '2D';
 
-if mod(length(varargin),2)~=0
+% QMagen Collaboration: YG.BUAA & WL.ITP, 2021-08-30
+% --------------------------------------------------
+
+
+% //check input varargin
+if length(varargin) > 2
     error('Illegal input format!')
 end
-for i = 1:1:(length(varargin)/2)
-    if isfield(Para, varargin{2*i-1})
-        Para = setfield(Para, varargin{2*i-1}, varargin{2*i});
-    else
-        error('Undefined input parameter!')
-    end
+
+% //setup by default
+Para.LossDesign = LossDesign;  % 'native' or 'log'
+Para.FigDim = FigDim;          % '2D' or '3D'
+
+% //setup plot mode (2D or 3D)
+% //'FigDim' & '2D'/'3D' stored in varargin{1} & {2}
+% for i = 1:1:1 %(length(varargin)/2)
+%     if isfield(Para, varargin{2*i-1})
+%         Para = setfield(Para, varargin{2*i-1}, varargin{2*i});
+%     else
+%         error('Undefined input parameter!')
+%     end
+% end
+
+% //setup pinpoint where section crosses (if assigned)
+if isempty(varargin)
+   Para.CrossSectionPoint = 'MinObj';     % default mode
+elseif length(varargin) >= 1
+   Para.CrossSectionPoint = varargin{1};  
 end
 
+% //assign CSP to bs
 if ~ischar(Para.CrossSectionPoint)
-    bs = Para.CrossSectionPoint;
+    bs = Para.CrossSectionPoint;          % varargin pinpoint in vector
 else
-    switch Para.CrossSectionPoint
+    switch Para.CrossSectionPoint         % varargin pinpoint in mode
         case 'MinObj'
             bs = table2array(res.XAtMinObjective);
         case 'MinEstObj'
@@ -52,13 +68,17 @@ else
         case 'MinLandScape'
             bs = table2array(res.XAtMinObjective);
             [bs,~,~,~] = fminsearch(@(x) pred(res, x), bs);
-        otherwise
-            
-            error('Illegal point!')
-            
+        otherwise        
+            error('Illegal point!')     
     end
-
 end
+
+% //setup plot CXRange (if assigned, otherwise 'Off')
+CXRange = 'Off'; 
+if length(varargin) >= 2
+    CXRange = 'On';
+end
+
 var_name = cell(length(res.VariableDescriptions), 1);
 
 for i = 1:1:length(var_name)
@@ -99,6 +119,7 @@ end
 
 objective = predictObjective(res, struct2table(XTable));
 objective_ms = reshape(objective, [ylen, xlen]);
+
 switch Para.LossDesign
     case 'native'
     case 'log'
@@ -106,6 +127,7 @@ switch Para.LossDesign
     otherwise
         error('Undefined LossDesign')
 end
+
 % -------------------------------------------------------------------------
 keypoint = [238, 233, 95
             158, 53, 43
@@ -123,6 +145,7 @@ switch Para.FigDim
     case '2D'
         [~, h] = contourf(x_ms, y_ms, log10(abs(objective_ms)), 400);hold on
         c = colorbar();
+        if isequal(CXRange, 'On'), caxis(varargin{2}); end  % set caxis range: [log10(L_min), Log10(L_max)]
         % caxis([-2, 0])
         Ticks = c.Ticks;
         TickLabel = cell(1, length(Ticks));

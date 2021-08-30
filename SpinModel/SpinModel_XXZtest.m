@@ -62,8 +62,8 @@ ModelConf.Para_Range{1} = [0.5, 5];
 % Delta range
 ModelConf.Para_Range{2} = [0.5, 5];
 % gx range
-ModelConf.gFactor_Range{1} = [1, 3];
+ModelConf.gFactor_Range{1} = 'gz';
 % gz range
-ModelConf.gFactor_Range{2} = 'gx';
+ModelConf.gFactor_Range{2} = [1, 3];
 end
 

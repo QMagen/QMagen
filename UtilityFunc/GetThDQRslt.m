@@ -32,7 +32,7 @@ for i = 1:1:length(CmData)
                 end
             end
         case 'dir'
-            g_fec = g(CmData.Info.g_info{i}) * ModelConf.gFactor_Vec{CmData.Info.g_info{i}};
+            g_fec = g(CmData(i).Info.g_info) * ModelConf.gFactor_Vec{CmData(i).Info.g_info};
             for j = 1:1:3
                 if g_fec(j) == 0
                     g_fec(j) = 2;
@@ -67,7 +67,7 @@ for i = 1:1:length(ChiData)
                 end
             end
         case 'dir'
-            g_fec = g(ChiData.Info.g_info{i}) * ModelConf.gFactor_Vec{Chidata.Info.g_info{i}};
+            g_fec = g(ChiData(i).Info.g_info) * ModelConf.gFactor_Vec{ChiData(i).Info.g_info};
             for j = 1:1:3
                 if g_fec(j) == 0
                     g_fec(j) = 2;

@@ -1,4 +1,4 @@
-function [ C, Ns2 ] = VariProdMPOMem( Para, MPOA, MPOB )
+function [ C, Ns2, TE, EE ] = VariProdMPOMem( Para, MPOA, MPOB )
 % function [ C, Ns ] = VariProdMPOMem( MPOA, MPOB )
 % The last two indices of MPOA{i} & MPOB{i} should be the physical indices. 
 % C{i} = MPOA{i} * MPOB{i} 
@@ -11,10 +11,13 @@ max_step = Para.VariProd_step_max;
 ep = 1e-8;
 %============================================
 
+
 if length(MPOA) ~= length(MPOB)
     warning('Inputs MPO have different size!');
 end
 len = length(MPOA);
+EE = zeros(len-1, 1);
+TE = zeros(len-1, 1);
 
 C = cell(len, 1);
 for i = 1:1:len
@@ -32,13 +35,13 @@ for i = 1:1:max_step
     end
     
     for j = 1:1:(len-2)
-        [C{j}, C{j+1}, Ns1] = two_site_update_VariProdMPO(T, len, j, '->-', D_max);
+        [C{j}, C{j+1}, Ns1, TE(j), EE(j)] = two_site_update_VariProdMPO(T, len, j, '->-', D_max);
         [ EnV{j+1}, T ] = Update_VairProd_EnV(EnV(j:1:(j+2)), MPOA(j:1:(j+2)), ...
                                               MPOB(j:1:(j+2)), C{j}, len, j, '->-');
     end
     
     for j = len:-1:2
-        [C{j-1}, C{j}, Ns2] = two_site_update_VariProdMPO(T, len, j, '-<-', D_max);
+        [C{j-1}, C{j}, Ns2, TE(j-1), EE(j-1)] = two_site_update_VariProdMPO(T, len, j, '-<-', D_max);
         if j ~= 2
             [ EnV{j-1}, T ] = Update_VairProd_EnV(EnV((j-2):1:j), MPOA((j-2):1:j), ...
                                                   MPOB((j-2):1:j), C{j}, len, j, '-<-');
@@ -86,7 +89,7 @@ Vr = contract(Vr, [1,4], MPOB{2}, [2,4], [2,4,1,5,3]);
 T = contract(EnV{1}, [1,2], Vr, [1,2]);
 end
 
-function [ C1, C2, Ns ] = two_site_update_VariProdMPO(T, len, pos, dir, D_max )
+function [ C1, C2, Ns, TE, EE ] = two_site_update_VariProdMPO(T, len, pos, dir, D_max )
 
 Tsize = size(T);
 
@@ -97,8 +100,9 @@ elseif (pos == (len-1) && strcmp(dir, '->-')) || pos == len
 else
     T = reshape(T, [prod(Tsize(1:1:3)), prod(Tsize(4:1:6))]);
 end
-
-[U, S, V, ~, ~] = svdT(T, 'Nkeep', D_max);
+% TE: Trunction Error
+% EE: Entanglement Entropy
+[U, S, V, TE, EE] = svdT(T, 'Nkeep', D_max);
 Usize = size(U);
 Vsize = size(V);
 if pos == 1 || (pos == 2 && strcmp(dir, '-<-'))

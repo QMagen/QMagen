@@ -1,7 +1,12 @@
-function [ Rslt ] = XTRG_Main( Para, H, Id, Op, ST )
+function [ Rslt ] = XTRG_Main( Para, H, Id, Op, ST, i )
 global EVOFLAG;
 taup = Para.tau * 2 ^ (ST/4);
 Para.tau = taup;
+if i ~= 0
+    Para.TStr_log = [num2str(i), Para.TStr];
+else
+    Para.TStr_log = Para.TStr_log;
+end
 if EVOFLAG == 1
     fprintf('tau = %f \n', Para.tau);
     tic

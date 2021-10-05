@@ -1,4 +1,4 @@
-function [ C, Ns2 ] = VariSumMPOMem( Para, MPOA, MPOB, varargin )
+function [ C, Ns2, TE, EE ] = VariSumMPOMem( Para, MPOA, MPOB, varargin )
 % function [ C, Ns ] = VariSumMPOMem( MPOA, MPOB, varargin )
 % The last two indices of MPOA{i} & MPOB{i} should be the physical indices.
 % C = varargin{1}(1) * MPOA + varargin{1}(2) * MPOB
@@ -19,6 +19,8 @@ if length(MPOA) ~= length(MPOB)
     warning('Inputs MPO have different size!');
 end
 len = length(MPOA);
+EE = zeros(len-1, 1);
+TE = zeros(len-1, 1);
 
 C = cell(len, 1);
 for i = 1:1:len
@@ -38,7 +40,7 @@ for i = 1:1:max_step
     
     for j = 1:1:(len-2)
         T = Ta + Tb;
-        [C{j}, C{j+1}, Ns1] = two_site_update_VariSumMPO(T, len, j, '->-', D_max);
+        [C{j}, C{j+1}, Ns1, TE(j), EE(j)] = two_site_update_VariSumMPO(T, len, j, '->-', D_max);
         [ EnVA{j+1}, Ta ] = Update_VariSum_EnV(EnVA(j:1:(j+2)), MPOA(j:1:(j+2)), ...
                                           C{j}, len, j, '->-');
         [ EnVB{j+1}, Tb ] = Update_VariSum_EnV(EnVB(j:1:(j+2)), MPOB(j:1:(j+2)), ...
@@ -47,7 +49,7 @@ for i = 1:1:max_step
     
     for j = len:-1:2
         T = Ta + Tb;
-        [C{j-1}, C{j}, Ns2] = two_site_update_VariSumMPO(T, len, j, '-<-', D_max);
+        [C{j-1}, C{j}, Ns2, TE(j-1), EE(j-1)] = two_site_update_VariSumMPO(T, len, j, '-<-', D_max);
         if j ~= 2
             [ EnVA{j-1}, Ta ] = Update_VariSum_EnV(EnVA((j-2):1:j), MPOA((j-2):1:j), ...
                                               C{j}, len, j, '-<-');
@@ -91,7 +93,7 @@ T = contract(Vr, 1, MPO{2}, 2, [2,1,3,4]);
 T = contract(MPO{1}, 1, T, 1);
 end
 
-function [ C1, C2, Ns ] = two_site_update_VariSumMPO( T, L, pos, dir, D_max )
+function [ C1, C2, Ns, TE, EE ] = two_site_update_VariSumMPO( T, L, pos, dir, D_max )
 
 len = L;
 
@@ -105,7 +107,7 @@ else
     T = reshape(T, [prod(Tsize(1:1:3)), prod(Tsize(4:1:6))]);
 end
 
-[U, S, V, ~, ~] = svdT(T, 'Nkeep', D_max);
+[U, S, V, TE, EE] = svdT(T, 'Nkeep', D_max);
 
 Usize = size(U);
 Vsize = size(V);

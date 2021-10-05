@@ -5,6 +5,8 @@ function [ Para ] = PassPara( QMagenConf, K_min )
 
 Para.ManyBodySolver = QMagenConf.Config.ManyBodySolver; 
 Para.TStr = QMagenConf.Config.TStr;
+Para.TStr_log = QMagenConf.Config.TStr_log;
+
 % //pass interaction map (ED, XTRG) or Trotter gates (iLTRG) to solvers
 try
     Para.IntrcMap_Name = QMagenConf.ModelConf.IntrcMap;
@@ -17,7 +19,7 @@ Para.d = eval(QMagenConf.ModelConf.LocalSpin) * 2 + 1;
 Para.L = QMagenConf.Lattice.L;
 Para.Geo = QMagenConf.Lattice;
 
-if strcmp(QMagenConf.Config.Mode, 'LOSS') && strcmp(QMagenConf.Config.ManyBodySolver, 'XTRG')
+if strcmp(QMagenConf.Config.Mode, 'ThDQ') && strcmp(QMagenConf.Config.ManyBodySolver, 'XTRG')
     Para.Parallel = true;
 else
     Para.Parallel = false;

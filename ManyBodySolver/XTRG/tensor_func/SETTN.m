@@ -7,6 +7,13 @@ function [ rho, Op ] = SETTN( Para, H, Id, Op )
 % Yuan Gao@buaa 2020.12.07
 % mail: 17231064@buaa.edu.cn
 
+len = length(datestr(now,'YYYYmmDD_HHMMSS'));
+
+fileID = fopen(['../Tmp/tmp_', Para.TStr, '/', Para.TStr_log, '.log'], 'a');
+fprintf(fileID, '===================================================================\n');
+fprintf(fileID, 'SETTN:\n');
+
+
 tau = Para.tau;
 step_max = Para.SETTN_init_step_max;
 
@@ -20,19 +27,21 @@ for i = 1:1:step_max
     fec2 = Hn.lgnorm + i * log(tau) - sum(log(1:1:i));
     
     if fec1 > fec2
-        [rho.A, nm] = VariSumMPO(Para, rho.A, Hn.A, [1, sig * exp(fec2-fec1)]);
+        [rho.A, nm, TE, EE] = VariSumMPO(Para, rho.A, Hn.A, [1, sig * exp(fec2-fec1)]);
         rho.lgnorm = fec1 + log(nm);
     else
-        [rho.A, nm] = VariSumMPO(Para, rho.A, Hn.A, [exp(fec1-fec2), sig]);
+        [rho.A, nm, TE, EE] = VariSumMPO(Para, rho.A, Hn.A, [exp(fec1-fec2), sig]);
         rho.lgnorm = fec2 + log(nm);
     end
+    
+    fprintf(fileID, '    %d:        Truncation Error of VarSum: %g\n', i, max(TE));
     % fprintf('%d, %.5f, %.5f\n', i, fec1/log(10), fec2/log(10));
     if (fec2-fec1)/log(10) < -16
         break;
     end
     % //Hn = H * Hn (H^(i+1))
-    [Hn.A, nm] = VariProdMPO(Para, Hn.A, H.A);
+    [Hn.A, nm, TE, EE] = VariProdMPO(Para, Hn.A, H.A);
     Hn.lgnorm = H.lgnorm + Hn.lgnorm + log(nm);
 end
+fprintf(fileID, '-------------------------------------------------------------------\n');
 end
-

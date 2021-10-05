@@ -38,23 +38,23 @@ for i = 1:1:OptPara.Group_Number
       
             case 'on'
                 
-                parpool(OptPara.ParpoolNum)
+                %parpool(OptPara.ParpoolNum)
                 spmd
                     maxNumCompThreads(OptPara.Parallel_maxNumCompThreads);
                     fun = makeFun(labindex, TStr, gFac_input, Para_input);
                 end
                 
                 plf = parallel.pool.Constant(fun);
-                try
+ %               try
                     res = bayesopt(plf, [vp, vg], ...
                         'AcquisitionFunctionName', OptPara.AcqFunc_Name{i}, ...
                         'InitialX', XTrace, 'InitialObjective', ObjTrace, ...
                         'MaxObjectiveEvaluations', OptPara.Group_MaxEval(i), 'IsObjectiveDeterministic', OptPara.IsObjDet, ...
                         'ExplorationRatio',OptPara.AcqFunc_ER(i), ...
                         'UseParallel', true, 'MinWorkerUtilization', OptPara.MinWorkerUtilization);
-                catch
-                    error('Matlab version is insufficient, please turn off parallel!\n')
-                end
+%                catch
+%                    error('Matlab version is insufficient, please turn off parallel!\n')
+%               end
                 
             case 'off'
                 

@@ -4,6 +4,12 @@ function [ rho, Rslt ] = ExpEvo_conj( Para, rho, Op )
 % function.
 % Yuan Gao@buaa 2020.12.07
 % mail: 17231064@buaa.edu.cn
+len = length(datestr(now,'YYYYmmDD_HHMMSS'));
+
+
+fileID = fopen(['../Tmp/tmp_', Para.TStr, '/', Para.TStr_log, '.log'], 'a');
+fprintf(fileID, '===================================================================\n');
+fprintf(fileID, 'XTRG:\n');
 
 It_max = Para.It;
 
@@ -29,11 +35,13 @@ for It = 1:1:It_max
         crho.A{i} = conj(crho.A{i});
         crho.A{i} = permute(crho.A{i}, [1,2,4,3]);
     end
-    [rho.A, nm] = VariProdMPO(Para, rho.A, crho.A);
+    [rho.A, nm, TE, ee] = VariProdMPO(Para, rho.A, crho.A);
     rho.lgnorm = (2 * rho.lgnorm + log(nm));
     if EVOFLAG == 1
         toc
     end
+    
+    
     
     LnZ(It) = 2 * rho.lgnorm / Para.L;
     beta(It) = Para.tau * 2 ^ (It+1);
@@ -41,13 +49,18 @@ for It = 1:1:It_max
     Cm(It) = ThDQ.Cm / Para.L;
     M(It) = ThDQ.M / Para.L;
     En(It) = ThDQ.En / Para.L;
+    EE{It} = ee;
+    TE = max(TE);
+    fprintf(fileID, '    %d:    beta=%3.6f, LnZ=%.16f, En=%2.15f\n', It, beta(It), LnZ(It), En(It));
+    fprintf(fileID, '        Truncation Error %g\n        Entanglement Entopy %.6f\n', TE, ee(floor(Para.L/2)+1));
     
 end
-
+fprintf(fileID, '===================================================================\n');
 Rslt.LnZ = LnZ;
 Rslt.Cm = Cm;
 Rslt.M = M;
 Rslt.En = En;
 Rslt.beta = beta;
+Rslt.EE = EE;
 end
 

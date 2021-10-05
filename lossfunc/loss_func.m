@@ -8,6 +8,7 @@ if len == length(TStr)
 else
     load(['../Tmp/tmp_', TStr(2:1:end), '/configuration.mat'])
 end
+QMagenConf.Config.TStr_log = TStr;
 
 ModelConf = QMagenConf.ModelConf;
 CmData = QMagenConf.CmData;

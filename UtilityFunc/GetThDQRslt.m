@@ -12,7 +12,7 @@ end
 ModelConf = QMagenConf.ModelConf;
 CmData = QMagenConf.CmData;
 ChiData = QMagenConf.ChiData;
-
+QMagenConf.Config.TStr_log = TStr;
 
 % // Cm =======================================
 RsltCvNU = cell(length(CmData), 1);

@@ -66,7 +66,7 @@ Setting.PLOTFLAG = 0; % 0 -> off, n -> plot the graph every n iterations
 Setting.SAVEFLAG = 1;   % 0 -> off, 1 -> save the best, 2 -> save all
 
 % the file name to save intermediate results.
-Setting.SAVENAME = 'CN';
+Setting.SAVENAME = 'TMGO';
 
 
 % // restart --------------------------------------------------------------
